@@ -38,3 +38,27 @@
                   (apply (curry map list) (map tree-lift-refs tree))))
        (list (apply set-union names) trees)))
     (_ (list (set) tree))))
+
+(define (path-tree->name=>path+node-ref descs ptree)
+  (define (attr-add attrs name base filename)
+    (let* ((path (apply build-path (reverse (cons filename base))))
+           (href (string-append "/" (path->string path)))
+           (desc (dict-ref descs name))
+           (link `(a ((href ,href) ,desc))))
+      (dict-set attrs name (list path (node-ref name link)))))
+  (define (synthesize-fold attrs base children)
+    (for/fold ((attrs attrs))
+              ((child children))
+      (synthesize attrs base child)))
+  (define (synthesize attrs base child)
+    (match child
+      ((cons subdir children)
+        (let* ((base (cons (symbol->string subdir) base))
+               (attrs (attr-add attrs subdir base "index.html")))
+          (synthesize-fold attrs base children)))
+      (_
+        (attr-add attrs child base
+          (string-append (symbol->string child) ".html")))))
+  (let* ((attrs (synthesize-fold (hash) '() (cdr ptree)))
+         (attrs (attr-add attrs (car ptree) '() "index.html")))
+    attrs))
