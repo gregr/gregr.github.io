@@ -1,6 +1,13 @@
 #lang racket
 (require xml)
 
+(define (make-dirs path-parts)
+  (let loop ((base 'same) (parts path-parts))
+    (unless (empty? parts)
+      (let ((next (build-path base (car parts))))
+        (unless (directory-exists? next)
+          (make-directory next))
+        (loop next (cdr parts))))))
 (define (xexpr->pretty-string xexpr)
   (call-with-output-string
     (curry display-xml/content (xexpr->xml xexpr))))
