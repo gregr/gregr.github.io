@@ -14,6 +14,8 @@
 (define (xexpr->html-string xexpr)
   (string-append "<!DOCTYPE html>" (xexpr->pretty-string xexpr)))
 (define (write-html-file path xexpr)
+  (define-values (directory filename is-root) (split-path path))
+  (when (path? directory) (make-dirs (explode-path directory)))
   (call-with-output-file path #:exists 'replace
     (curry display (xexpr->html-string xexpr))))
 
