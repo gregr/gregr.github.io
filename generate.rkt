@@ -28,3 +28,13 @@
              (next (apply set-union nexts))
              (next (set-subtract next reached)))
         (loop reached next)))))
+
+(struct node-ref (name data) #:transparent)
+(define (tree-lift-refs tree)
+  (match tree
+    ((node-ref name data) (list (set name) data))
+    ((? list?)
+     (match-let (((list names trees)
+                  (apply (curry map list) (map tree-lift-refs tree))))
+       (list (apply set-union names) trees)))
+    (_ (list (set) tree))))
