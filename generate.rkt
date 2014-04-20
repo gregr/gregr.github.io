@@ -9,3 +9,13 @@
 (define (write-html-file path xexpr)
   (call-with-output-file path #:exists 'replace
     (curry display (xexpr->html-string xexpr))))
+
+(define (reachable graph roots)
+  (let loop ((reached (set))
+             (roots (list->set (sequence->list roots))))
+    (if (set-empty? roots) reached
+      (let* ((reached (set-union reached roots))
+             (nexts (map (curry dict-ref graph) (set->list roots)))
+             (next (apply set-union nexts))
+             (next (set-subtract next reached)))
+        (loop reached next)))))
