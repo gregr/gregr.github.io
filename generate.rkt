@@ -125,8 +125,7 @@
                   (error (format "unreachable pages: ~a"
                                  (set->list pages-not-reached))))
                 (for ((path page-paths) (xexpr page-xexprs))
-                     ;(write-html-file path xexpr))))
-                     (displayln (~v (list path xexpr))))))
+                     (write-html-file path xexpr))))
           )))))
 
 (define-syntax (define-site stx)
