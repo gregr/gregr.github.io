@@ -41,6 +41,8 @@
 
 (define (path-tree->name=>path+node-ref descs ptree)
   (define (attr-add attrs name base filename)
+    (when (dict-has-key? attrs name)
+      (error (format "path tree contains duplicate entries for: ~a" name)))
     (let* ((path (apply build-path (reverse (cons filename base))))
            (href (string-append "/" (path->string path)))
            (desc (dict-ref descs name))
