@@ -66,21 +66,6 @@
     attrs))
 
 (require (for-syntax racket/dict racket/function))
-(define-for-syntax (path-tree-defs stx descs ptree)
-  (let* ((names (dict-keys descs))
-         (idents (map (curry datum->syntax stx) names)))
-    (syntax->list
-      #`((define n=>p+nr (path-tree->name=>path+node-ref
-                          (make-immutable-hash '#,(dict->list descs))
-                          '#,ptree))
-         (define n++p+nr (dict->list n=>p+nr))
-         (define name=>path
-           (make-immutable-hash
-             (map (match-lambda ((cons name (list path nr)) (cons name path)))
-                 n++p+nr)))
-         (match-define
-           (list #,@idents)
-           (map (compose1 cadr (curry dict-ref n=>p+nr)) '#,names))))))
 (define-for-syntax (build-site stx path-tree exprs pages)
   (let* ((pages (map syntax->list (syntax->list pages)))
          (page-idents (map car pages))
