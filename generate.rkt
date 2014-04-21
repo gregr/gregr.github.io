@@ -64,3 +64,89 @@
   (let* ((attrs (synthesize-fold (hash) '() (cdr ptree)))
          (attrs (attr-add attrs (car ptree) '() "index.html")))
     attrs))
+
+(require (for-syntax racket/dict racket/function))
+(define-for-syntax (path-tree-defs stx descs ptree)
+  (let* ((names (dict-keys descs))
+         (idents (map (curry datum->syntax stx) names)))
+    (syntax->list
+      #`((define n=>p+nr (path-tree->name=>path+node-ref
+                          (make-immutable-hash '#,(dict->list descs))
+                          '#,ptree))
+         (define n++p+nr (dict->list n=>p+nr))
+         (define name=>path
+           (make-immutable-hash
+             (map (match-lambda ((cons name (list path nr)) (cons name path)))
+                 n++p+nr)))
+         (match-define
+           (list #,@idents)
+           (map (compose1 cadr (curry dict-ref n=>p+nr)) '#,names))))))
+(define-for-syntax (build-site stx path-tree exprs pages)
+  (let* ((pages (map syntax->list (syntax->list pages)))
+         (page-idents (map car pages))
+         (page-names (map syntax->datum page-idents))
+         (page-descs (map syntax->datum (map cadr pages)))
+         (page-bodies (map caddr pages))
+         ;(page-def-assocs (map list page-names page-bodies))
+         ;(page-defs (map (curry cons #'define) page-def-assocs))
+         (descs (make-immutable-hash (map cons page-names page-descs)))
+         (ptree (syntax->datum path-tree)))
+    (let* ((names (dict-keys descs))
+          (idents (map (curry datum->syntax stx) names)))
+      (datum->syntax stx
+        (append
+          (list #'begin)
+          (syntax->list #`(
+              (define n=>p+nr (path-tree->name=>path+node-ref
+                                (make-immutable-hash '#,(dict->list descs))
+                                '#,ptree))
+              (define n++p+nr (dict->list n=>p+nr))
+              (define name=>path
+                (make-immutable-hash
+                  (map (match-lambda ((cons name (list path nr)) (cons name path)))
+                      n++p+nr)))
+              (match-define
+                (list #,@idents)
+                (map (compose1 cadr (curry dict-ref n=>p+nr)) '#,names))
+              ))
+          (syntax->list exprs)
+          (list
+            #`(let* ((page-paths (map (curry dict-ref name=>path)
+                                      '#,page-names)))
+                (for ((path page-paths) (xexpr (list #,@page-bodies)))
+                     ;(write-html-file path xexpr))))
+                     (displayln (~v (list path xexpr))))))
+          )))))
+
+(define-syntax (define-site stx)
+  (syntax-case stx ()
+    ((_ path-tree exprs page ...)
+     (build-site stx #'path-tree #'exprs #'(page ...)))))
+
+(define-site
+  (home about (stuff child))
+
+  ()
+
+  (home "Home"
+    `(html
+      (head
+        (title "Greg's Metareflection")
+        (meta ((charset "utf-8")))
+        (meta ((name "author") (content "Greg Rosenblatt")))
+        (meta ((name "description") (content "Personal page of Greg Rosenblatt"))))
+      (body
+        (article
+          (p "hi")
+          (p (a ((href "https://github.com/gregr")) "I'm on github."))
+          (p "I enjoy eating tacos"))
+        (nav
+          (ul
+            (li ,about))))))
+  (about "About"
+    `(html))
+  (stuff "Some stuff"
+    `(html))
+  (child "Something else"
+    `(html))
+  )
