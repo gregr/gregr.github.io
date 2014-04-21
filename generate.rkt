@@ -129,29 +129,37 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define-site
-  (home about); (stuff child))
-
+  ; path structure
   (home about)
 
-  (home "Home"
-    `(html
-      (head
+  ; utilities
+  (
+   (define head
+     `(head
         (title "Greg's Metareflection")
         (meta ((charset "utf-8")))
         (meta ((name "author") (content "Greg Rosenblatt")))
-        (meta ((name "description") (content "Personal page of Greg Rosenblatt"))))
-      (body
-        (article
-          (p "hi")
-          (p (a ((href "https://github.com/gregr")) "I'm on github."))
-          (p "I enjoy eating tacos"))
-        (nav
-          (ul
-            (li ,about))))))
+        (meta ((name "description") (content "Personal page of Greg Rosenblatt")))))
+   (define nav
+     `(nav
+        (ul
+          (li ,about))))
+   (define (content body)
+     `(html
+        ,head
+        (body ,body
+        ,nav)))
+   )
+
+  ; page definitions
+  (home "Home"
+    (content
+    `(article
+       (p "hi")
+       (p (a ((href "https://github.com/gregr")) "I'm on github."))
+       (p "I enjoy eating tacos"))))
+
   (about "About"
-    `(html))
-  ;(stuff "Some stuff"
-    ;`(html))
-  ;(child "Something else"
-    ;`(html))
+    (content
+      `(p "I am a human being at the moment.")))
   )
