@@ -46,7 +46,7 @@
     (let* ((path (apply build-path (reverse (cons filename base))))
            (href (string-append "/" (path->string path)))
            (desc (dict-ref descs name))
-           (link `(a ((href ,href) ,desc))))
+           (link `(a ((href ,href)) ,desc)))
       (dict-set attrs name (list path (node-ref name link)))))
   (define (synthesize-fold attrs base children)
     (for/fold ((attrs attrs))
