@@ -90,7 +90,8 @@
          ;(page-def-assocs (map list page-names page-bodies))
          ;(page-defs (map (curry cons #'define) page-def-assocs))
          (descs (make-immutable-hash (map cons page-names page-descs)))
-         (ptree (syntax->datum path-tree)))
+         (ptree (syntax->datum path-tree))
+         (page-root (car ptree)))
     (let* ((names (dict-keys descs))
           (idents (map (curry datum->syntax stx) names)))
       (datum->syntax stx
@@ -111,8 +112,20 @@
               ))
           (syntax->list exprs)
           (list
-            #`(let* ((page-paths (map (curry dict-ref name=>path)
+            #`(let* ((page-reachables+xexpr
+                       (map tree-lift-refs (list #,@page-bodies)))
+                     (page-reachables (map car page-reachables+xexpr))
+                     (page-graph (make-immutable-hash
+                                   (map cons '#,page-names page-reachables)))
+                     (pages-reached (reachable page-graph (list '#,page-root)))
+                     (pages-not-reached (set-subtract (list->set '#,page-names)
+                                                      pages-reached))
+                     (page-xexprs (map cadr page-reachables+xexpr))
+                     (page-paths (map (curry dict-ref name=>path)
                                       '#,page-names)))
+                (unless (set-empty? pages-not-reached)
+                  (error (format "unreachable pages: ~a"
+                                 (set->list pages-not-reached))))
                 (for ((path page-paths) (xexpr (list #,@page-bodies)))
                      ;(write-html-file path xexpr))))
                      (displayln (~v (list path xexpr))))))
