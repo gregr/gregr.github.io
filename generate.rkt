@@ -87,8 +87,6 @@
          (page-names (map syntax->datum page-idents))
          (page-descs (map syntax->datum (map cadr pages)))
          (page-bodies (map caddr pages))
-         ;(page-def-assocs (map list page-names page-bodies))
-         ;(page-defs (map (curry cons #'define) page-def-assocs))
          (descs (make-immutable-hash (map cons page-names page-descs)))
          (ptree (syntax->datum path-tree))
          (page-root (car ptree)))
@@ -126,7 +124,7 @@
                 (unless (set-empty? pages-not-reached)
                   (error (format "unreachable pages: ~a"
                                  (set->list pages-not-reached))))
-                (for ((path page-paths) (xexpr (list #,@page-bodies)))
+                (for ((path page-paths) (xexpr page-xexprs))
                      ;(write-html-file path xexpr))))
                      (displayln (~v (list path xexpr))))))
           )))))
@@ -137,9 +135,9 @@
      (build-site stx #'path-tree #'exprs #'(page ...)))))
 
 (define-site
-  (home about (stuff child))
+  (home about); (stuff child))
 
-  ()
+  (home about)
 
   (home "Home"
     `(html
@@ -158,8 +156,8 @@
             (li ,about))))))
   (about "About"
     `(html))
-  (stuff "Some stuff"
-    `(html))
-  (child "Something else"
-    `(html))
+  ;(stuff "Some stuff"
+    ;`(html))
+  ;(child "Something else"
+    ;`(html))
   )
