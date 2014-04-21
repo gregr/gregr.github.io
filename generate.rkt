@@ -1,6 +1,10 @@
 #lang racket
 (require xml)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; HTML file generation
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (define (make-dirs path-parts)
   (let loop ((base 'same) (parts path-parts))
     (unless (empty? parts)
@@ -18,6 +22,10 @@
   (when (path? directory) (make-dirs (explode-path directory)))
   (call-with-output-file path #:exists 'replace
     (curry display (xexpr->html-string xexpr))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; site description
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define (reachable graph roots)
   (let loop ((reached (set))
@@ -115,6 +123,10 @@
   (syntax-case stx ()
     ((_ path-tree exprs page ...)
      (build-site stx #'path-tree #'exprs #'(page ...)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; an actual site
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define-site
   (home about); (stuff child))
