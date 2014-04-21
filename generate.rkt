@@ -96,18 +96,17 @@
         (append
           (list #'begin)
           (syntax->list #`(
-              (define n=>p+nr (path-tree->name=>path+node-ref
-                                (make-immutable-hash '#,(dict->list descs))
-                                '#,ptree))
-              (define n++p+nr (dict->list n=>p+nr))
-              (define name=>path
-                (make-immutable-hash
-                  (map (match-lambda ((cons name (list path nr)) (cons name path)))
-                      n++p+nr)))
-              (match-define
-                (list #,@idents)
-                (map (compose1 cadr (curry dict-ref n=>p+nr)) '#,names))
-              ))
+            (define n=>p+nr (path-tree->name=>path+node-ref
+                              (make-immutable-hash '#,(dict->list descs))
+                              '#,ptree))
+            (define n++p+nr (dict->list n=>p+nr))
+            (define name=>path
+              (make-immutable-hash
+                (map (match-lambda ((cons name (list path nr)) (cons name path)))
+                    n++p+nr)))
+            (match-define
+              (list #,@idents)
+              (map (compose1 cadr (curry dict-ref n=>p+nr)) '#,names))))
           (syntax->list exprs)
           (list
             #`(let* ((page-reachables+xexpr
@@ -125,8 +124,7 @@
                   (error (format "unreachable pages: ~a"
                                  (set->list pages-not-reached))))
                 (for ((path page-paths) (xexpr page-xexprs))
-                     (write-html-file path xexpr))))
-          )))))
+                     (write-html-file path xexpr)))))))))
 
 (define-syntax (define-site stx)
   (syntax-case stx ()
