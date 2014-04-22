@@ -1,0 +1,5 @@
+This project describes my personal site.
+
+The site itself is described using a DSL defined in racket.
+
+Feel free to make use of the site generation logic.  Please offer suggestions if you have any.
