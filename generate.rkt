@@ -183,5 +183,10 @@
          (section
            (h2 "Professional experience")
            (p "I'll fill this in later."))
+         (section
+           (h2 "Education")
+           (h3 "Rochester Institute of Technology")
+           (h4 "1999 - 2004")
+           (p "Bachelor of Science in Mechanical Engineering"))
          )))
   )
