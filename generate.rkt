@@ -205,7 +205,8 @@
              (li
                (h3 "Rochester Institute of Technology")
                (h4 "1999 - 2004")
-               (p "Bachelor of Science in Mechanical Engineering"))
+               (p "Bachelor of Science in Mechanical Engineering")
+               (p "Concentration in Aerospace"))
              (li
                (h3 "Stanford Online Courses for AI and Machine Learning")
                (h4 "Fall 2011")
