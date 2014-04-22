@@ -143,6 +143,7 @@
    (define nav
      `(nav
         (ul
+          (li ,home)
           (li ,about))))
    (define (content body)
      `(html
