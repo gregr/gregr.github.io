@@ -171,6 +171,10 @@
            (p "Being possibly overcritical about my own past work, I'm not particularly proud of any of these.  But even with such reservations, I feel it's still important to share.")
            (ul
              (li
+               (h3 (a ((href "https://github.com/gregr/starscape")) "Starscape"))
+               (h4 "1999 - 2005")
+               (p "a 3D game programming system, including a GUI library"))
+             (li
                (h3 "Creating a Scripting System in C++")
                (h4 "2002 - 2003")
                (p "This is an article series I wrote for " (a ((href "http://www.gamedev.net/")) "gamedev.net") " in five parts.")
