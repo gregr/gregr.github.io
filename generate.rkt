@@ -201,8 +201,19 @@
            (p "I'll fill this in later."))
          (section
            (h2 "Education")
-           (h3 "Rochester Institute of Technology")
-           (h4 "1999 - 2004")
-           (p "Bachelor of Science in Mechanical Engineering"))
+           (ul
+             (li
+               (h3 "Rochester Institute of Technology")
+               (h4 "1999 - 2004")
+               (p "Bachelor of Science in Mechanical Engineering"))
+             (li
+               (h3 "Stanford Online Courses for AI and Machine Learning")
+               (h4 "Fall 2011")
+               (h5 "Statement of Accomplishment")
+               (p "This was the original online offering of these two classes from which "
+                  (a ((href "https://www.coursera.org/")) "coursera")
+                  " and "
+                  (a ((href "https://www.udacity.com/")) "udacity")
+                  " were spun off."))))
          )))
   )
