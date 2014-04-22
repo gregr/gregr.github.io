@@ -154,12 +154,34 @@
   ; page definitions
   (home "Home"
     (content
-    `(article
-       (p "hi")
-       (p (a ((href "https://github.com/gregr")) "I'm on github."))
-       (p "I enjoy eating tacos"))))
+      `(article
+         (p "hi")
+         (p (a ((href "https://github.com/gregr")) "I'm on github.")))))
 
   (about "About"
     (content
-      `(p "I am a human being at the moment.")))
+      `(article
+         (h1 "A little bit about me")
+         (section
+           (h2 "Summary")
+           (p "I currently live and work in Toronto, Ontario."))
+         (section
+           (h2 "Notable personal projects")
+           (p "The following projects were the product of significant effort made as I grew up as a programmer.")
+           (p "Being possibly overcritical about my own past work, I'm not particularly proud of any of these.  But even with such reservations, I feel it's still important to share.")
+           (ul
+             (li
+               (h3 "Creating a Scripting System in C++")
+               (h4 "2002 - 2003")
+               (p "This is an article series I wrote for " (a ((href "http://www.gamedev.net/")) "gamedev.net") " in five parts.")
+               (ul
+                 (li (a ((href "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-i-an-i-r1633")) "I"))
+                 (li (a ((href "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-ii-dat-r1686")) "II"))
+                 (li (a ((href "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-iii-dy-r1788")) "III"))
+                 (li (a ((href "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-iv-the-r1803")) "IV"))
+                 (li (a ((href "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-v-func-r1877")) "V"))))))
+         (section
+           (h2 "Professional experience")
+           (p "I'll fill this in later."))
+         )))
   )
