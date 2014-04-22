@@ -171,6 +171,12 @@
            (p "Being possibly overcritical about my own past work, I'm not particularly proud of any of these.  But even with such reservations, I feel it's still important to share.")
            (ul
              (li
+               (h3 (a ((href "https://github.com/gregr/chive")) "The Chive Programming Language"))
+               (h4 "2009-2010")
+               (p "This was my first serious attempt at a full programming language implementation.  It includes a scheme-like hygienic macro system based on syntactic closures.")
+               (p "It was put aside when I started working at Facebook.")
+               )
+             (li
                (h3 (a ((href "https://github.com/gregr/uriel")) "Uriel"))
                (h4 "2005-2006")
                (p "a tile-based multiplayer game framework")
