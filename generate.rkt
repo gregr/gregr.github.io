@@ -171,6 +171,11 @@
            (p "Being possibly overcritical about my own past work, I'm not particularly proud of any of these.  But even with such reservations, I feel it's still important to share.")
            (ul
              (li
+               (h3 (a ((href "https://github.com/gregr/uriel")) "Uriel"))
+               (h4 "2005-2006")
+               (p "a tile-based multiplayer game framework")
+               (p "Several amusing games were made with this.  They are lost."))
+             (li
                (h3 (a ((href "https://github.com/gregr/starscape")) "Starscape"))
                (h4 "1999 - 2005")
                (p "a 3D game programming system, including a GUI library"))
