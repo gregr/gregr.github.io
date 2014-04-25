@@ -134,6 +134,8 @@
 
   ; utilities
   (
+   (define (anchor href description)
+     `(a ((href ,href)) ,description))
    (define head
      `(head
         (title "Greg's Metareflection")
@@ -157,7 +159,7 @@
     (content
       `(article
          (p "hi")
-         (p (a ((href "https://github.com/gregr")) "I'm on github.")))))
+         (p ,(anchor "https://github.com/gregr" "I'm on github.")))))
 
   (about "About"
     (content
@@ -172,30 +174,30 @@
            (p "Being possibly overcritical about my own past work, I'm not particularly proud of any of these.  But even with such reservations, I feel it's still important to share.")
            (ul
              (li
-               (h3 (a ((href "https://github.com/gregr/chive")) "The Chive Programming Language"))
+               (h3 ,(anchor "https://github.com/gregr/chive" "The Chive Programming Language"))
                (h4 "2009 - 2010")
                (p "This was my first serious attempt at a full programming language implementation.  It features a scheme-like hygienic macro system based on syntactic closures.")
                (p "It was put aside when I started working at Facebook.")
                )
              (li
-               (h3 (a ((href "https://github.com/gregr/uriel")) "Uriel"))
+               (h3 ,(anchor "https://github.com/gregr/uriel" "Uriel"))
                (h4 "2005 - 2006")
                (p "a tile-based multiplayer game framework")
                (p "Several amusing games were made with this.  They are lost."))
              (li
-               (h3 (a ((href "https://github.com/gregr/starscape")) "Starscape"))
+               (h3 ,(anchor "https://github.com/gregr/starscape" "Starscape"))
                (h4 "1999 - 2005")
                (p "a 3D game programming system, including a GUI library"))
              (li
                (h3 "Creating a Scripting System in C++")
                (h4 "2002 - 2003")
-               (p "This is an article series I wrote for " (a ((href "http://www.gamedev.net/")) "gamedev.net") " in five parts.")
+               (p "This is an article series I wrote for " ,(anchor "http://www.gamedev.net/" "gamedev.net") " in five parts.")
                (ul
-                 (li (a ((href "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-i-an-i-r1633")) "I"))
-                 (li (a ((href "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-ii-dat-r1686")) "II"))
-                 (li (a ((href "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-iii-dy-r1788")) "III"))
-                 (li (a ((href "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-iv-the-r1803")) "IV"))
-                 (li (a ((href "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-v-func-r1877")) "V"))))))
+                 (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-i-an-i-r1633" "I"))
+                 (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-ii-dat-r1686" "II"))
+                 (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-iii-dy-r1788" "III"))
+                 (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-iv-the-r1803" "IV"))
+                 (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-v-func-r1877" "V"))))))
          (section
            (h2 "Professional experience")
            (p "I'll fill this in later."))
@@ -212,9 +214,9 @@
                (h4 "Fall 2011")
                (h5 "Statement of Accomplishment")
                (p "This was the original online offering of these two classes from which "
-                  (a ((href "https://www.coursera.org/")) "coursera")
+                  ,(anchor "https://www.coursera.org/" "coursera")
                   " and "
-                  (a ((href "https://www.udacity.com/")) "udacity")
+                  ,(anchor "https://www.udacity.com/" "udacity")
                   " were spun off."))))
          )))
   )
