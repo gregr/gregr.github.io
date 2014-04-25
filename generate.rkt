@@ -16,7 +16,7 @@
   (call-with-output-string
     (curry display-xml/content (xexpr->xml xexpr))))
 (define (xexpr->html-string xexpr)
-  (string-append "<!DOCTYPE html>" (xexpr->pretty-string xexpr)))
+  (string-append "<!DOCTYPE html>" (xexpr->string xexpr)))
 (define (write-html-file path xexpr)
   (define-values (directory filename is-root) (split-path path))
   (when (path? directory) (make-dirs (explode-path directory)))
