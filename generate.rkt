@@ -134,14 +134,13 @@
 
   ; utilities
   (
-   (define (anchor href description)
-     `(a ((href ,href)) ,description))
    (define head
      `(head
         (title "Greg's Metareflection")
         (meta ((charset "utf-8")))
         (meta ((name "author") (content "Greg Rosenblatt")))
-        (meta ((name "description") (content "Personal page of Greg Rosenblatt")))))
+        (meta ((name "description") (content "Personal page of Greg Rosenblatt")))
+        (link ((rel "stylesheet") (href "main.css")))))
    (define nav
      `(nav
         (ul
@@ -152,6 +151,14 @@
         ,head
         (body ,body
         ,nav)))
+   (define (anchor href description)
+     `(a ((href ,href)) ,description))
+   (define (date-single d)
+     `(div ((class "date")) ,d))
+   (define (date-range start end)
+     `(div ((class "date-range"))
+           (span ((class "date")) ,start)
+           (span ((class "date date-end")) ,end)))
    )
 
   ; page definitions
@@ -175,22 +182,22 @@
            (ul
              (li
                (h3 ,(anchor "https://github.com/gregr/chive" "The Chive Programming Language"))
-               (h4 "2009 - 2010")
+               ,(date-range "2009" "2010")
                (p "This was my first serious attempt at a full programming language implementation.  It features a scheme-like hygienic macro system based on syntactic closures.")
                (p "It was put aside when I started working at Facebook.")
                )
              (li
                (h3 ,(anchor "https://github.com/gregr/uriel" "Uriel"))
-               (h4 "2005 - 2006")
+               ,(date-range "2005" "2006")
                (p "a tile-based multiplayer game framework")
                (p "Several amusing games were made with this.  They are lost."))
              (li
                (h3 ,(anchor "https://github.com/gregr/starscape" "Starscape"))
-               (h4 "1999 - 2005")
+               ,(date-range "1999" "2005")
                (p "a 3D game programming system, including a GUI library"))
              (li
                (h3 "Creating a Scripting System in C++")
-               (h4 "2002 - 2003")
+               ,(date-range "2002" "2003")
                (p "This is an article series I wrote for " ,(anchor "http://www.gamedev.net/" "gamedev.net") " in five parts.")
                (ul
                  (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-i-an-i-r1633" "I"))
@@ -206,13 +213,13 @@
            (ul
              (li
                (h3 "Rochester Institute of Technology")
-               (h4 "1999 - 2004")
+               ,(date-range "1999" "2004")
                (p "Bachelor of Science in Mechanical Engineering")
                (p "Concentration in Aerospace"))
              (li
                (h3 "Stanford Online Courses for AI and Machine Learning")
-               (h4 "Fall 2011")
-               (h5 "Statement of Accomplishment")
+               ,(date-single "Fall 2011")
+               (h4 "Statement of Accomplishment")
                (p "This was the original online offering of these two classes from which "
                   ,(anchor "https://www.coursera.org/" "coursera")
                   " and "

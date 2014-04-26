@@ -1,0 +1,7 @@
+.date {
+  font-style: italic;
+  font-weight: bold;
+}
+.date-end:before {
+  content: " - ";
+}
