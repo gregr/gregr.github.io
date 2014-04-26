@@ -304,7 +304,21 @@
                  (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-v-func-r1877" "V"))))))
          (section
            (h2 "Professional experience")
-           (p "I'll fill this in later."))
+           (ul
+             (li
+               ,(employment "Ellington Management Group" "Old Greenwich, CT"
+                            "Quantitative Developer"
+                            "May 2006" "August 2009"
+                  `(div
+                     (p "Developed and maintained various modelling and trading systems.")
+                     (ul
+                       (li "Distributed computing infrastructure")
+                       (li "Cross-language Services and Remote Procedure Call library")
+                       (li "Quantitative Model implementation")
+                       (li "Real-time market data streaming and aggregation")
+                       (li "Automated trading and order management system")
+                       )))
+             )))
          (section
            (h2 "Education")
            (ul
