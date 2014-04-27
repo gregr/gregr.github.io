@@ -142,15 +142,16 @@
         (meta ((name "description") (content "Personal page of Greg Rosenblatt")))
         (link ((rel "stylesheet") (href "main.css")))))
    (define nav
-     `(nav
+     `(nav ((id "nav-main"))
         (ul
           (li ,home)
           (li ,about))))
    (define (content body)
      `(html
         ,head
-        (body ,body
-        ,nav)))
+        (body
+          (div ((id "content-main")) ,body)
+          ,nav)))
    (define (anchor href description)
      `(a ((href ,href)) ,description))
    (define (date-single d)

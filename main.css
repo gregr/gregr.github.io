@@ -9,3 +9,12 @@
   display: inline;
   padding: 10px;
 }
+#nav-main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100px;
+}
+#content-main {
+  margin-left: 100px;
+}
