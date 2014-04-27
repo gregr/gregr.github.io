@@ -5,3 +5,7 @@
 .date-end:before {
   content: " - ";
 }
+.multipart-series li {
+  display: inline;
+  padding: 10px;
+}
