@@ -183,6 +183,7 @@
   ("#content-main"
    (hash
      "margin-left" nav-width))
+
   (".date"
    (hash
      "font-style" "italic"
@@ -190,10 +191,29 @@
   (".date-end:before"
    (hash
      "content" "\" - \""))
+
   (".multipart-series li"
    (hash
      "display" "inline"
      "padding" "10px"))
+
+  (".employment-employer"
+   (hash
+     "display" "inline"
+     "font-weight" "bold"
+     ))
+  (".employment-location"
+   (hash
+     "font-weight" "normal"
+     "display" "inline"
+     ))
+  (".employment .date-range"
+   (hash
+     "margin-bottom" "1em"
+     ))
+  (".employment-location:before"
+   (hash
+     "content" "\" - \""))
   )
 
 (define-site

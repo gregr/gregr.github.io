@@ -1,3 +1,12 @@
+#nav-main {
+  top: 0;
+  left: 0;
+  width: 100px;
+  position: fixed;
+}
+#content-main {
+  margin-left: 100px;
+}
 .date {
   font-weight: bold;
   font-style: italic;
@@ -9,12 +18,17 @@
   padding: 10px;
   display: inline;
 }
-#nav-main {
-  top: 0;
-  left: 0;
-  width: 100px;
-  position: fixed;
+.employment-employer {
+  display: inline;
+  font-weight: bold;
 }
-#content-main {
-  margin-left: 100px;
+.employment-location {
+  display: inline;
+  font-weight: normal;
+}
+.employment .date-range {
+  margin-bottom: 1em;
+}
+.employment-location:before {
+  content: " - ";
 }
