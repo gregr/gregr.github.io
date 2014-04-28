@@ -12,7 +12,7 @@
             ((pattern ...) body)))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; HTML file generation
+;;; file generation
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define (make-dirs path-parts)
@@ -37,6 +37,23 @@
 
 (define (write-html-file path xexpr)
   (write-file path (xexpr->html-string xexpr)))
+
+(define (css-style->string style)
+  (let ((parts
+          (for/foldm ((parts '()))
+                     (((cons field value) (dict->list style)))
+            (cons (format "  ~a: ~a;\n" field value) parts))))
+    (string-append "{\n" (apply string-append (reverse parts)) "}\n")))
+
+(define (css->string css)
+  (let ((parts
+          (for/foldm ((parts '()))
+                     (((cons selector style) css))
+            (cons (string-append selector " " (css-style->string style)) parts))))
+    (apply string-append (reverse parts))))
+
+(define (write-css-file path css)
+  (write-file path (css->string css)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; site description
