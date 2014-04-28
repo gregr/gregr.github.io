@@ -228,6 +228,14 @@
      `(div ((class "date-range"))
            (span ((class "date")) ,start)
            (span ((class "date date-end")) ,end)))
+   (define (employment employer location title start end details)
+     `(div ((class "employment"))
+        (div
+          (h3 ((class "employment-employer")) ,employer)
+          (div ((class "employment-location")) ,location))
+        (h4 ((class "employment-title")) ,title)
+        ,(date-range start end)
+        (div ((class "employment-details")) ,details)))
    )
 
   ; page definitions
