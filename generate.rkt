@@ -174,26 +174,27 @@
 (define nav-width "100px")
 
 (define-css "main.css"
-  (".date"
-    (hash
-      "font-style" "italic"
-      "font-weight" "bold"))
-  (".date-end:before"
-    (hash
-      "content" "\" - \""))
-  (".multipart-series li"
-    (hash
-      "display" "inline"
-      "padding" "10px"))
   ("#nav-main"
-    (hash
-      "position" "fixed"
-      "top" "0"
-      "left" "0"
-      "width" nav-width))
+   (hash
+     "position" "fixed"
+     "top" "0"
+     "left" "0"
+     "width" nav-width))
   ("#content-main"
-    (hash
-      "margin-left" nav-width)))
+   (hash
+     "margin-left" nav-width))
+  (".date"
+   (hash
+     "font-style" "italic"
+     "font-weight" "bold"))
+  (".date-end:before"
+   (hash
+     "content" "\" - \""))
+  (".multipart-series li"
+   (hash
+     "display" "inline"
+     "padding" "10px"))
+  )
 
 (define-site
   ; path structure
