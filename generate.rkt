@@ -1,6 +1,16 @@
 #lang racket
 (require xml)
 
+(define-syntax (for/foldm stx)
+  (syntax-case stx ()
+    ((_ accs ((pattern seq) ...) body)
+     (with-syntax (((element ...)
+                    (generate-temporaries #'((pattern seq) ...))))
+      #'(for/fold accs
+                ((element seq) ...)
+          (match* (element ...)
+            ((pattern ...) body)))))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; HTML file generation
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
