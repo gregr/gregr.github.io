@@ -22,16 +22,21 @@
         (unless (directory-exists? next)
           (make-directory next))
         (loop next (cdr parts))))))
+
 (define (xexpr->pretty-string xexpr)
   (call-with-output-string
     (curry display-xml/content (xexpr->xml xexpr))))
 (define (xexpr->html-string xexpr)
   (string-append "<!DOCTYPE html>" (xexpr->string xexpr)))
-(define (write-html-file path xexpr)
+
+(define (write-file path content)
   (define-values (directory filename is-root) (split-path path))
   (when (path? directory) (make-dirs (explode-path directory)))
   (call-with-output-file path #:exists 'replace
-    (curry display (xexpr->html-string xexpr))))
+    (curry display content)))
+
+(define (write-html-file path xexpr)
+  (write-file path (xexpr->html-string xexpr)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; site description
