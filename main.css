@@ -1,19 +1,19 @@
 .date {
-  font-style: italic;
   font-weight: bold;
+  font-style: italic;
 }
 .date-end:before {
   content: " - ";
 }
 .multipart-series li {
-  display: inline;
   padding: 10px;
+  display: inline;
 }
 #nav-main {
-  position: fixed;
   top: 0;
   left: 0;
   width: 100px;
+  position: fixed;
 }
 #content-main {
   margin-left: 100px;
