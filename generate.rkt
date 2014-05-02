@@ -306,6 +306,20 @@
            (h2 "Professional experience")
            (ul
              (li
+               ,(employment "Facebook" "Palo Alto, CA"
+                            "Software Engineer"
+                            "January 2011" "June 2012"
+                  `(div
+                     (p "Developed and maintained internal development tools and infrastructure")
+                     (ul
+                       (li "Distributed continuous test run infrastructure")
+                       (li "Automatic test failure blame assignment and task creation")
+                       (li "Phabricator")
+                       (li "Task management system")
+                       (li "Dev-server allocation and management system")
+                       (li "Real-time asynchronous job tier")
+                       ))))
+             (li
                ,(employment "Ellington Management Group" "Old Greenwich, CT"
                             "Quantitative Developer"
                             "May 2006" "August 2009"
