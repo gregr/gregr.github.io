@@ -306,6 +306,17 @@
            (h2 "Professional experience")
            (ul
              (li
+               ,(employment "Well.ca" "Kitchener, ON"
+                            "Software Engineer"
+                            "August 2012" "October 2013"
+                  `(div
+                     (p "Refactored and redesigned the warehouse management system")
+                     (ul
+                       (li "Separation of WMS into an independent service providing a web API")
+                       (li "Design and performance analysis of alternative communication protocols")
+                       (li "Internal tools and automation for development and deployment")
+                       ))))
+             (li
                ,(employment "Facebook" "Palo Alto, CA"
                             "Software Engineer"
                             "January 2011" "June 2012"
