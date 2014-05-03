@@ -267,6 +267,17 @@
         (h4 ((class "employment-title")) ,title)
         ,(date-range start end)
         (div ((class "employment-details")) ,@details)))
+
+   (define (anchor-beat-cap desc)
+     (anchor "http://nathanmarz.com/blog/how-to-beat-the-cap-theorem.html" desc))
+   (define (anchor-consistent-hash desc)
+     (anchor "http://www.tomkleinpeter.com/2008/03/17/programmers-toolbox-part-3-consistent-hashing/" desc))
+   (define (anchor-raft-paxos desc)
+     (anchor "http://www.reddit.com/comments/1c1rjx" desc))
+   (define (anchor-props-as-types desc)
+     (anchor "http://homepages.inf.ed.ac.uk/wadler/papers/propositions-as-types/propositions-as-types.pdf" desc))
+   (define (anchor-relational-prog desc)
+     (anchor "https://www.youtube.com/watch?v=5Q9x16uIsKA" desc))
    )
 
   ; page definitions
@@ -282,7 +293,19 @@
          (h1 "A little bit about me")
          (section
            (h2 "Summary")
-           (p "I currently live and work in Toronto, Ontario."))
+           (p
+             "I currently live and work in Toronto, Ontario.  I work in technology.  I am "
+             ,(anchor-beat-cap "much")
+             " "
+             ,(anchor-consistent-hash "more")
+             " "
+             ,(anchor-raft-paxos "interested")
+             " "
+             ,(anchor-relational-prog "in")
+             " "
+             ,(anchor-props-as-types "knowledge")
+             " than in products."
+             ))
          (section
            (h2 "Notable personal projects")
            (p "The following projects were the product of significant effort made as I grew up as a programmer.")
