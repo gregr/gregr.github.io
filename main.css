@@ -18,6 +18,9 @@
   padding: 10px;
   display: inline;
 }
+.employment-list>li {
+  margin-bottom: 1em;
+}
 .employment-employer {
   display: inline;
   font-weight: bold;

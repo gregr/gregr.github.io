@@ -197,6 +197,10 @@
      "display" "inline"
      "padding" "10px"))
 
+  (".employment-list>li"
+   (hash
+     "margin-bottom" "1em"
+     ))
   (".employment-employer"
    (hash
      "display" "inline"
@@ -304,7 +308,7 @@
                  (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-v-func-r1877" "V"))))))
          (section
            (h2 "Professional experience")
-           (ul
+           (ul ((class "employment-list"))
              (li
                ,(employment "Tulip Retail" "Toronto, ON"
                             "Software Engineer"
