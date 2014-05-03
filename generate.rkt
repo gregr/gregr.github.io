@@ -248,14 +248,14 @@
      `(div ((class "date-range"))
            (span ((class "date")) ,start)
            (span ((class "date date-end")) ,end)))
-   (define (employment employer location title start end details)
+   (define (employment employer location title start end . details)
      `(div ((class "employment"))
         (div
           (h3 ((class "employment-employer")) ,employer)
           (div ((class "employment-location")) ,location))
         (h4 ((class "employment-title")) ,title)
         ,(date-range start end)
-        (div ((class "employment-details")) ,details)))
+        (div ((class "employment-details")) ,@details)))
    )
 
   ; page definitions
@@ -309,54 +309,50 @@
                ,(employment "Tulip Retail" "Toronto, ON"
                             "Software Engineer"
                             "October 2013" "Present"
-                  `(div
-                     (p "Part of the founding team originally from Well.ca.")
-                     (p "Worked on both retail platform and individual client projects.")
-                     (ul
-                       (li "Re-design of data model and platform in terms of a service-oriented architecture")
-                       (li "Framework for building hypermedia APIs")
-                       (li "Data ingestion and processing library")
-                       (li "Continuous image import system")
-                       ))))
+                  `(p "Part of the founding team originally from Well.ca.")
+                  `(p "Worked on both retail platform and individual client projects.")
+                  `(ul
+                     (li "Re-design of data model and platform in terms of a service-oriented architecture")
+                     (li "Framework for building hypermedia APIs")
+                     (li "Data ingestion and processing library")
+                     (li "Continuous image import system")
+                     )))
              (li
                ,(employment "Well.ca" "Kitchener, ON"
                             "Software Engineer"
                             "August 2012" "October 2013"
-                  `(div
-                     (p "Refactored and redesigned the warehouse management system")
-                     (ul
-                       (li "Separation of WMS into an independent service providing a web API")
-                       (li "Design and performance analysis of alternative communication protocols")
-                       (li "Internal tools and automation for development and deployment")
-                       ))))
+                  `(p "Refactored and redesigned the warehouse management system")
+                  `(ul
+                     (li "Separation of WMS into an independent service providing a web API")
+                     (li "Design and performance analysis of alternative communication protocols")
+                     (li "Internal tools and automation for development and deployment")
+                     )))
              (li
                ,(employment "Facebook" "Palo Alto, CA"
                             "Software Engineer"
                             "January 2011" "June 2012"
-                  `(div
-                     (p "Developed and maintained internal development tools and infrastructure")
-                     (ul
-                       (li "Distributed continuous test run infrastructure")
-                       (li "Automatic test failure blame assignment and task creation")
-                       (li "Phabricator")
-                       (li "Task management system")
-                       (li "Dev-server allocation and management system")
-                       (li "Real-time asynchronous job tier")
-                       ))))
+                  `(p "Developed and maintained internal development tools and infrastructure")
+                  `(ul
+                     (li "Distributed continuous test run infrastructure")
+                     (li "Automatic test failure blame assignment and task creation")
+                     (li "Phabricator")
+                     (li "Task management system")
+                     (li "Dev-server allocation and management system")
+                     (li "Real-time asynchronous job tier")
+                     )))
              (li
                ,(employment "Ellington Management Group" "Old Greenwich, CT"
                             "Quantitative Developer"
                             "May 2006" "August 2009"
-                  `(div
-                     (p "Developed and maintained various modelling and trading systems.")
-                     (ul
-                       (li "Distributed computing infrastructure")
-                       (li "Cross-language Services and Remote Procedure Call library")
-                       (li "Quantitative Model implementation")
-                       (li "Real-time market data streaming and aggregation")
-                       (li "Automated trading and order management system")
-                       )))
-             )))
+                  `(p "Developed and maintained various modelling and trading systems.")
+                  `(ul
+                     (li "Distributed computing infrastructure")
+                     (li "Cross-language Services and Remote Procedure Call library")
+                     (li "Quantitative Model implementation")
+                     (li "Real-time market data streaming and aggregation")
+                     (li "Automated trading and order management system")
+                     )))
+             ))
          (section
            (h2 "Education")
            (ul
