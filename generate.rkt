@@ -306,6 +306,19 @@
            (h2 "Professional experience")
            (ul
              (li
+               ,(employment "Tulip Retail" "Toronto, ON"
+                            "Software Engineer"
+                            "October 2013" "Present"
+                  `(div
+                     (p "Part of the founding team originally from Well.ca.")
+                     (p "Worked on both retail platform and individual client projects.")
+                     (ul
+                       (li "Re-design of data model and platform in terms of a service-oriented architecture")
+                       (li "Framework for building hypermedia APIs")
+                       (li "Data ingestion and processing library")
+                       (li "Continuous image import system")
+                       ))))
+             (li
                ,(employment "Well.ca" "Kitchener, ON"
                             "Software Engineer"
                             "August 2012" "October 2013"
