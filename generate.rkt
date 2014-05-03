@@ -174,6 +174,13 @@
 (define nav-width "100px")
 
 (define-css "main.css"
+  ("body"
+   (hash
+     "font-family" "'Lucida Grande', Verdana, Helvetica, sans-serif"
+     "font-size" "80%"
+     "line-height" "120%"
+     ))
+
   ("#nav-main"
    (hash
      "position" "fixed"
