@@ -305,6 +305,15 @@
    (define (anchor-mysql-choose-something-else desc)
      (anchor "http://grimoire.ca/mysql/choose-something-else" desc))
 
+   (define (anchor-magic-ink desc)
+     (anchor "http://worrydream.com/MagicInk/" desc))
+   (define (anchor-drawing-dynamic desc)
+     (anchor "http://worrydream.com/DrawingDynamicVisualizationsTalkAddendum/" desc))
+   (define (anchor-learnable-prog desc)
+     (anchor "http://worrydream.com/LearnableProgramming/" desc))
+   (define (anchor-future-of-prog desc)
+     (anchor "http://worrydream.com/dbx/" desc))
+
    (define (anchor-SYJMrF desc)
      (anchor "https://en.wikipedia.org/wiki/Surely_You're_Joking,_Mr._Feynman!" desc))
    (define (anchor-GEB desc)
@@ -382,7 +391,17 @@
              ,(anchor-prag-prog "tool-building and automation")
              ".  I'm no stranger to code generation, transformation and other "
              ,(anchor-role-of-PL-study "language-oriented")
-             " techniques.  When solving mysteries, I understand and reason about code before jumping into a debugger."
+             " techniques.  When solving mysteries, I understand and reason about code before jumping into a debugger.")
+           (p
+             "I would like to become better at "
+             ,(anchor-magic-ink "designing")
+             " for "
+             ,(anchor-drawing-dynamic "human")
+             " "
+             ,(anchor-learnable-prog "beings")
+             ".  I'm inspired by our "
+             ,(anchor-future-of-prog "past")
+             "."
              ))
          (section
            (h2 "Notable personal projects")
