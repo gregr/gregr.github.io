@@ -370,7 +370,11 @@
              ,(anchor-php-fractally-bad "poorly-designed")
              " "
              ,(anchor-mysql-choose-something-else "technology")
-             "."
+             ".")
+           (p
+             "Proper "
+             ,(anchor-peopleware "management")
+             " trumps technology decisions."
              ))
          (section
            (h2 "Notable personal projects")
