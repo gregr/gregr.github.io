@@ -395,19 +395,19 @@
            (p
              "My approach to problem solving emphasizes "
              ,(anchor-prag-prog "tool-building and automation")
-             ".  I'm no stranger to code generation, transformation and other "
+             ".  I apply code generation, transformation and other "
              ,(anchor-role-of-PL-study "language-oriented")
              " techniques.  When solving mysteries, I understand and reason about code before jumping into a debugger.")
            (p
-             "I would like to become better at "
+             "A major goal of mine is to become better at "
              ,(anchor-magic-ink "designing")
              " for "
              ,(anchor-drawing-dynamic "human")
              " "
              ,(anchor-learnable-prog "beings")
-             ".  I am inspired by our "
+             ".  The "
              ,(anchor-future-of-prog "past")
-             "."
+             " inspires me."
              ))
          (section
            (h2 "Notable personal projects")
