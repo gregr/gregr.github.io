@@ -268,6 +268,9 @@
         ,(date-range start end)
         (div ((class "employment-details")) ,@details)))
 
+   (define (anchor-github desc)
+     (anchor "https://github.com/gregr" desc))
+
    (define (anchor-beat-cap desc)
      (anchor "http://nathanmarz.com/blog/how-to-beat-the-cap-theorem.html" desc))
    (define (anchor-consistent-hash desc)
@@ -344,7 +347,10 @@
   (about "About"
     (content
       `(article
-         (h1 "A little bit about me")
+         (h1 "Gregory L. Rosenblatt")
+         (section
+           (div "GitHub: " ,(anchor-github "gregr"))
+           )
          (section
            (h2 "Summary")
            (p "I currently live in Toronto, Ontario, working as a Software Engineer.")
