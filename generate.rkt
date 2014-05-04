@@ -294,6 +294,15 @@
    (define (anchor-git desc)
      (anchor "https://en.wikipedia.org/wiki/Git_(software)" desc))
 
+   (define (anchor-c++-fqa desc)
+     (anchor "http://yosefk.com/c++fqa/" desc))
+   (define (anchor-wat-talk desc)
+     (anchor "https://www.destroyallsoftware.com/talks/wat" desc))
+   (define (anchor-php-fractally-bad desc)
+     (anchor "http://me.veekun.com/blog/2012/04/09/php-a-fractal-of-bad-design/" desc))
+   (define (anchor-mysql-choose-something-else desc)
+     (anchor "http://grimoire.ca/mysql/choose-something-else" desc))
+
    (define (anchor-SYJMrF desc)
      (anchor "https://en.wikipedia.org/wiki/Surely_You're_Joking,_Mr._Feynman!" desc))
    (define (anchor-GEB desc)
@@ -353,6 +362,14 @@
              ,(anchor-git "tools")
              " and "
              ,(anchor-100-percent-solutions "100% solutions")
+             ".  Unfortunately I have "
+             ,(anchor-c++-fqa "plenty")
+             " of "
+             ,(anchor-wat-talk "experience")
+             " with "
+             ,(anchor-php-fractally-bad "poorly-designed")
+             " "
+             ,(anchor-mysql-choose-something-else "technology")
              "."
              ))
          (section
