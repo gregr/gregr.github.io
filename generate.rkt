@@ -229,7 +229,7 @@
 
 (define-site
   ; path structure
-  (home about)
+  (about)
 
   ; utilities
   (
@@ -243,7 +243,6 @@
    (define nav
      `(nav ((id "nav-main"))
         (ul
-          (li ,home)
           (li ,about))))
    (define (content body)
      `(html
@@ -338,12 +337,6 @@
    )
 
   ; page definitions
-  (home "Home"
-    (content
-      `(article
-         (p "hi")
-         (p ,(anchor "https://github.com/gregr" "I'm on github.")))))
-
   (about "About"
     (content
       `(article
