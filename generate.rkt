@@ -279,6 +279,21 @@
    (define (anchor-relational-prog desc)
      (anchor "https://www.youtube.com/watch?v=5Q9x16uIsKA" desc))
 
+   (define (anchor-100-percent-solutions desc)
+     (anchor "http://www.ccs.neu.edu/home/shivers/papers/sre.txt" desc))
+   (define (anchor-postgres desc)
+     (anchor "https://en.wikipedia.org/wiki/PostgreSQL" desc))
+   (define (anchor-redis desc)
+     (anchor "https://en.wikipedia.org/wiki/Redis" desc))
+   (define (anchor-haskell desc)
+     (anchor "https://en.wikipedia.org/wiki/Haskell_(programming_language)" desc))
+   (define (anchor-racket desc)
+     (anchor "https://en.wikipedia.org/wiki/Racket_(programming_language)" desc))
+   (define (anchor-python desc)
+     (anchor "https://en.wikipedia.org/wiki/Python_(programming_language)" desc))
+   (define (anchor-git desc)
+     (anchor "https://en.wikipedia.org/wiki/Git_(software)" desc))
+
    (define (anchor-SYJMrF desc)
      (anchor "https://en.wikipedia.org/wiki/Surely_You're_Joking,_Mr._Feynman!" desc))
    (define (anchor-GEB desc)
@@ -312,8 +327,9 @@
          (h1 "A little bit about me")
          (section
            (h2 "Summary")
+           (p "I currently live and work in Toronto, Ontario.  I am a programmer.")
            (p
-             "I currently live and work in Toronto, Ontario.  I work in technology.  I am "
+             "I am "
              ,(anchor-beat-cap "much")
              " "
              ,(anchor-consistent-hash "more")
@@ -323,7 +339,21 @@
              ,(anchor-relational-prog "in")
              " "
              ,(anchor-props-as-types "knowledge")
-             " than in products."
+             " than in specific technologies.  Though, I do like to choose "
+             ,(anchor-postgres "which")
+             " "
+             ,(anchor-redis "technologies")
+             " I work with, "
+             ,(anchor-racket "preferring")
+             " "
+             ,(anchor-haskell "well-designed")
+             " "
+             ,(anchor-python "languages")
+             ", "
+             ,(anchor-git "tools")
+             " and "
+             ,(anchor-100-percent-solutions "100% solutions")
+             "."
              ))
          (section
            (h2 "Notable personal projects")
