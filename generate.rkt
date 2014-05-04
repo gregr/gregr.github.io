@@ -347,19 +347,19 @@
          (h1 "A little bit about me")
          (section
            (h2 "Summary")
-           (p "I currently live and work in Toronto, Ontario.  I am a programmer.")
+           (p "I currently live in Toronto, Ontario, working as a Software Engineer.")
            (p
-             "I am "
-             ,(anchor-beat-cap "much")
+             "I "
+             ,(anchor-beat-cap "focus")
              " "
              ,(anchor-consistent-hash "more")
              " "
-             ,(anchor-raft-paxos "interested")
+             ,(anchor-raft-paxos "on")
              " "
-             ,(anchor-relational-prog "in")
+             ,(anchor-relational-prog "general")
              " "
-             ,(anchor-props-as-types "knowledge")
-             " than in specific technologies.  Though, I do like to choose "
+             ,(anchor-props-as-types "ideas")
+             " than on specific technologies.  Though, I do like to choose "
              ,(anchor-postgres "which")
              " "
              ,(anchor-redis "technologies")
@@ -383,11 +383,11 @@
              ,(anchor-mysql-choose-something-else "technology")
              ".")
            (p
-             "Proper "
-             ,(anchor-peopleware "management")
-             " trumps technology decisions.")
+             "I enjoy being "
+             ,(anchor-peopleware "managed")
+             " well.")
            (p
-             "My approach to problem-solving emphasizes "
+             "My approach to problem solving emphasizes "
              ,(anchor-prag-prog "tool-building and automation")
              ".  I'm no stranger to code generation, transformation and other "
              ,(anchor-role-of-PL-study "language-oriented")
@@ -399,7 +399,7 @@
              ,(anchor-drawing-dynamic "human")
              " "
              ,(anchor-learnable-prog "beings")
-             ".  I'm inspired by our "
+             ".  I am inspired by our "
              ,(anchor-future-of-prog "past")
              "."
              ))
@@ -502,7 +502,7 @@
                   ,(anchor "https://www.udacity.com/" "udacity")
                   " were spun off."))))
          (section
-           (h2 "Some reading I've enjoyed")
+           (h2 "Some reading I've enjoyed and recommend")
            (ul
              (li ,(anchor-SYJMrF "Surely You're Joking, Mr. Feynman!"))
              (li ,(anchor-GEB "Gödel, Escher, Bach"))
