@@ -278,6 +278,8 @@
      (anchor "http://homepages.inf.ed.ac.uk/wadler/papers/propositions-as-types/propositions-as-types.pdf" desc))
    (define (anchor-relational-prog desc)
      (anchor "https://www.youtube.com/watch?v=5Q9x16uIsKA" desc))
+   (define (anchor-role-of-PL-study desc)
+     (anchor "http://www.cs.indiana.edu/~dfried/mex.pdf" desc))
 
    (define (anchor-100-percent-solutions desc)
      (anchor "http://www.ccs.neu.edu/home/shivers/papers/sre.txt" desc))
@@ -374,7 +376,13 @@
            (p
              "Proper "
              ,(anchor-peopleware "management")
-             " trumps technology decisions."
+             " trumps technology decisions.")
+           (p
+             "My approach to problem-solving emphasizes "
+             ,(anchor-prag-prog "tool-building and automation")
+             ".  I'm no stranger to code generation, transformation and other "
+             ,(anchor-role-of-PL-study "language-oriented")
+             " techniques.  When solving mysteries, I understand and reason about code before jumping into a debugger."
              ))
          (section
            (h2 "Notable personal projects")
