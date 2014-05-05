@@ -376,7 +376,7 @@
            (p
              "My approach to problem solving emphasizes "
              ,(anchor-prag-prog "tool-building and automation")
-             ".  I apply code generation, transformation and other "
+             ".  I employ code generation, transformation and other "
              ,(anchor-role-of-PL-study "language-oriented")
              " techniques.  When solving mysteries, I understand and reason about code before jumping into a debugger.")
            (p
