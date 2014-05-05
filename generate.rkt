@@ -344,6 +344,7 @@
       `(article
          (h1 "Gregory L. Rosenblatt")
          (section
+           (div ,(anchor "mailto:greg.weiqi@gmail.com" "greg.weiqi@gmail.com"))
            (div "GitHub: " ,(anchor-github "gregr"))
            )
          (section
