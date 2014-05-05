@@ -167,6 +167,22 @@
     ((_ path-tree exprs page ...)
      (build-site stx #'path-tree #'exprs #'(page ...)))))
 
+(define-for-syntax (identifier-prefixed prefix ident)
+  (datum->syntax
+    ident
+    (string->symbol
+      (string-append prefix (symbol->string (syntax->datum ident))))))
+
+(define-syntax (define-anchors stx)
+  (syntax-case stx ()
+    ((_ (name url) ...)
+     (with-syntax (((anchor-name ...)
+                    (map (curry identifier-prefixed "anchor-")
+                         (syntax->list #'(name ...)))))
+      #'(begin
+          (define (anchor-name desc)
+            `(a ((href ,url)) ,desc)) ...)))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; an actual site
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
