@@ -269,6 +269,8 @@
 
    (define (anchor-github desc)
      (anchor "https://github.com/gregr" desc))
+   (define (anchor-weiqi desc)
+     (anchor "https://en.wikipedia.org/wiki/Go_(game)" desc))
 
    (define (anchor-beat-cap desc)
      (anchor "http://nathanmarz.com/blog/how-to-beat-the-cap-theorem.html" desc))
@@ -400,7 +402,11 @@
              ,(anchor-learnable-prog "beings")
              ".  The "
              ,(anchor-future-of-prog "past")
-             " inspires me."
+             " inspires me.")
+           (p
+             "I play "
+             ,(anchor-weiqi "Go/Weiqi/Baduk")
+             " at the 5 dan level."
              ))
          (section
            (h2 "Notable personal projects")
