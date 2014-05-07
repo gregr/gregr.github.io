@@ -469,8 +469,8 @@
                   `(p "Developed and maintained various modelling and trading systems.")
                   `(ul
                      (li "Distributed computing infrastructure")
-                     (li "Cross-language Services and Remote Procedure Call library")
-                     (li "Quantitative Model implementation")
+                     (li "Cross-language services and remote procedure call library")
+                     (li "Quantitative model implementations")
                      (li "Real-time market data streaming and aggregation")
                      (li "Automated trading and order management system")
                      )))
