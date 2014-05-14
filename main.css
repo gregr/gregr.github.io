@@ -3,17 +3,44 @@ body {
   line-height: 120%;
   font-size: 80%;
 }
+section {
+  margin-bottom: 2em;
+  margin-top: 2em;
+}
+p {
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+}
+.summary>p {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+.content-title {
+  font-size: 1.7em;
+  margin-top: 2em;
+}
+a:link, a:visited {
+  color: #226699;
+  text-decoration: none;
+}
+a:hover {
+  color: #333333;
+  text-decoration: underline;
+}
+#content {
+  width: 1200px;
+  margin: auto;
+}
 #nav-main {
-  top: 0;
-  left: 0;
-  width: 100px;
+  width: 300px;
+  float: left;
   position: fixed;
 }
 #content-main {
-  margin-left: 100px;
+  margin-right: 300px;
+  margin-left: 300px;
 }
 .date {
-  font-weight: bold;
   font-style: italic;
 }
 .date-end:before {
@@ -23,8 +50,18 @@ body {
   padding: 10px;
   display: inline;
 }
+.personal-project-list>li {
+  margin-bottom: 2em;
+}
+.personal-project-name {
+  margin-right: 1em;
+  display: inline;
+}
+.personal-project .date-range {
+  display: inline;
+}
 .employment-list>li {
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 }
 .employment-employer {
   display: inline;
@@ -34,9 +71,31 @@ body {
   display: inline;
   font-weight: normal;
 }
-.employment .date-range {
+.employment-title:before {
+  white-space: pre;
+  content: "\A";
+}
+.employment-title {
+  margin-right: 1em;
+  display: inline;
+}
+.employment>.date-range {
   margin-bottom: 1em;
+  display: inline;
 }
 .employment-location:before {
   content: " - ";
+}
+.education-list>li {
+  margin-bottom: 2em;
+}
+.education-name {
+  margin-right: 1em;
+  display: inline;
+}
+.education>.date-range {
+  display: inline;
+}
+.education>.date {
+  display: inline;
 }
