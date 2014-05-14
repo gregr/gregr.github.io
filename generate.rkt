@@ -187,7 +187,7 @@
 ;;; an actual site
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define nav-width "100px")
+(define nav-width "300px")
 
 (define-css "main.css"
   ("body"
@@ -197,20 +197,61 @@
      "line-height" "120%"
      ))
 
+  ("section"
+   (hash
+     "margin-top" "2em"
+     "margin-bottom" "2em"
+     ))
+
+  ("p"
+   (hash
+     "margin-top" "0.5em"
+     "margin-bottom" "0.5em"
+     ))
+
+  (".summary>p"
+   (hash
+     "margin-top" "1em"
+     "margin-bottom" "1em"
+     ))
+
+  (".content-title"
+   (hash
+     "margin-top" "2em"
+     "font-size" "1.7em"
+     ))
+
+  ("a:link, a:visited"
+   (hash
+     "text-decoration" "none"
+     "color" "#226699"
+     ))
+  ("a:hover"
+   (hash
+     "text-decoration" "underline"
+     "color" "#333333"
+     ))
+
+  ("#content"
+   (hash
+     "width" "1200px"
+     "margin" "auto"
+     ))
+
   ("#nav-main"
    (hash
      "position" "fixed"
-     "top" "0"
-     "left" "0"
+     "float" "left"
      "width" nav-width))
   ("#content-main"
    (hash
-     "margin-left" nav-width))
+     "margin-left" nav-width
+     "margin-right" nav-width
+     ))
 
   (".date"
    (hash
      "font-style" "italic"
-     ;"font-weight" "bold"
      ))
   (".date-end:before"
    (hash
@@ -225,9 +266,6 @@
    (hash
      "margin-bottom" "2em"
      ))
-  ;(".personal-project"
-   ;(hash
-   ;))
   (".personal-project-name"
    (hash
      "display" "inline"
@@ -311,8 +349,10 @@
      `(html
         ,head
         (body
-          (div ((id "content-main")) ,body)
-          ,nav)))
+          (div ((id "content"))
+            ,nav
+            (div ((id "content-main")) ,body)
+            ))))
    (define (anchor href description)
      `(a ((href ,href)) ,description))
    (define (date-single d)
@@ -383,12 +423,12 @@
   (about "About"
     (content
       `(article
-         (h1 "Gregory L. Rosenblatt")
+         (h1 ((class "content-title")) "Gregory L. Rosenblatt")
          (section
            (div ,(anchor "mailto:greg.weiqi@gmail.com" "greg.weiqi@gmail.com"))
            (div "GitHub: " ,(anchor-github "gregr"))
            )
-         (section
+         (section ((class "summary"))
            (h2 "Summary")
            (p "I currently live in Toronto, Ontario, working as a Software Engineer.")
            (p
@@ -552,7 +592,7 @@
                ,(education
                   "Stanford Online Courses for AI and Machine Learning"
                   (date-single "Fall 2011")
-                  `(h4 "Statement of Accomplishment")
+                  `(p "Statement of Accomplishment")
                   `(p "This was the original online offering of these two classes from which "
                       ,(anchor "https://www.coursera.org/" "coursera")
                       " and "
