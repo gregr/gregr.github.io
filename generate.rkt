@@ -472,7 +472,7 @@
            (p
              "My approach to problem solving emphasizes "
              ,(anchor-prag-prog "tool-building and automation")
-             ".  I employ code generation, transformation and other "
+             ".  This includes code generation, transformation and other "
              ,(anchor-role-of-PL-study "language-oriented")
              " techniques.  When solving mysteries, I understand and reason about code before jumping into a debugger.")
            (p
@@ -493,7 +493,6 @@
          (section
            (h2 "Notable personal projects")
            (p "The following projects were the product of significant effort made as I grew up as a programmer.")
-           (p "Being possibly overcritical about my own past work, I'm not particularly proud of any of these.  But even with such reservations, I feel it's still important to share.")
            (ul ((class "personal-project-list"))
              (li
                ,(personal-project
