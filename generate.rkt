@@ -432,9 +432,9 @@
            (h2 "Summary")
            (p "I currently live in Toronto, Ontario, working as a Software Engineer.")
            (p
-             "I "
+             "My "
              ,(anchor-beat-cap "focus")
-             " "
+             " is "
              ,(anchor-consistent-hash "more")
              " "
              ,(anchor-raft-paxos "on")
@@ -446,7 +446,7 @@
              ,(anchor-postgres "which")
              " "
              ,(anchor-redis "technologies")
-             " I work with, "
+             " to work with, "
              ,(anchor-racket "preferring")
              " "
              ,(anchor-haskell "well-designed")
