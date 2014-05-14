@@ -210,7 +210,8 @@
   (".date"
    (hash
      "font-style" "italic"
-     "font-weight" "bold"))
+     ;"font-weight" "bold"
+     ))
   (".date-end:before"
    (hash
      "content" "\" - \""))
@@ -222,7 +223,7 @@
 
   (".employment-list>li"
    (hash
-     "margin-bottom" "1em"
+     "margin-bottom" "2em"
      ))
   (".employment-employer"
    (hash
@@ -231,11 +232,22 @@
      ))
   (".employment-location"
    (hash
-     "font-weight" "normal"
      "display" "inline"
+     "font-weight" "normal"
      ))
-  (".employment .date-range"
+  (".employment-title:before"
    (hash
+     "content" "\"\\A\""
+     "white-space" "pre"
+     ))
+  (".employment-title"
+   (hash
+     "display" "inline"
+     "margin-right" "1em"
+     ))
+  (".employment>.date-range"
+   (hash
+     "display" "inline"
      "margin-bottom" "1em"
      ))
   (".employment-location:before"
@@ -276,9 +288,8 @@
            (span ((class "date date-end")) ,end)))
    (define (employment employer location title start end . details)
      `(div ((class "employment"))
-        (div
-          (h3 ((class "employment-employer")) ,employer)
-          (div ((class "employment-location")) ,location))
+        (h3 ((class "employment-employer")) ,employer)
+        (div ((class "employment-location")) ,location)
         (h4 ((class "employment-title")) ,title)
         ,(date-range start end)
         (div ((class "employment-details")) ,@details)))
