@@ -350,7 +350,7 @@
         ,head
         (body
           (div ((id "content"))
-            ,nav
+            ;,nav
             (div ((id "content-main")) ,body)
             ))))
    (define (anchor href description)
