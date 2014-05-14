@@ -221,6 +221,23 @@
      "display" "inline"
      "padding" "10px"))
 
+  (".personal-project-list>li"
+   (hash
+     "margin-bottom" "2em"
+     ))
+  ;(".personal-project"
+   ;(hash
+   ;))
+  (".personal-project-name"
+   (hash
+     "display" "inline"
+     "margin-right" "1em"
+   ))
+  (".personal-project .date-range"
+   (hash
+     "display" "inline"
+   ))
+
   (".employment-list>li"
    (hash
      "margin-bottom" "2em"
@@ -286,6 +303,11 @@
      `(div ((class "date-range"))
            (span ((class "date")) ,start)
            (span ((class "date date-end")) ,end)))
+   (define (personal-project name start end . details)
+     `(div ((class "personal-project"))
+        (h3 ((class "personal-project-name")) ,name)
+        ,(date-range start end)
+        (div ((class "personal-project-details")) ,@details)))
    (define (employment employer location title start end . details)
      `(div ((class "employment"))
         (h3 ((class "employment-employer")) ,employer)
@@ -409,32 +431,39 @@
            (h2 "Notable personal projects")
            (p "The following projects were the product of significant effort made as I grew up as a programmer.")
            (p "Being possibly overcritical about my own past work, I'm not particularly proud of any of these.  But even with such reservations, I feel it's still important to share.")
-           (ul
+           (ul ((class "personal-project-list"))
              (li
-               (h3 ,(anchor "https://github.com/gregr/chive" "The Chive Programming Language"))
-               ,(date-range "2009" "2010")
-               (p "This was my first serious attempt at a full programming language implementation.  It features a scheme-like hygienic macro system based on syntactic closures.")
-               (p "It was put aside when I started working at Facebook.")
-               )
+               ,(personal-project
+                  (anchor "https://github.com/gregr/chive" "The Chive Programming Language")
+                  "2009" "2010"
+                  `(p "This was my first serious attempt at a full programming language implementation.  It features a scheme-like hygienic macro system based on syntactic closures.")
+                  `(p "It was put aside when I started working at Facebook.")
+                  ))
              (li
-               (h3 ,(anchor "https://github.com/gregr/uriel" "Uriel"))
-               ,(date-range "2005" "2006")
-               (p "a tile-based multiplayer game framework")
-               (p "Several amusing games were made with this.  They are lost."))
+               ,(personal-project
+                  (anchor "https://github.com/gregr/uriel" "Uriel")
+                  "2005" "2006"
+                  `(p "a tile-based multiplayer game framework")
+                  `(p "Several amusing games were made with this.  They are lost.")
+                  ))
              (li
-               (h3 ,(anchor "https://github.com/gregr/starscape" "Starscape"))
-               ,(date-range "1999" "2005")
-               (p "a 3D game programming system, including a GUI library"))
+               ,(personal-project
+                  (anchor "https://github.com/gregr/starscape" "Starscape")
+                  "1999" "2005"
+                  `(p "a 3D game programming system, including a GUI library")
+                  ))
              (li
-               (h3 "Creating a Scripting System in C++")
-               ,(date-range "2002" "2003")
-               (p "This is an article series I wrote for " ,(anchor "http://www.gamedev.net/" "gamedev.net") " in five parts.")
-               (ul ((class "multipart-series"))
-                 (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-i-an-i-r1633" "I"))
-                 (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-ii-dat-r1686" "II"))
-                 (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-iii-dy-r1788" "III"))
-                 (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-iv-the-r1803" "IV"))
-                 (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-v-func-r1877" "V"))))))
+               ,(personal-project
+                  "Creating a Scripting System in C++"
+                  "2002" "2003"
+                  `(p "This is an article series I wrote for " ,(anchor "http://www.gamedev.net/" "gamedev.net") " in five parts.")
+                  `(ul ((class "multipart-series"))
+                     (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-i-an-i-r1633" "I"))
+                     (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-ii-dat-r1686" "II"))
+                     (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-iii-dy-r1788" "III"))
+                     (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-iv-the-r1803" "IV"))
+                     (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-v-func-r1877" "V")))
+                  ))))
          (section
            (h2 "Professional experience")
            (ul ((class "employment-list"))
