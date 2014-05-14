@@ -270,6 +270,24 @@
   (".employment-location:before"
    (hash
      "content" "\" - \""))
+
+  (".education-list>li"
+   (hash
+     "margin-bottom" "2em"
+     ))
+  (".education-name"
+   (hash
+     "display" "inline"
+     "margin-right" "1em"
+     ))
+  (".education>.date-range"
+   (hash
+     "display" "inline"
+     ))
+  (".education>.date"
+   (hash
+     "display" "inline"
+     ))
   )
 
 (define-site
@@ -315,6 +333,11 @@
         (h4 ((class "employment-title")) ,title)
         ,(date-range start end)
         (div ((class "employment-details")) ,@details)))
+   (define (education name date . details)
+     `(div ((class "education"))
+        (h3 ((class "education-name")) ,name)
+        ,date
+        (div ((class "education-details")) ,@details)))
 
    (define-anchors
      (github "https://github.com/gregr")
@@ -517,21 +540,24 @@
              ))
          (section
            (h2 "Education")
-           (ul
+           (ul ((class "education-list"))
              (li
-               (h3 "Rochester Institute of Technology")
-               ,(date-range "1999" "2004")
-               (p "Bachelor of Science in Mechanical Engineering")
-               (p "Concentration in Aerospace"))
+               ,(education
+                  "Rochester Institute of Technology"
+                  (date-range "1999" "2004")
+                  `(p "Bachelor of Science in Mechanical Engineering")
+                  `(p "Concentration in Aerospace")
+                  ))
              (li
-               (h3 "Stanford Online Courses for AI and Machine Learning")
-               ,(date-single "Fall 2011")
-               (h4 "Statement of Accomplishment")
-               (p "This was the original online offering of these two classes from which "
-                  ,(anchor "https://www.coursera.org/" "coursera")
-                  " and "
-                  ,(anchor "https://www.udacity.com/" "udacity")
-                  " were spun off."))))
+               ,(education
+                  "Stanford Online Courses for AI and Machine Learning"
+                  (date-single "Fall 2011")
+                  `(h4 "Statement of Accomplishment")
+                  `(p "This was the original online offering of these two classes from which "
+                      ,(anchor "https://www.coursera.org/" "coursera")
+                      " and "
+                      ,(anchor "https://www.udacity.com/" "udacity")
+                      " were spun off.")))))
          (section
            (h2 "Some reading I've enjoyed and recommend")
            (ul
