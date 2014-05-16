@@ -28,17 +28,17 @@ a:hover {
   text-decoration: underline;
 }
 #content {
-  width: 1200px;
+  width: 900px;
   margin: auto;
 }
 #nav-main {
-  width: 300px;
+  width: 150px;
   float: left;
   position: fixed;
 }
 #content-main {
-  margin-right: 300px;
-  margin-left: 300px;
+  margin-right: 150px;
+  margin-left: 150px;
 }
 .date {
   font-style: italic;

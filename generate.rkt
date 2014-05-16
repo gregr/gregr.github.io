@@ -187,7 +187,8 @@
 ;;; an actual site
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define nav-width "300px")
+(define nav-content-width "900px")
+(define nav-width "150px")
 
 (define-css "main.css"
   ("body"
@@ -234,7 +235,7 @@
 
   ("#content"
    (hash
-     "width" "1200px"
+     "width" nav-content-width
      "margin" "auto"
      ))
 
