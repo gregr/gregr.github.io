@@ -50,6 +50,9 @@ a:hover {
   padding: 10px;
   display: inline;
 }
+.personal-project-list {
+  list-style-type: none;
+}
 .personal-project-list>li {
   margin-bottom: 2em;
 }
@@ -59,6 +62,9 @@ a:hover {
 }
 .personal-project .date-range {
   display: inline;
+}
+.employment-list {
+  list-style-type: none;
 }
 .employment-list>li {
   margin-bottom: 2em;
@@ -85,6 +91,9 @@ a:hover {
 }
 .employment-location:before {
   content: " - ";
+}
+.education-list {
+  list-style-type: none;
 }
 .education-list>li {
   margin-bottom: 2em;

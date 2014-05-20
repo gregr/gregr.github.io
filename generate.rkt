@@ -263,6 +263,10 @@
      "display" "inline"
      "padding" "10px"))
 
+  (".personal-project-list"
+   (hash
+     "list-style-type" "none"
+     ))
   (".personal-project-list>li"
    (hash
      "margin-bottom" "2em"
@@ -277,6 +281,10 @@
      "display" "inline"
    ))
 
+  (".employment-list"
+   (hash
+     "list-style-type" "none"
+     ))
   (".employment-list>li"
    (hash
      "margin-bottom" "2em"
@@ -310,6 +318,10 @@
    (hash
      "content" "\" - \""))
 
+  (".education-list"
+   (hash
+     "list-style-type" "none"
+     ))
   (".education-list>li"
    (hash
      "margin-bottom" "2em"
