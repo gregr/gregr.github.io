@@ -28,17 +28,27 @@ a:hover {
   text-decoration: underline;
 }
 #content {
-  width: 900px;
+  width: 1160px;
   margin: auto;
 }
-#nav-main {
-  width: 150px;
+#nav-panel {
+  width: 280px;
   float: left;
   position: fixed;
 }
+#nav-panel a:link, #nav-panel a:visited {
+  color: #666666;
+  text-decoration: none;
+}
 #content-main {
-  margin-right: 150px;
-  margin-left: 150px;
+  margin-right: 280px;
+  margin-left: 280px;
+}
+nav ul {
+  list-style-type: none;
+}
+nav li {
+  margin-bottom: 1em;
 }
 .date {
   font-style: italic;
