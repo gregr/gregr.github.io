@@ -187,8 +187,8 @@
 ;;; an actual site
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define nav-content-width "900px")
-(define nav-width "150px")
+(define nav-content-width "1160px")
+(define nav-width "280px")
 
 (define-css "main.css"
   ("body"
@@ -239,15 +239,30 @@
      "margin" "auto"
      ))
 
-  ("#nav-main"
+  ("#nav-panel"
    (hash
      "position" "fixed"
      "float" "left"
-     "width" nav-width))
+     "width" nav-width
+     ))
+  ("#nav-panel a:link, #nav-panel a:visited"
+   (hash
+     "text-decoration" "none"
+     "color" "#666666"
+     ))
   ("#content-main"
    (hash
      "margin-left" nav-width
      "margin-right" nav-width
+     ))
+
+  ("nav ul"
+   (hash
+     "list-style-type" "none"
+     ))
+  ("nav li"
+   (hash
+     "margin-bottom" "1em"
      ))
 
   (".date"
@@ -347,25 +362,6 @@
 
   ; utilities
   (
-   (define head
-     `(head
-        (title "Greg's Metareflection")
-        (meta ((charset "utf-8")))
-        (meta ((name "author") (content "Greg Rosenblatt")))
-        (meta ((name "description") (content "Personal page of Greg Rosenblatt")))
-        (link ((rel "stylesheet") (href "main.css")))))
-   (define nav
-     `(nav ((id "nav-main"))
-        (ul
-          (li ,about))))
-   (define (content body)
-     `(html
-        ,head
-        (body
-          (div ((id "content"))
-            ;,nav
-            (div ((id "content-main")) ,body)
-            ))))
    (define (anchor href description)
      `(a ((href ,href)) ,description))
    (define (anchor-target name)
@@ -393,6 +389,38 @@
         (h3 ((class "education-name")) ,name)
         ,date
         (div ((class "education-details")) ,@details)))
+
+   (define head
+     `(head
+        (title "Greg's Metareflection")
+        (meta ((charset "utf-8")))
+        (meta ((name "author") (content "Greg Rosenblatt")))
+        (meta ((name "description") (content "Personal page of Greg Rosenblatt")))
+        (link ((rel "stylesheet") (href "main.css")))))
+   (define nav
+     `(nav ((id "nav-main"))
+        (ul
+          (li ,about)
+          )))
+   (define nav-about
+     `(nav ((id "nav-local"))
+        (ul
+          (li ,(anchor "#summary" "Summary"))
+          (li ,(anchor "#personal-projects" "Personal Projects"))
+          (li ,(anchor "#work-experience" "Professional Experience"))
+          (li ,(anchor "#education" "Education"))
+          (li ,(anchor "#recommended-reading" "Recommended Reading"))
+          )))
+   (define (content body)
+     `(html
+        ,head
+        (body
+          (div ((id "content"))
+            (div ((id "nav-panel"))
+              ,nav-about
+              )
+            (div ((id "content-main")) ,body)
+            ))))
 
    (define-anchors
      (github "https://github.com/gregr")
