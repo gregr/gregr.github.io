@@ -368,6 +368,8 @@
             ))))
    (define (anchor href description)
      `(a ((href ,href)) ,description))
+   (define (anchor-target name)
+     `(a ((name ,name))))
    (define (date-single d)
      `(div ((class "date")) ,d))
    (define (date-range start end)
@@ -442,6 +444,7 @@
            (div "GitHub: " ,(anchor-github "gregr"))
            )
          (section ((class "summary"))
+           ,(anchor-target "summary")
            (h2 "Summary")
            (p "I currently live in Toronto, Ontario, working as a Software Engineer.")
            (p
@@ -504,6 +507,7 @@
              " at the 5 dan level."
              ))
          (section
+           ,(anchor-target "personal-projects")
            (h2 "Notable personal projects")
            (p "The following projects were the product of significant effort made as I grew up as a programmer.")
            (ul ((class "personal-project-list"))
@@ -540,6 +544,7 @@
                      (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-v-func-r1877" "V")))
                   ))))
          (section
+           ,(anchor-target "work-experience")
            (h2 "Professional experience")
            (ul ((class "employment-list"))
              (li
@@ -591,6 +596,7 @@
                      )))
              ))
          (section
+           ,(anchor-target "education")
            (h2 "Education")
            (ul ((class "education-list"))
              (li
@@ -611,6 +617,7 @@
                       ,(anchor "https://www.udacity.com/" "udacity")
                       " were spun off.")))))
          (section
+           ,(anchor-target "recommended-reading")
            (h2 "Some reading I've enjoyed and recommend")
            (ul
              (li ,(anchor-SYJMrF "Surely You're Joking, Mr. Feynman!"))
