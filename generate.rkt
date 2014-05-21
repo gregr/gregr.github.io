@@ -1,5 +1,6 @@
 #lang racket
 (require xml)
+(require gregr-misc/file)
 
 (define-syntax (for/foldm stx)
   (syntax-case stx ()
@@ -15,28 +16,14 @@
 ;;; file generation
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define (make-dirs path-parts)
-  (let loop ((base 'same) (parts path-parts))
-    (unless (empty? parts)
-      (let ((next (build-path base (car parts))))
-        (unless (directory-exists? next)
-          (make-directory next))
-        (loop next (cdr parts))))))
-
 (define (xexpr->pretty-string xexpr)
   (call-with-output-string
     (curry display-xml/content (xexpr->xml xexpr))))
 (define (xexpr->html-string xexpr)
   (string-append "<!DOCTYPE html>" (xexpr->string xexpr)))
 
-(define (write-file path content)
-  (define-values (directory filename is-root) (split-path path))
-  (when (path? directory) (make-dirs (explode-path directory)))
-  (call-with-output-file path #:exists 'replace
-    (curry display content)))
-
 (define (write-html-file path xexpr)
-  (write-file path (xexpr->html-string xexpr)))
+  (display-to-file* (xexpr->html-string xexpr) path))
 
 (define (css-style->string style)
   (let ((parts
@@ -53,7 +40,7 @@
     (apply string-append (reverse parts))))
 
 (define (write-css-file path css)
-  (write-file path (css->string css)))
+  (display-to-file* (css->string css) path))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; CSS description
