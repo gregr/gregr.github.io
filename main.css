@@ -34,7 +34,6 @@ a:hover {
 #nav-panel {
   width: 280px;
   float: left;
-  position: fixed;
 }
 #nav-panel a:link, #nav-panel a:visited {
   color: #666666;

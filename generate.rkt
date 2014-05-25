@@ -228,7 +228,6 @@
 
   ("#nav-panel"
    (hash
-     "position" "fixed"
      "float" "left"
      "width" nav-width
      ))
