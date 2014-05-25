@@ -1,6 +1,9 @@
 #lang racket
-(require xml)
-(require gregr-misc/file)
+(require
+  gregr-misc/file
+  gregr-misc/match
+  xml
+  )
 
 (define-syntax (for/foldm stx)
   (syntax-case stx ()
@@ -27,15 +30,15 @@
 
 (define (css-style->string style)
   (let ((parts
-          (for/foldm ((parts '()))
-                     (((cons field value) (dict->list style)))
+          (for/fold/match ((parts '()))
+                          (((cons field value) (dict->list style)))
             (cons (format "  ~a: ~a;\n" field value) parts))))
     (string-append "{\n" (apply string-append (reverse parts)) "}\n")))
 
 (define (css->string css)
   (let ((parts
-          (for/foldm ((parts '()))
-                     (((cons selector style) css))
+          (for/fold/match ((parts '()))
+                          (((cons selector style) css))
             (cons (string-append selector " " (css-style->string style)) parts))))
     (apply string-append (reverse parts))))
 
