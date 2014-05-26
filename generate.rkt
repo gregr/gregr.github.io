@@ -371,10 +371,10 @@
 
    (define head
      `(head
-        (title "Greg's Metareflection")
+        (title "Greg Rosenblatt - About")
         (meta ((charset "utf-8")))
         (meta ((name "author") (content "Greg Rosenblatt")))
-        (meta ((name "description") (content "Personal page of Greg Rosenblatt")))
+        (meta ((name "description") (content "Personal site of Greg Rosenblatt")))
         (link ((rel "stylesheet") (href "main.css")))
         (script ((src "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")))
         (script ((src "main.js")))
