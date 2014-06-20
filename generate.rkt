@@ -560,7 +560,7 @@
              (li
                ,(employment "Tulip Retail" "Toronto, ON"
                             "Software Engineer"
-                            "October 2013" "Present"
+                            "October 2013" "June 2014"
                   `(p "Part of the founding team originally from Well.ca.")
                   `(p "Worked on both retail platform and individual client projects.")
                   `(ul
