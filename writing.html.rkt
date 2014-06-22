@@ -12,7 +12,7 @@
 
 (define writing-names
   '(
-    test
+    staying-sane-writing-software
     ))
 
 (define writing-nodes
@@ -34,7 +34,6 @@
     (writing-content
       "Writing"
       `(section
-         (p "This is where you will find my attempts at meaningful writing.")
          (ul ,@writing-nodes)
          )
       )))

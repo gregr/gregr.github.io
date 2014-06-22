@@ -45,6 +45,10 @@
   (algo-design-manual "http://www.algorist.com/")
   (okasaki "http://www.amazon.ca/Purely-Functional-Structures-Chris-Okasaki/dp/0521663504")
   (prog-pearls "http://www.cs.bell-labs.com/cm/cs/pearls/")
+
+  (das-boundaries "https://www.destroyallsoftware.com/talks/boundaries")
+  (object-capability-model "https://en.wikipedia.org/wiki/Object-capability_model")
+  (erights "http://erights.org")
   )
 
 (define (anchor href description)
