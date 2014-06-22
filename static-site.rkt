@@ -3,6 +3,7 @@
   define-anchors
   define-css
   define-site
+  node-ref
   )
 
 (require
@@ -66,25 +67,23 @@
              (next (set-subtract next reached)))
         (loop reached next)))))
 
-(struct node-ref (name data) #:transparent)
-(define (tree-lift-refs tree)
+(struct node-ref (name) #:transparent)
+(define (tree-lift-refs name=>data tree)
   (match tree
-    ((node-ref name data) (list (set name) data))
+    ((node-ref name) (list (set name) (dict-ref name=>data name)))
     ((? list?)
      (match-let (((list names trees)
-                  (apply (curry map list) (map tree-lift-refs tree))))
+                  (apply (curry map list)
+                         (map (curry tree-lift-refs name=>data) tree))))
        (list (apply set-union names) trees)))
     (_ (list (set) tree))))
 
-(define (path-tree->name=>path+node-ref descs ptree)
+(define (path-tree->name=>path path-root ptree)
   (define (attr-add attrs name base filename)
     (when (dict-has-key? attrs name)
       (error (format "path tree contains duplicate entries for: ~a" name)))
-    (let* ((path (apply build-path (reverse (cons filename base))))
-           (href (string-append "/" (path->string path)))
-           (desc (dict-ref descs name))
-           (link `(a ((href ,href)) ,desc)))
-      (dict-set attrs name (list path (node-ref name link)))))
+    (let ((path (apply build-path (reverse (cons filename base)))))
+      (dict-set attrs name path)))
   (define (synthesize-fold attrs base children)
     (for/fold ((attrs attrs))
               ((child children))
@@ -98,60 +97,54 @@
       (_
         (attr-add attrs child base
           (string-append (symbol->string child) ".html")))))
-  (let* ((attrs (synthesize-fold (hash) '() (cdr ptree)))
-         (attrs (attr-add attrs (car ptree) '() "index.html")))
+  (let* ((attrs (synthesize-fold (hash) (list path-root) (cdr ptree)))
+         (attrs (attr-add attrs (car ptree) (list path-root) "index.html")))
     attrs))
+(define (pages->name=>desc pages)
+  (make-immutable-hash (map cons (map car pages) (map cadr pages))))
+(define (pages->name=>xexpr pages)
+  (make-immutable-hash (map cons (map car pages) (map caddr pages))))
 
-(require (for-syntax racket/dict racket/function))
-(define-for-syntax (build-site stx path-tree exprs pages)
-  (let* ((pages (map syntax->list (syntax->list pages)))
-         (page-idents (map car pages))
-         (page-names (map syntax->datum page-idents))
-         (page-descs (map syntax->datum (map cadr pages)))
-         (page-bodies (map caddr pages))
-         (descs (make-immutable-hash (map cons page-names page-descs)))
-         (ptree (syntax->datum path-tree))
-         (page-root (car ptree)))
-    (let* ((names (dict-keys descs))
-          (idents (map (curry datum->syntax stx) names)))
-      (datum->syntax stx
-        (append
-          (list #'begin)
-          (syntax->list #`(
-            (define n=>p+nr (path-tree->name=>path+node-ref
-                              (make-immutable-hash '#,(dict->list descs))
-                              '#,ptree))
-            (define n++p+nr (dict->list n=>p+nr))
-            (define name=>path
-              (make-immutable-hash
-                (map (match-lambda ((cons name (list path nr)) (cons name path)))
-                    n++p+nr)))
-            (match-define
-              (list #,@idents)
-              (map (compose1 cadr (curry dict-ref n=>p+nr)) '#,names))))
-          (syntax->list exprs)
-          (list
-            #`(let* ((page-reachables+xexpr
-                       (map tree-lift-refs (list #,@page-bodies)))
-                     (page-reachables (map car page-reachables+xexpr))
-                     (page-graph (make-immutable-hash
-                                   (map cons '#,page-names page-reachables)))
-                     (pages-reached (reachable page-graph (list '#,page-root)))
-                     (pages-not-reached (set-subtract (list->set '#,page-names)
-                                                      pages-reached))
-                     (page-xexprs (map cadr page-reachables+xexpr))
-                     (page-paths (map (curry dict-ref name=>path)
-                                      '#,page-names)))
-                (unless (set-empty? pages-not-reached)
-                  (error (format "unreachable pages: ~a"
-                                 (set->list pages-not-reached))))
-                (for ((path page-paths) (xexpr page-xexprs))
-                     (write-html-file path xexpr)))))))))
+(define (build-site path-root ptree pages)
+  (define dict-keys->set (compose1 list->set dict-keys))
+  (define page-root (car ptree))
+  (define name=>path (path-tree->name=>path path-root ptree))
+  (define name=>desc (pages->name=>desc pages))
+  (let ((path-names (dict-keys->set name=>path))
+        (desc-names (dict-keys->set name=>desc)))
+    (unless (equal? path-names desc-names)
+      (error (format "missing page list names: ~a; missing path tree names: ~a"
+                     (set->list (set-subtract path-names desc-names))
+                     (set->list (set-subtract desc-names path-names))))))
+  (define name=>anchor
+    (for/hash (((name path) (in-dict name=>path)))
+      (let ((desc (dict-ref name=>desc name))
+            (href (string-append "/" (path->string path))))
+        (values name `(a ((href ,href)) ,desc)))))
+  (define name=>reachable+xexpr
+    (for/hash (((name xexpr) (in-dict (pages->name=>xexpr pages))))
+      (values name (tree-lift-refs name=>anchor xexpr))))
+  (define name=>reachable
+    (for/hash (((name r+x) (in-dict name=>reachable+xexpr)))
+      (values name (car r+x))))
+  (define name=>xexpr
+    (for/hash (((name r+x) (in-dict name=>reachable+xexpr)))
+      (values name (cadr r+x))))
+  (define pages-reached (reachable name=>reachable (list page-root)))
+  (define pages-not-reached
+    (set-subtract (list->set (map car pages)) pages-reached))
+  (unless (set-empty? pages-not-reached)
+    (error (format "unreachable pages: ~a" (set->list pages-not-reached))))
+  (for (((name path) (in-dict name=>path)))
+    (write-html-file path (dict-ref name=>xexpr name))))
 
 (define-syntax (define-site stx)
   (syntax-case stx ()
-    ((_ path-tree exprs page ...)
-     (build-site stx #'path-tree #'exprs #'(page ...)))))
+    ((_ path-root path-tree (name desc xexpr) ...)
+     #'(build-site
+         path-root
+         (quote path-tree)
+         (list (list (quote name) desc xexpr) ...)))))
 
 (define-for-syntax (identifier-prefixed prefix ident)
   (datum->syntax
@@ -159,6 +152,7 @@
     (string->symbol
       (string-append prefix (symbol->string (syntax->datum ident))))))
 
+(require (for-syntax racket/function))
 (define-syntax (define-anchors stx)
   (syntax-case stx ()
     ((_ (name url) ...)

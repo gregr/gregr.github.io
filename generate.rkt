@@ -5,61 +5,51 @@
   "static-site.rkt"
   )
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; an actual site
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(define-site
-  ; path structure
-  (about)
-
-  ; utilities
-  (
-   (define (anchor href description)
-     `(a ((href ,href)) ,description))
-   (define (anchor-target name)
-     `(a ((name ,name))))
-   (define (date-single d)
-     `(div ((class "date")) ,d))
-   (define (date-range start end)
-     `(div ((class "date-range"))
-           (span ((class "date")) ,start)
-           (span ((class "date date-end")) ,end)))
-   (define (personal-project name start end . details)
-     `(div ((class "personal-project"))
+(define (anchor href description)
+  `(a ((href ,href)) ,description))
+(define (anchor-target name)
+  `(a ((name ,name))))
+(define (date-single d)
+  `(div ((class "date")) ,d))
+(define (date-range start end)
+  `(div ((class "date-range"))
+        (span ((class "date")) ,start)
+        (span ((class "date date-end")) ,end)))
+(define (personal-project name start end . details)
+  `(div ((class "personal-project"))
         (h3 ((class "personal-project-name")) ,name)
         ,(date-range start end)
         (div ((class "personal-project-details")) ,@details)))
-   (define (employment employer location title start end . details)
-     `(div ((class "employment"))
+(define (employment employer location title start end . details)
+  `(div ((class "employment"))
         (h3 ((class "employment-employer")) ,employer)
         (div ((class "employment-location")) ,location)
         (h4 ((class "employment-title")) ,title)
         ,(date-range start end)
         (div ((class "employment-details")) ,@details)))
-   (define (education name date . details)
-     `(div ((class "education"))
+(define (education name date . details)
+  `(div ((class "education"))
         (h3 ((class "education-name")) ,name)
         ,date
         (div ((class "education-details")) ,@details)))
 
-   (define head
-     `(head
-        (title "Greg Rosenblatt - About")
-        (meta ((charset "utf-8")))
-        (meta ((name "author") (content "Greg Rosenblatt")))
-        (meta ((name "description") (content "Personal site of Greg Rosenblatt")))
-        (link ((rel "stylesheet") (href "main.css")))
-        (script ((src "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")))
-        (script ((src "main.js")))
-        ))
-   (define nav
-     `(nav ((id "nav-main"))
+(define head
+  `(head
+     (title "Greg Rosenblatt - About")
+     (meta ((charset "utf-8")))
+     (meta ((name "author") (content "Greg Rosenblatt")))
+     (meta ((name "description") (content "Personal site of Greg Rosenblatt")))
+     (link ((rel "stylesheet") (href "main.css")))
+     (script ((src "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")))
+     (script ((src "main.js")))
+     ))
+(define nav
+  `(nav ((id "nav-main"))
         (ul
-          (li ,about)
+          (li ,(node-ref 'about))
           )))
-   (define nav-about
-     `(nav ((id "nav-local"))
+(define nav-about
+  `(nav ((id "nav-local"))
         (ul
           (li ,(anchor "#summary" "Summary"))
           (li ,(anchor "#personal-projects" "Personal Projects"))
@@ -67,18 +57,24 @@
           (li ,(anchor "#education" "Education"))
           (li ,(anchor "#recommended-reading" "Recommended Reading"))
           )))
-   (define (content body)
-     `(html
-        ,head
-        (body
-          (div ((id "content"))
+(define (content body)
+  `(html
+     ,head
+     (body
+       (div ((id "content"))
             (div ((id "nav-panel"))
-              ,nav-about
-              )
+                 ,nav-about
+                 )
             (div ((id "content-main")) ,body)
             ))))
 
-)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; an actual site
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define-site "."
+  ; path structure
+  (about)
 
   ; page definitions
   (about "About"
