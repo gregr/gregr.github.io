@@ -105,7 +105,7 @@
 (define (pages->name=>xexpr pages)
   (make-immutable-hash (map cons (map car pages) (map caddr pages))))
 
-(define (build-site path-root ptree pages)
+(define (define-site path-root ptree pages)
   (define dict-keys->set (compose1 list->set dict-keys))
   (define page-root (car ptree))
   (define name=>path (path-tree->name=>path path-root ptree))
@@ -137,14 +137,6 @@
     (error (format "unreachable pages: ~a" (set->list pages-not-reached))))
   (for (((name path) (in-dict name=>path)))
     (write-html-file path (dict-ref name=>xexpr name))))
-
-(define-syntax (define-site stx)
-  (syntax-case stx ()
-    ((_ path-root path-tree (name desc xexpr) ...)
-     #'(build-site
-         path-root
-         (quote path-tree)
-         (list (list (quote name) desc xexpr) ...)))))
 
 (define-for-syntax (identifier-prefixed prefix ident)
   (datum->syntax

@@ -10,15 +10,15 @@
   "writing.html.rkt"
   )
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; an actual site
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (define-site "."
   ; path structure
-  (about (writing))
+  `(
+    about
+    (writing
+      ))
 
   ; page definitions
-  (about "About" about)
-  (writing "Writing" writing)
-  )
+  `(
+    (about "About" ,about)
+    (writing "Writing" ,writing)
+   ))
