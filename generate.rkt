@@ -20,7 +20,7 @@
 
   ; page definitions
   `(
-    (about "About" ,about)
-    (writing "Writing" ,writing)
+    (about ,@about)
+    (writing ,@writing)
     ,@writing-pages
    ))

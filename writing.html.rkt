@@ -29,13 +29,15 @@
        ,@rest)))
 
 (define writing
-  (writing-content
-    "Misguided Writing"
-    `(section
-       (p "This is where you will find my attempts at meaningful writing.")
-       (ul ,@writing-nodes)
-       )
-    ))
+  (list
+    "Writing"
+    (writing-content
+      "Misguided Writing"
+      `(section
+         (p "This is where you will find my attempts at meaningful writing.")
+         (ul ,@writing-nodes)
+         )
+      )))
 
 (define (read-all inp)
   (let loop ((forms '()))
