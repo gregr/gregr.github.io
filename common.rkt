@@ -72,6 +72,7 @@
   `(nav ((id "nav-main"))
         (ul
           (li ,(node-ref 'about))
+          (li ,(node-ref 'writing))
           )))
 
 (define (content sub-title nav-local body)

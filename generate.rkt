@@ -7,6 +7,7 @@
   )
 (require
   "about.html.rkt"
+  "writing.html.rkt"
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -15,8 +16,9 @@
 
 (define-site "."
   ; path structure
-  (about)
+  (about (writing))
 
   ; page definitions
   (about "About" about)
+  (writing "Writing" writing)
   )
