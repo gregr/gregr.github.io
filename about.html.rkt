@@ -36,6 +36,7 @@
 
 (define about
   (content
+    "About"
     nav-about
     `(article
        (h1 ((class "content-title")) "Gregory L. Rosenblatt")

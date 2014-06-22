@@ -58,9 +58,9 @@
         (span ((class "date")) ,start)
         (span ((class "date date-end")) ,end)))
 
-(define head
+(define (head sub-title)
   `(head
-     (title "Greg Rosenblatt - About")
+     (title ,(string-append "Greg Rosenblatt - " sub-title))
      (meta ((charset "utf-8")))
      (meta ((name "author") (content "Greg Rosenblatt")))
      (meta ((name "description") (content "Personal site of Greg Rosenblatt")))
@@ -74,9 +74,9 @@
           (li ,(node-ref 'about))
           )))
 
-(define (content nav-local body)
+(define (content sub-title nav-local body)
   `(html
-     ,head
+     ,(head sub-title)
      (body
        (div ((id "content"))
             (div ((id "nav-panel"))
