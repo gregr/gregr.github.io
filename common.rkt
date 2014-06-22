@@ -68,27 +68,19 @@
      (script ((src "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")))
      (script ((src "main.js")))
      ))
-(define nav
+(define nav-main
   `(nav ((id "nav-main"))
         (ul
           (li ,(node-ref 'about))
           )))
-(define nav-about
-  `(nav ((id "nav-local"))
-        (ul
-          (li ,(anchor "#summary" "Summary"))
-          (li ,(anchor "#personal-projects" "Personal Projects"))
-          (li ,(anchor "#work-experience" "Professional Experience"))
-          (li ,(anchor "#education" "Education"))
-          (li ,(anchor "#recommended-reading" "Recommended Reading"))
-          )))
-(define (content body)
+
+(define (content nav-local body)
   `(html
      ,head
      (body
        (div ((id "content"))
             (div ((id "nav-panel"))
-                 ,nav-about
+                 ,nav-local
                  )
             (div ((id "content-main")) ,body)
             ))))

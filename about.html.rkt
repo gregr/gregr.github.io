@@ -24,8 +24,19 @@
         ,date
         (div ((class "education-details")) ,@details)))
 
+(define nav-about
+  `(nav ((id "nav-local"))
+        (ul
+          (li ,(anchor "#summary" "Summary"))
+          (li ,(anchor "#personal-projects" "Personal Projects"))
+          (li ,(anchor "#work-experience" "Professional Experience"))
+          (li ,(anchor "#education" "Education"))
+          (li ,(anchor "#recommended-reading" "Recommended Reading"))
+          )))
+
 (define about
   (content
+    nav-about
     `(article
        (h1 ((class "content-title")) "Gregory L. Rosenblatt")
        (section
