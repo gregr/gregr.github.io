@@ -32,7 +32,7 @@
   (list
     "Writing"
     (writing-content
-      "Misguided Writing"
+      "Writing"
       `(section
          (p "This is where you will find my attempts at meaningful writing.")
          (ul ,@writing-nodes)
