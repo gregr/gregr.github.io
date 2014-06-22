@@ -15,10 +15,12 @@
   `(
     about
     (writing
+      ,@writing-names
       ))
 
   ; page definitions
   `(
     (about "About" ,about)
     (writing "Writing" ,writing)
+    ,@writing-pages
    ))

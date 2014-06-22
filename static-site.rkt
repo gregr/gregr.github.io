@@ -3,7 +3,7 @@
   define-anchors
   define-css
   define-site
-  node-ref
+  (struct-out node-ref)
   )
 
 (require
