@@ -40,19 +40,18 @@
       (namespace-require "static-site.rkt")
       (current-namespace))))
 
-(define writing-entries
+(define writing-names
   '(
-    (test "Test Article")
+    test
     ))
 
-(define writing-names (map car writing-entries))
-(define writing-descs (map cadr writing-entries))
 (define writing-paths
   (for/list ((name writing-names))
     (string-append "writing/" (symbol->string name) ".html.rkt")))
-(define writing-xexprs
+(define writing-results
   (for/list ((path writing-paths))
     (eval (call-with-input-file path read-all) writing-namespace)))
 (define writing-pages
-  (for/list ((name writing-names) (desc writing-descs) (xexpr writing-xexprs))
-    (list name desc xexpr)))
+  (for/list ((name writing-names) (result writing-results))
+    (let ((desc (car result)) (xexpr (cadr result)))
+      (list name desc xexpr))))
