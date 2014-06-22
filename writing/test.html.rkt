@@ -1,6 +1,10 @@
-(list "Test Article"
+(define title "Test Article")
+(list title
   (content
-    "Writing"
+    title
     '(p)
-    "This is a test."
+    `(article
+      (h1 ((class "content-title")) ,title)
+      (section
+        (p "This is a test.")))
     ))
