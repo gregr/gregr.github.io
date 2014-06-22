@@ -80,6 +80,7 @@
      (body
        (div ((id "content"))
             (div ((id "nav-panel"))
+                 ,nav-main
                  ,nav-local
                  )
             (div ((id "content-main")) ,body)

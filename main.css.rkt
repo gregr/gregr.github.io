@@ -14,6 +14,11 @@
      "line-height" "120%"
      ))
 
+  ("nav"
+   (hash
+     "margin-bottom" "6em"
+     ))
+
   ("section"
    (hash
      "margin-top" "2em"
