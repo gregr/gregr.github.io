@@ -46,3 +46,49 @@
   (okasaki "http://www.amazon.ca/Purely-Functional-Structures-Chris-Okasaki/dp/0521663504")
   (prog-pearls "http://www.cs.bell-labs.com/cm/cs/pearls/")
   )
+
+(define (anchor href description)
+  `(a ((href ,href)) ,description))
+(define (anchor-target name)
+  `(a ((name ,name))))
+(define (date-single d)
+  `(div ((class "date")) ,d))
+(define (date-range start end)
+  `(div ((class "date-range"))
+        (span ((class "date")) ,start)
+        (span ((class "date date-end")) ,end)))
+
+(define head
+  `(head
+     (title "Greg Rosenblatt - About")
+     (meta ((charset "utf-8")))
+     (meta ((name "author") (content "Greg Rosenblatt")))
+     (meta ((name "description") (content "Personal site of Greg Rosenblatt")))
+     (link ((rel "stylesheet") (href "main.css")))
+     (script ((src "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")))
+     (script ((src "main.js")))
+     ))
+(define nav
+  `(nav ((id "nav-main"))
+        (ul
+          (li ,(node-ref 'about))
+          )))
+(define nav-about
+  `(nav ((id "nav-local"))
+        (ul
+          (li ,(anchor "#summary" "Summary"))
+          (li ,(anchor "#personal-projects" "Personal Projects"))
+          (li ,(anchor "#work-experience" "Professional Experience"))
+          (li ,(anchor "#education" "Education"))
+          (li ,(anchor "#recommended-reading" "Recommended Reading"))
+          )))
+(define (content body)
+  `(html
+     ,head
+     (body
+       (div ((id "content"))
+            (div ((id "nav-panel"))
+                 ,nav-about
+                 )
+            (div ((id "content-main")) ,body)
+            ))))
