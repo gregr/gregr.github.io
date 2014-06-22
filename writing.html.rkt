@@ -10,9 +10,16 @@
   "static-site.rkt"
   )
 
+(define writing-names
+  '(
+    test
+    ))
+
+(define writing-nodes
+  (for/list ((name writing-names))
+    `(li ,(node-ref name))))
 (define nav
   `(nav ((id "nav-local"))))
-
 (define (writing-content title . rest)
   (content
     title
@@ -26,7 +33,7 @@
     "Misguided Writing"
     `(section
        (p "This is where you will find my attempts at meaningful writing.")
-       (p ,(node-ref 'test))
+       (ul ,@writing-nodes)
        )
     ))
 
@@ -45,12 +52,6 @@
       (namespace-require "static-site.rkt")
       (namespace-set-variable-value! 'writing-content writing-content)
       (current-namespace))))
-
-(define writing-names
-  '(
-    test
-    ))
-
 (define writing-paths
   (for/list ((name writing-names))
     (string-append "writing/" (symbol->string name) ".html.rkt")))
