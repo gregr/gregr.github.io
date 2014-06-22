@@ -13,17 +13,22 @@
 (define nav
   `(nav ((id "nav-local"))))
 
-(define writing
+(define (writing-content title . rest)
   (content
-    "Writing"
+    title
     nav
     `(article
-       (h1 ((class "content-title")) "Misguided Writing")
-       (section ((class "summary"))
-                (p "This is where you will find my attempts at meaningful writing.")
-                (p ,(node-ref 'test))
-                )
-       )))
+       (h1 ((class "content-title")) ,title)
+       ,@rest)))
+
+(define writing
+  (writing-content
+    "Misguided Writing"
+    `(section
+       (p "This is where you will find my attempts at meaningful writing.")
+       (p ,(node-ref 'test))
+       )
+    ))
 
 (define (read-all inp)
   (let loop ((forms '()))
@@ -38,6 +43,7 @@
       (namespace-attach-module local-ns "static-site.rkt")
       (namespace-require "common.rkt")
       (namespace-require "static-site.rkt")
+      (namespace-set-variable-value! 'writing-content writing-content)
       (current-namespace))))
 
 (define writing-names
