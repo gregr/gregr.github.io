@@ -84,12 +84,14 @@
          (li "append-only databases"
              (ul
                (li "event sourcing")
+               (li ,(anchor-log-unifying-data-abstraction "the log as a unifying data abstraction"))
                (li ,(anchor-beat-cap "Beating the CAP Theorem"))
                ))
          (li "consistent or rendezvous hashing")
          (li "SOA (in the microservices sense)"
              (ul
                (li "smart endpoints, dumb pipes")
+               (li ,(anchor-fault-tolerance-high-volume "service failure resilience"))
                ))
          (li "REST (in the hypermedia-driven sense)")
          )

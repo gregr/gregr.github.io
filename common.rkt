@@ -11,6 +11,8 @@
   (github "https://github.com/gregr")
   (weiqi "https://en.wikipedia.org/wiki/Go_(game)")
 
+  (fault-tolerance-high-volume "http://techblog.netflix.com/2012/02/fault-tolerance-in-high-volume.html")
+  (log-unifying-data-abstraction "http://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying")
   (beat-cap "http://nathanmarz.com/blog/how-to-beat-the-cap-theorem.html")
   (consistent-hash "http://www.tomkleinpeter.com/2008/03/17/programmers-toolbox-part-3-consistent-hashing/")
   (raft-paxos "http://www.reddit.com/comments/1c1rjx")
