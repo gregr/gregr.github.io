@@ -6,6 +6,19 @@
   "static-site.rkt"
   )
 
+(match-define (list ref-reading anchor-list-reading)
+  (anchors `(
+    (SYJMrF "Surely You're Joking, Mr. Feynman!" "https://en.wikipedia.org/wiki/Surely_You're_Joking,_Mr._Feynman!")
+    (GEB "Gödel, Escher, Bach" "https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach")
+    (logicomix "Logicomix" "https://en.wikipedia.org/wiki/Logicomix")
+    (prag-prog "The Pragmatic Programmer" "https://en.wikipedia.org/wiki/The_Pragmatic_Programmer")
+    (peopleware "Peopleware" "https://en.wikipedia.org/wiki/Peopleware:_Productive_Projects_and_Teams")
+    (sicp "Structure and Interpretation of Computer Programs" "https://mitpress.mit.edu/sicp/")
+    (algo-design-manual "The Algorithm Design Manual" "http://www.algorist.com/")
+    (okasaki "Purely Functional Data Structures" "http://www.amazon.ca/Purely-Functional-Structures-Chris-Okasaki/dp/0521663504")
+    (prog-pearls "Programming Pearls" "http://www.cs.bell-labs.com/cm/cs/pearls/")
+    )))
+
 (define (personal-project name start end . details)
   `(div ((class "personal-project"))
         (h3 ((class "personal-project-name")) ,name)
@@ -85,11 +98,11 @@
                     ".")
                   (p
                     "I enjoy being "
-                    ,(anchor-peopleware "managed")
+                    ,(ref-reading 'peopleware "managed")
                     " well.")
                   (p
                     "My approach to problem solving emphasizes "
-                    ,(anchor-prag-prog "tool-building and automation")
+                    ,(ref-reading 'prag-prog "tool-building and automation")
                     ".  This includes code generation, transformation and other "
                     ,(anchor-role-of-PL-study "language-oriented")
                     " techniques.  When solving mysteries, I understand and reason about code before jumping into a debugger.")
@@ -221,15 +234,6 @@
          (section
            ,(anchor-target "recommended-reading")
            (h2 "Some reading I've enjoyed and recommend")
-           (ul
-             (li ,(anchor-SYJMrF "Surely You're Joking, Mr. Feynman!"))
-             (li ,(anchor-GEB "Gödel, Escher, Bach"))
-             (li ,(anchor-logicomix "Logicomix"))
-             (li ,(anchor-prag-prog "The Pragmatic Programmer"))
-             (li ,(anchor-peopleware "Peopleware"))
-             (li ,(anchor-sicp "Structure and Interpretation of Computer Programs"))
-             (li ,(anchor-algo-design-manual "The Algorithm Design Manual"))
-             (li ,(anchor-okasaki "Purely Functional Data Structures"))
-             (li ,(anchor-prog-pearls "Programming Pearls"))
-             ))
+           ,(anchor-reference anchor-list-reading)
+           )
          ))))

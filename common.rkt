@@ -40,16 +40,6 @@
   (learnable-prog "http://worrydream.com/LearnableProgramming/")
   (future-of-prog "http://worrydream.com/dbx/")
 
-  (SYJMrF "https://en.wikipedia.org/wiki/Surely_You're_Joking,_Mr._Feynman!")
-  (GEB "https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach")
-  (logicomix "https://en.wikipedia.org/wiki/Logicomix")
-  (prag-prog "https://en.wikipedia.org/wiki/The_Pragmatic_Programmer")
-  (peopleware "https://en.wikipedia.org/wiki/Peopleware:_Productive_Projects_and_Teams")
-  (sicp "https://mitpress.mit.edu/sicp/")
-  (algo-design-manual "http://www.algorist.com/")
-  (okasaki "http://www.amazon.ca/Purely-Functional-Structures-Chris-Okasaki/dp/0521663504")
-  (prog-pearls "http://www.cs.bell-labs.com/cm/cs/pearls/")
-
   (das-boundaries "https://www.destroyallsoftware.com/talks/boundaries")
   (object-capability-model "https://en.wikipedia.org/wiki/Object-capability_model")
   (erights "http://erights.org")
