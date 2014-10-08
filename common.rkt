@@ -64,6 +64,11 @@
         (span ((class "date")) ,start)
         (span ((class "date date-end")) ,end)))
 
+(define (code-block source)
+  `(pre ((class "code-block")) (code ,source)))
+(define (code-file path)
+  (code-block (call-with-input-file path port->string)))
+
 (define (head sub-title)
   `(head
      (title ,(string-append "Greg Rosenblatt - " sub-title))
