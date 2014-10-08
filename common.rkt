@@ -77,6 +77,8 @@
             (cons (make-anchor main-desc) rev-anchors))))))
     (list (lambda (key desc) ((dict-ref anchor-dict key) desc))
           (reverse rev-anchors))))
+(define (anchor-reference anchors)
+  `(ul ,@(map (lambda (anchor) `(li ,anchor) ) anchors)))
 
 (define-runtime-path local-directory ".")
 (define (code-block source)
