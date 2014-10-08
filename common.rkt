@@ -80,6 +80,14 @@
 (define (anchor-reference anchors)
   `(ul ,@(map (lambda (anchor) `(li ,anchor) ) anchors)))
 
+(define (nav-local targets)
+  `(nav ((id "nav-local"))
+        (ul
+          ,@(map (match-lambda
+                   ((list tag desc)
+                    `(li ,(anchor (string-append "#" tag) desc))))
+                 targets))))
+
 (define-runtime-path local-directory ".")
 (define (code-block source)
   `(pre ((class "code-block")) (code ,source)))
