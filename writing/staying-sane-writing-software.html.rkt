@@ -66,7 +66,7 @@
          (li "granular delegation of authority"
              (ul
                (li "as in the "
-                   ,(anchor-object-capability-model "object-capability model"))
+                   ,(ref-plt 'object-capability-model "object-capability model"))
                ))
          (li "clear, incorruptible sources of truth")
          )
@@ -74,25 +74,25 @@
        (ul
          (li "purely functional cores with imperative shells"
              (ul
-               (li ,(anchor-das-boundaries "Boundaries"))
+               (li ,(ref-arch 'das-boundaries "Boundaries"))
                ))
-         (li ,(anchor-object-capability-model "object capabilities")
+         (li ,(ref-plt 'object-capability-model "object capabilities")
              (ul
-               (li ,(anchor-erights "as in the E Programming Language"))
+               (li ,(ref-plt 'erights "as in the E Programming Language"))
                ))
          (li "caching")
          (li "replication")
          (li "append-only databases"
              (ul
                (li "event sourcing")
-               (li ,(anchor-log-unifying-data-abstraction "the log as a unifying data abstraction"))
-               (li ,(anchor-beat-cap "Beating the CAP Theorem"))
+               (li ,(ref-arch 'log-unifying-data-abstraction "the log as a unifying data abstraction"))
+               (li ,(ref-arch 'beat-cap "Beating the CAP Theorem"))
                ))
          (li "consistent or rendezvous hashing")
          (li "SOA (in the microservices sense)"
              (ul
                (li "smart endpoints, dumb pipes")
-               (li ,(anchor-fault-tolerance-high-volume "service failure resilience"))
+               (li ,(ref-arch 'fault-tolerance-high-volume "service failure resilience"))
                ))
          (li "REST (in the hypermedia-driven sense)")
          )

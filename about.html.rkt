@@ -6,6 +6,43 @@
   "static-site.rkt"
   )
 
+(match-define (list ref-personal _)
+  (anchors `(
+    (github "gregr at GitHub" "https://github.com/gregr")
+    )))
+
+(match-define (list ref-misc anchor-list-misc)
+  (anchors `(
+    (weiqi "Go/Weiqi/Baduk" "https://en.wikipedia.org/wiki/Go_(game)")
+    )))
+
+(match-define (list ref-tech anchor-list-tech)
+  (anchors `(
+    (100-percent-solutions "100% and 80% solutions" "http://www.ccs.neu.edu/home/shivers/papers/sre.txt")
+    (postgres "PostgreSQL" "https://en.wikipedia.org/wiki/PostgreSQL")
+    (redis "Redis" "https://en.wikipedia.org/wiki/Redis")
+    (haskell "Haskell" "https://en.wikipedia.org/wiki/Haskell_(programming_language)")
+    (racket "Racket" "https://en.wikipedia.org/wiki/Racket_(programming_language)")
+    (python "Python" "https://en.wikipedia.org/wiki/Python_(programming_language)")
+    (git "Git" "https://en.wikipedia.org/wiki/Git_(software)")
+    )))
+
+(match-define (list ref-tech-poor anchor-list-tech-poor)
+  (anchors `(
+    (c++-fqa "C++ FQA" "http://yosefk.com/c++fqa/")
+    (wat-talk "Wat" "https://www.destroyallsoftware.com/talks/wat")
+    (php-fractally-bad "PHP: a fractal of bad design" "http://me.veekun.com/blog/2012/04/09/php-a-fractal-of-bad-design/")
+    (mysql-choose-something-else "Do Not Pass This Way Again" "http://grimoire.ca/mysql/choose-something-else")
+    )))
+
+(match-define (list ref-design anchor-list-design)
+  (anchors `(
+    (magic-ink "Magic Ink" "http://worrydream.com/MagicInk/")
+    (drawing-dynamic "Additional Notes on \"Drawing Dynamic Visualizations\"" "http://worrydream.com/DrawingDynamicVisualizationsTalkAddendum/")
+    (learnable-prog "Learnable Programming" "http://worrydream.com/LearnableProgramming/")
+    (future-of-prog "References for \"The Future of Programming\"" "http://worrydream.com/dbx/")
+    )))
+
 (match-define (list ref-reading anchor-list-reading)
   (anchors `(
     (SYJMrF "Surely You're Joking, Mr. Feynman!" "https://en.wikipedia.org/wiki/Surely_You're_Joking,_Mr._Feynman!")
@@ -56,7 +93,7 @@
          (h1 ((class "content-title")) "Gregory L. Rosenblatt")
          (section
            (div ,(anchor "mailto:greg.weiqi@gmail.com" "greg.weiqi@gmail.com"))
-           (div "GitHub: " ,(anchor-github "gregr"))
+           (div "GitHub: " ,(ref-personal 'github "gregr"))
            )
          (section ((class "summary"))
                   ,(anchor-target "summary")
@@ -64,37 +101,37 @@
                   (p "I currently live in Toronto, Ontario, working as a Software Engineer.")
                   (p
                     "My "
-                    ,(anchor-beat-cap "focus")
+                    ,(ref-arch 'beat-cap "focus")
                     " is "
-                    ,(anchor-consistent-hash "more")
+                    ,(ref-arch 'consistent-hash "more")
                     " "
-                    ,(anchor-raft-paxos "on")
+                    ,(ref-arch 'raft-paxos "on")
                     " "
-                    ,(anchor-relational-prog "general")
+                    ,(ref-plt 'relational-prog "general")
                     " "
-                    ,(anchor-props-as-types "ideas")
+                    ,(ref-plt 'props-as-types "ideas")
                     " than on specific technologies.  Though, I do like to choose "
-                    ,(anchor-postgres "which")
+                    ,(ref-tech 'postgres "which")
                     " "
-                    ,(anchor-redis "technologies")
+                    ,(ref-tech 'redis "technologies")
                     " to work with, "
-                    ,(anchor-racket "preferring")
+                    ,(ref-tech 'racket "preferring")
                     " "
-                    ,(anchor-haskell "well-designed")
+                    ,(ref-tech 'haskell "well-designed")
                     " "
-                    ,(anchor-python "languages")
+                    ,(ref-tech 'python "languages")
                     ", "
-                    ,(anchor-git "tools")
+                    ,(ref-tech 'git "tools")
                     " and "
-                    ,(anchor-100-percent-solutions "100% solutions")
+                    ,(ref-tech '100-percent-solutions "100% solutions")
                     ".  Unfortunately I have "
-                    ,(anchor-c++-fqa "plenty")
+                    ,(ref-tech-poor 'c++-fqa "plenty")
                     " of "
-                    ,(anchor-wat-talk "experience")
+                    ,(ref-tech-poor 'wat-talk "experience")
                     " with "
-                    ,(anchor-php-fractally-bad "poorly-designed")
+                    ,(ref-tech-poor 'php-fractally-bad "poorly-designed")
                     " "
-                    ,(anchor-mysql-choose-something-else "technology")
+                    ,(ref-tech-poor 'mysql-choose-something-else "technology")
                     ".")
                   (p
                     "I enjoy being "
@@ -104,21 +141,21 @@
                     "My approach to problem solving emphasizes "
                     ,(ref-reading 'prag-prog "tool-building and automation")
                     ".  This includes code generation, transformation and other "
-                    ,(anchor-role-of-PL-study "language-oriented")
+                    ,(ref-plt 'role-of-PL-study "language-oriented")
                     " techniques.  When solving mysteries, I understand and reason about code before jumping into a debugger.")
                   (p
                     "A major goal of mine is to become better at "
-                    ,(anchor-magic-ink "designing")
+                    ,(ref-design 'magic-ink "designing")
                     " for "
-                    ,(anchor-drawing-dynamic "human")
+                    ,(ref-design 'drawing-dynamic "human")
                     " "
-                    ,(anchor-learnable-prog "beings")
+                    ,(ref-design 'learnable-prog "beings")
                     ".  The "
-                    ,(anchor-future-of-prog "past")
+                    ,(ref-design 'future-of-prog "past")
                     " inspires me.")
                   (p
                     "I play "
-                    ,(anchor-weiqi "Go/Weiqi/Baduk")
+                    ,(ref-misc 'weiqi "Go/Weiqi/Baduk")
                     " at the 5 dan level."
                     ))
          (section

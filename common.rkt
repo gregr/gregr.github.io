@@ -9,42 +9,6 @@
   racket/runtime-path
   )
 
-(define-anchors
-  (github "https://github.com/gregr")
-  (weiqi "https://en.wikipedia.org/wiki/Go_(game)")
-
-  (fault-tolerance-high-volume "http://techblog.netflix.com/2012/02/fault-tolerance-in-high-volume.html")
-  (log-unifying-data-abstraction "http://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying")
-  (beat-cap "http://nathanmarz.com/blog/how-to-beat-the-cap-theorem.html")
-  (consistent-hash "http://www.tomkleinpeter.com/2008/03/17/programmers-toolbox-part-3-consistent-hashing/")
-  (raft-paxos "http://www.reddit.com/comments/1c1rjx")
-  (props-as-types "http://homepages.inf.ed.ac.uk/wadler/papers/propositions-as-types/propositions-as-types.pdf")
-  (relational-prog "https://www.youtube.com/watch?v=5Q9x16uIsKA")
-  (role-of-PL-study "http://www.cs.indiana.edu/~dfried/mex.pdf")
-
-  (100-percent-solutions "http://www.ccs.neu.edu/home/shivers/papers/sre.txt")
-  (postgres "https://en.wikipedia.org/wiki/PostgreSQL")
-  (redis "https://en.wikipedia.org/wiki/Redis")
-  (haskell "https://en.wikipedia.org/wiki/Haskell_(programming_language)")
-  (racket "https://en.wikipedia.org/wiki/Racket_(programming_language)")
-  (python "https://en.wikipedia.org/wiki/Python_(programming_language)")
-  (git "https://en.wikipedia.org/wiki/Git_(software)")
-
-  (c++-fqa "http://yosefk.com/c++fqa/")
-  (wat-talk "https://www.destroyallsoftware.com/talks/wat")
-  (php-fractally-bad "http://me.veekun.com/blog/2012/04/09/php-a-fractal-of-bad-design/")
-  (mysql-choose-something-else "http://grimoire.ca/mysql/choose-something-else")
-
-  (magic-ink "http://worrydream.com/MagicInk/")
-  (drawing-dynamic "http://worrydream.com/DrawingDynamicVisualizationsTalkAddendum/")
-  (learnable-prog "http://worrydream.com/LearnableProgramming/")
-  (future-of-prog "http://worrydream.com/dbx/")
-
-  (das-boundaries "https://www.destroyallsoftware.com/talks/boundaries")
-  (object-capability-model "https://en.wikipedia.org/wiki/Object-capability_model")
-  (erights "http://erights.org")
-  )
-
 (define (anchor href description)
   `(a ((href ,href)) ,description))
 (define (anchor-target name)
@@ -69,6 +33,25 @@
           (reverse rev-anchors))))
 (define (anchor-reference anchors)
   `(ul ,@(map (lambda (anchor) `(li ,anchor) ) anchors)))
+
+(match-define (list ref-plt anchor-list-plt)
+  (anchors `(
+    (relational-prog "miniKanren" "https://www.youtube.com/watch?v=5Q9x16uIsKA")
+    (role-of-PL-study "The Role of the Study of Programming Languages" "http://www.cs.indiana.edu/~dfried/mex.pdf")
+    (props-as-types "Propositions as Types" "http://homepages.inf.ed.ac.uk/wadler/papers/propositions-as-types/propositions-as-types.pdf")
+    (object-capability-model "Object-capability model" "https://en.wikipedia.org/wiki/Object-capability_model")
+    (erights "E Programming Language" "http://erights.org")
+    )))
+
+(match-define (list ref-arch anchor-list-arch)
+  (anchors `(
+    (fault-tolerance-high-volume "Fault Tolerance in a High Volume, Distributed System" "http://techblog.netflix.com/2012/02/fault-tolerance-in-high-volume.html")
+    (log-unifying-data-abstraction "The Log: What every software engineer should know about real-time data's unifying abstraction" "http://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying")
+    (beat-cap "How to beat the CAP theorem" "http://nathanmarz.com/blog/how-to-beat-the-cap-theorem.html")
+    (consistent-hash "Consistent Hashing" "http://www.tomkleinpeter.com/2008/03/17/programmers-toolbox-part-3-consistent-hashing/")
+    (raft-paxos "Raft: A more understandable consensus algorithm that is equivalent to Paxos" "http://www.reddit.com/comments/1c1rjx")
+    (das-boundaries "Boundaries" "https://www.destroyallsoftware.com/talks/boundaries")
+    )))
 
 (define (nav-local targets)
   `(nav ((id "nav-local"))

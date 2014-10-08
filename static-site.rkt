@@ -1,6 +1,5 @@
 #lang racket
 (provide
-  define-anchors
   define-css
   define-site
   (struct-out node-ref)
@@ -143,14 +142,3 @@
     ident
     (string->symbol
       (string-append prefix (symbol->string (syntax->datum ident))))))
-
-(require (for-syntax racket/function))
-(define-syntax (define-anchors stx)
-  (syntax-case stx ()
-    ((_ (name url) ...)
-     (with-syntax (((anchor-name ...)
-                    (map (curry identifier-prefixed "anchor-")
-                         (syntax->list #'(name ...)))))
-      #'(begin
-          (define (anchor-name desc)
-            `(a ((href ,url)) ,desc)) ...)))))
