@@ -19,9 +19,7 @@
 (define writing-nodes
   (for/list ((name writing-names))
     `(li ,(node-ref name))))
-(define nav
-  `(nav ((id "nav-local"))))
-(define (writing-content title . rest)
+(define (writing-content title nav . rest)
   (content
     title
     nav
@@ -34,6 +32,7 @@
     "Writing"
     (writing-content
       "Writing"
+      (nav-local '())
       `(section
          (ul ,@writing-nodes)
          )

@@ -2,6 +2,7 @@
 (list title
   (writing-content
     title
+    (nav-local '())
     `(section
        ,(date-single "June 22, 2014")
        )
