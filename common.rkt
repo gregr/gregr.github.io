@@ -5,6 +5,7 @@
 
 (require
   "static-site.rkt"
+  gregr-misc/match
   racket/runtime-path
   )
 
@@ -64,6 +65,18 @@
   `(div ((class "date-range"))
         (span ((class "date")) ,start)
         (span ((class "date date-end")) ,end)))
+
+(define (anchors anchor-specs)
+  (match-let
+    (((list anchor-dict rev-anchors)
+      (for/fold/match (((list anchor-dict rev-anchors) (list (hash) (list))))
+                      (((list key main-desc href) anchor-specs))
+        (let ((make-anchor (curry anchor href)))
+          (list
+            (dict-set anchor-dict key make-anchor)
+            (cons (make-anchor main-desc) rev-anchors))))))
+    (list (lambda (key desc) ((dict-ref anchor-dict key) desc))
+          (reverse rev-anchors))))
 
 (define-runtime-path local-directory ".")
 (define (code-block source)
