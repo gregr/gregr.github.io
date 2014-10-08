@@ -5,6 +5,7 @@
 
 (require
   "static-site.rkt"
+  racket/runtime-path
   )
 
 (define-anchors
@@ -64,10 +65,13 @@
         (span ((class "date")) ,start)
         (span ((class "date date-end")) ,end)))
 
+(define-runtime-path local-directory ".")
 (define (code-block source)
   `(pre ((class "code-block")) (code ,source)))
 (define (code-file path)
   (code-block (call-with-input-file path port->string)))
+(define (local-code-file subpath)
+  (code-file (build-path local-directory subpath)))
 
 (define (head sub-title)
   `(head
