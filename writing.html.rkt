@@ -8,6 +8,7 @@
 (require
   "common.rkt"
   "static-site.rkt"
+  racket/runtime-path
   )
 
 (define writing-names
@@ -44,18 +45,21 @@
       (if (eq? form eof)
         (cons 'begin (reverse forms))
         (loop (cons form forms))))))
+(define-runtime-module-path common-rkt "common.rkt")
+(define-runtime-module-path static-site-rkt "static-site.rkt")
 (define writing-namespace
-  (let ((local-ns (current-namespace)))
+  (let ((local-ns (current-namespace))
+        (ns-mods (list common-rkt static-site-rkt)))
     (parameterize ((current-namespace (make-base-namespace)))
-      (namespace-attach-module local-ns "common.rkt")
-      (namespace-attach-module local-ns "static-site.rkt")
-      (namespace-require "common.rkt")
-      (namespace-require "static-site.rkt")
+      (for ((mod ns-mods))
+        (namespace-attach-module local-ns mod)
+        (namespace-require mod))
       (namespace-set-variable-value! 'writing-content writing-content)
       (current-namespace))))
+(define-runtime-path writing-root "writing/")
 (define writing-paths
   (for/list ((name writing-names))
-    (string-append "writing/" (symbol->string name) ".html.rkt")))
+    (build-path writing-root (string-append (symbol->string name) ".html.rkt"))))
 (define writing-results
   (for/list ((path writing-paths))
     (eval (call-with-input-file path read-all) writing-namespace)))
