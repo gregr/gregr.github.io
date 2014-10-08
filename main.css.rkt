@@ -93,6 +93,11 @@
    (hash
      "content" "\" - \""))
 
+  (".code-block"
+   (hash
+     "margin-left" "1em"
+     ))
+
   (".multipart-series li"
    (hash
      "display" "inline"

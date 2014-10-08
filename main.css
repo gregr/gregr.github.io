@@ -58,6 +58,9 @@ nav li {
 .date-end:before {
   content: " - ";
 }
+.code-block {
+  margin-left: 1em;
+}
 .multipart-series li {
   padding: 10px;
   display: inline;
