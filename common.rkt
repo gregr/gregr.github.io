@@ -66,6 +66,8 @@
         (ul ,@(map nav-local-target targets))))
 
 (define-runtime-path local-directory ".")
+(define (code-frag source)
+  `(code ((class "code-frag")) ,source))
 (define (code-block source)
   `(pre ((class "code-block")) (code ,source)))
 (define (code-file path)
