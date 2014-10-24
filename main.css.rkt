@@ -104,9 +104,19 @@
    (hash
      "content" "\" - \""))
 
+  (".code-frag"
+   (hash
+     "padding" "0.2em"
+     "font-weight" "bold"
+     "color" "brown"
+     "background-color" "bisque"
+     ))
+
   (".code-block"
    (hash
-     "margin-left" "1em"
+     "padding" "1em"
+     "color" "brown"
+     "background-color" "beige"
      ))
 
   (".multipart-series li"
