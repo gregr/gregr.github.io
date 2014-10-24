@@ -53,13 +53,17 @@
     (das-boundaries "Boundaries" "https://www.destroyallsoftware.com/talks/boundaries")
     )))
 
+(define (nav-local-target target)
+  (define (entry tag desc . subentries)
+    `(li (p ,(anchor (string-append "#" tag) desc)) ,@subentries))
+  (match target
+    ((list tag desc)
+     (entry tag desc))
+    ((list tag desc subtargets)
+     (entry tag desc `(ul ,@(map nav-local-target subtargets))))))
 (define (nav-local targets)
   `(nav ((id "nav-local"))
-        (ul
-          ,@(map (match-lambda
-                   ((list tag desc)
-                    `(li ,(anchor (string-append "#" tag) desc))))
-                 targets))))
+        (ul ,@(map nav-local-target targets))))
 
 (define-runtime-path local-directory ".")
 (define (code-block source)
