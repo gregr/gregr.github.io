@@ -68,6 +68,10 @@
   ("#nav-panel a:link, #nav-panel a:visited"
    (hash
      "text-decoration" "none"
+     "color" "#333333"
+     ))
+  ("#nav-panel ul ul a:link, #nav-panel ul ul a:visited"
+   (hash
      "color" "#666666"
      ))
   ("#content-main"
@@ -76,12 +80,19 @@
      "margin-right" nav-width
      ))
 
+  ("#nav-local"
+   (hash
+     "margin-right" "1em"
+     ))
   ("nav ul"
    (hash
+     "margin" "0"
+     "padding-left" "1em"
      "list-style-type" "none"
      ))
   ("nav li"
    (hash
+     "margin-top" "1em"
      "margin-bottom" "1em"
      ))
 
