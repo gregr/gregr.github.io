@@ -10,6 +10,8 @@
   )
 
 (define (anchor href description)
+  `(a ((target "_blank") (href ,href)) ,description))
+(define (anchor-local href description)
   `(a ((href ,href)) ,description))
 (define (anchor-target name)
   `(a ((name ,name))))
@@ -55,7 +57,7 @@
 
 (define (nav-local-target target)
   (define (entry tag desc . subentries)
-    `(li (p ,(anchor (string-append "#" tag) desc)) ,@subentries))
+    `(li (p ,(anchor-local (string-append "#" tag) desc)) ,@subentries))
   (match target
     ((list tag desc)
      (entry tag desc))
