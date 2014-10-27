@@ -39,18 +39,27 @@ a:hover {
   float: left;
 }
 #nav-panel a:link, #nav-panel a:visited {
-  color: #666666;
+  color: #333333;
   text-decoration: none;
+}
+#nav-panel ul ul a:link, #nav-panel ul ul a:visited {
+  color: #666666;
 }
 #content-main {
   margin-right: 280px;
   margin-left: 280px;
 }
+#nav-local {
+  margin-right: 1em;
+}
 nav ul {
   list-style-type: none;
+  margin: 0;
+  padding-left: 1em;
 }
 nav li {
   margin-bottom: 1em;
+  margin-top: 1em;
 }
 .date {
   font-style: italic;
@@ -58,8 +67,16 @@ nav li {
 .date-end:before {
   content: " - ";
 }
+.code-frag {
+  color: brown;
+  padding: 0.2em;
+  background-color: bisque;
+  font-weight: bold;
+}
 .code-block {
-  margin-left: 1em;
+  color: brown;
+  padding: 1em;
+  background-color: beige;
 }
 .multipart-series li {
   padding: 10px;
