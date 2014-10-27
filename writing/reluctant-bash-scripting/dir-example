@@ -1,0 +1,8 @@
+#!/bin/bash
+# dir-example
+set -eu
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# refer to the 'data' file living in the script directory
+... "$DIR/data" ...

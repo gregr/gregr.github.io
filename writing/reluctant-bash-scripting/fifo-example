@@ -1,0 +1,18 @@
+> mkfifo to-show
+> ls -l
+prw-r--r-- 1 user user    0 ... to-show|
+
+> {
+>   echo show > to-show
+>   echo these > to-show
+>   echo lines > to-show
+> } &
+[1] 1234
+> jobs
+[1]+  Running { echo show > to-show; echo these > to-show; echo lines > to-show; } &
+
+> cat < to-show
+show
+these
+lines
+[1]+  Done    { echo show > to-show; echo these > to-show; echo lines > to-show; }

@@ -1,0 +1,6 @@
+# With multiple processors, some of these may be able to run in parallel
+for i in {1..10}; do
+  slow_process < "input$i" > "output$i" &
+done
+wait
+... # use output{1..10}

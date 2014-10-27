@@ -1,0 +1,9 @@
+#!/bin/bash
+# var-arg-example
+set -eu
+
+# ARG1 is required.
+# ARG2 is optional; it will be assigned to 'default' if unset.
+# Use := instead of = to also perform assignment when ARG2 is the empty string.
+: ${ARG2='default'}
+echo "$ARG1" "$ARG2"

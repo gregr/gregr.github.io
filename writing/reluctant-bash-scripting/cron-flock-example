@@ -1,0 +1,5 @@
+# /etc/cron.d/special
+... typical cron things ...
+# Run our special process every 5 minutes.
+# Run it with flock to prevent overlap if it runs for longer than 5 minutes.
+*/5 * * * *  user  flock -n /tmp/special-process.lock /path/to/special-process

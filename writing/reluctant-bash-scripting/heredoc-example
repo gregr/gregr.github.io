@@ -1,0 +1,6 @@
+cat << EXAMPLEDOC
+All of these
+lines are
+treated as
+input
+EXAMPLEDOC

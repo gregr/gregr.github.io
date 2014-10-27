@@ -1,0 +1,15 @@
+# Invoke named-arg-example.
+
+> ./var-arg-example
+./var-arg-example: line 8: ARG1: unbound variable
+
+> export ARG1=foo
+
+> ./var-arg-example
+foo default
+
+> ARG2=bar ./var-arg-example
+foo bar
+
+> ARG1=crow ARG2=bar ./var-arg-example
+crow bar

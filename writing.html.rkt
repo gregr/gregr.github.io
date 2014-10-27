@@ -13,6 +13,7 @@
 
 (define writing-names
   '(
+    reluctant-bash-scripting
     staying-sane-writing-software
     ))
 
@@ -48,7 +49,7 @@
 (define-runtime-module-path static-site-rkt "static-site.rkt")
 (define writing-namespace
   (let ((local-ns (current-namespace))
-        (ns-mods (list common-rkt static-site-rkt)))
+        (ns-mods (list common-rkt static-site-rkt 'racket/match)))
     (parameterize ((current-namespace (make-base-namespace)))
       (for ((mod ns-mods))
         (namespace-attach-module local-ns mod)

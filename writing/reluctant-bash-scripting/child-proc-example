@@ -1,0 +1,49 @@
+# Though this example is a bit too simplistic, it's often a good idea to create
+# a temporary working directory to store data related to each child process.
+> CHILD_DIR=$(mktemp -d child.XXXXXXXXXX)
+> echo "$CHILD_DIR"
+child.iu9Ncsshzc
+
+# Set up an output channel to receive messages from the child process.
+> CHILD_OUT="$CHILD_DIR/out"
+> mkfifo "$CHILD_OUT"
+
+# Launch a process that outputs the result of its "work" every 5 seconds.
+> {
+>   while true; do
+>     sleep 5
+>     echo 'work asynchronously' > "$CHILD_OUT"
+>   done
+> } &
+[1] 12345
+
+# Remember its PID.
+> CHILD_PID="$!"
+> echo "$CHILD_PID"
+12345
+
+> jobs
+[1]+  Running                 { while true; do
+    sleep 5; echo 'work asynchronously' > "$CHILD_OUT";
+done; } &
+
+# Pull some results out of the channel.
+> cat < "$CHILD_OUT"
+work asynchronously
+
+# The child process blocks when writing to the channel until we try to read.
+# At most one result will be queued up at a time.  If we immediately try
+# reading a second time, we notice a pause due to the child sleep.
+> cat < "$CHILD_OUT"
+(up to a 5-second pause)
+work asynchronously
+
+# Thanks to the while loop, the child process will continue until we are ready
+# to stop it.
+> kill "$CHILD_PID"
+[1]+  Terminated              { while true; do
+    sleep 5; echo ' work asynchronously' > "$CHILD_OUT";
+done; }
+
+# Clean up.
+> rm -r "$CHILD_DIR"
