@@ -39,7 +39,7 @@
       ("referenced-links" "All the links")
       ))
     `(section
-       ,(date-single "October 25, 2014")
+       ,(date-range "October 25, 2014" "December 7, 2014")
        )
     `(section
        ((class "summary"))
