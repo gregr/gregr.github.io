@@ -1,7 +1,7 @@
 # Though this example is a bit too simplistic, it's often a good idea to create
 # a temporary working directory to store data related to each child process.
 > CHILD_DIR=$(mktemp -d child.XXXXXXXXXX)
-> echo "$CHILD_DIR"
+> printf '%s\n' "$CHILD_DIR"
 child.iu9Ncsshzc
 
 # Set up an output channel to receive messages from the child process.
@@ -12,19 +12,19 @@ child.iu9Ncsshzc
 > {
 >   while true; do
 >     sleep 5
->     echo 'work asynchronously' > "$CHILD_OUT"
+>     printf '%s\n' 'work asynchronously' > "$CHILD_OUT"
 >   done
 > } &
 [1] 12345
 
 # Remember its PID.
 > CHILD_PID="$!"
-> echo "$CHILD_PID"
+> printf '%s\n' "$CHILD_PID"
 12345
 
 > jobs
 [1]+  Running                 { while true; do
-    sleep 5; echo 'work asynchronously' > "$CHILD_OUT";
+    sleep 5; printf '%s\n' 'work asynchronously' > "$CHILD_OUT";
 done; } &
 
 # Pull some results out of the channel.
@@ -42,7 +42,7 @@ work asynchronously
 # to stop it.
 > kill "$CHILD_PID"
 [1]+  Terminated              { while true; do
-    sleep 5; echo ' work asynchronously' > "$CHILD_OUT";
+    sleep 5; printf '%s\n' ' work asynchronously' > "$CHILD_OUT";
 done; }
 
 # Clean up.

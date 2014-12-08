@@ -6,4 +6,4 @@ set -euf -o pipefail
 # ARG2 is optional; it will be assigned to 'default' if unset.
 # Use := instead of = to also perform assignment when ARG2 is the empty string.
 : ${ARG2='default'}
-echo "$ARG1" "$ARG2"
+printf '%s %s\n' "$ARG1" "$ARG2"
