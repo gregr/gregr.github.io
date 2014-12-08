@@ -2,6 +2,7 @@
 (match-define (list ref anchor-list)
   (anchors `(
     (robust-bash "Writing Robust Bash Shell Scripts" "http://www.davidpashley.com/articles/writing-robust-shell-scripts/")
+    (bh-pathname-expansion "Pathname expansion (globbing)" "http://wiki.bash-hackers.org/syntax/expansion/globs")
     (so-bash-special-vars "What are the special dollar sign shell variables?" "https://stackoverflow.com/a/5163260")
     (so-script-dir "Can a Bash script tell what directory it's stored in?" "http://stackoverflow.com/a/246128")
     (so-parse-args "How do I parse command line arguments in bash?" "http://stackoverflow.com/a/14203146")
@@ -63,6 +64,7 @@
            (li ,(code-frag "set -o nonclobber"))
            )
          (p "If anything in this list falls outside of your comfort zone, read " ,(ref 'robust-bash "this") " before continuing.")
+         (p "Also, unless your script intentionally makes use of " ,(ref 'bh-pathname-expansion "pathname expansion (aka globbing)") ", you should disable it via " ,(code-frag "set -f") ".  If you do make use of globbing, you should use " ,(code-frag "shopt -s failglob") " to produce errors for non-matching patterns.")
          )
        (section
          ,(anchor-target "special-params-vars")
