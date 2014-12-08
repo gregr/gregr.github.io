@@ -1,6 +1,6 @@
-<!DOCTYPE html><html><head><title>Greg Rosenblatt - Bash scripting for the reluctant</title><meta charset="utf-8" /><meta name="author" content="Greg Rosenblatt" /><meta name="description" content="Personal site of Greg Rosenblatt" /><link rel="stylesheet" href="/main.css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><script src="/main.js"></script></head><body><div id="content"><div id="nav-panel"><nav id="nav-main"><ul><li><a href="/./index.html">About</a></li><li><a href="/./writing/index.html">Writing</a></li></ul></nav><nav id="nav-local"><ul><li><p><a href="#audience">Target Audience</a></p></li><li><p><a href="#concepts-techniques">Concepts and techniques</a></p><ul><li><p><a href="#write-robust-scripts">Writing robust scripts</a></p></li><li><p><a href="#special-params-vars">Special parameters and variables</a></p></li><li><p><a href="#script-relative-paths">Script-relative paths</a></p></li><li><p><a href="#pass-by-name">Passing arguments by name</a></p></li><li><p><a href="#input-output">Input and output</a></p></li><li><p><a href="#concurrency">Concurrency</a></p></li><li><p><a href="#effective-ssh">Effective use of ssh</a></p></li></ul></li><li><p><a href="#referenced-links">All the links</a></p></li></ul></nav></div><div id="content-main"><article><h1 class="content-title">Bash scripting for the reluctant</h1><section><div class="date">October 25, 2014</div></section><section class="summary"><a name="audience"></a><h2>Should I read this?</h2><p>This is a consolidated reference for helping those already familiar with bash to become more comfortable with it in order to leverage its strengths.  It links to informative references that explain their subject matter better than I can.</p></section><section><a name="concepts-techniques"></a><h2>Concepts and techniques</h2><section><a name="write-robust-scripts"></a><h3>Writing robust scripts</h3><p>There are several options for configuring bash to behave more sanely in the presence of surprises.  Some commands also have options for running in a more fail-friendly manner.</p><ul><li><code class="code-frag">set -u</code> or <code class="code-frag">set -o nounset</code></li><li><code class="code-frag">set -e</code> or <code class="code-frag">set -o errexit</code></li><li><code class="code-frag">set -o pipefail</code></li><li><code class="code-frag">mkdir -p</code></li><li><code class="code-frag">rm -f</code></li><li>quoting variable references, as in: <code class="code-frag">"$@"</code></li><li><code class="code-frag">find -print0 ... | xargs -0 ...</code></li><li><code class="code-frag">trap</code></li><li><code class="code-frag">set -o nonclobber</code></li></ul><p>If anything in this list falls outside of your comfort zone, read <a target="_blank" href="http://www.davidpashley.com/articles/writing-robust-shell-scripts/">this</a> before continuing.</p></section><section><a name="special-params-vars"></a><h3>Special parameters and variables</h3><p>It's not important to memorize what <code class="code-frag">$-</code>, <code class="code-frag">$_</code>, etc. are for, but make sure <a target="_blank" href="https://stackoverflow.com/a/5163260">this list</a> doesn't contain any surprises.  You should also be familiar with <code class="code-frag">$PPID</code> which is used to get the current parent process ID.</p></section><section><a name="script-relative-paths"></a><h3>Script-relative paths</h3><p>If your script is bundled with accompanying files, you will want to reference the paths of these files in terms of the current script's location.  Doing so allows you to both <strong>relocate the bundle</strong> and <strong>invoke the script from anywhere</strong> without breaking any of the relative file references.  Read <a target="_blank" href="http://stackoverflow.com/a/246128">this</a> for more options and detail.</p><p><pre class="code-block"><code>#!/bin/bash
+<!DOCTYPE html><html><head><title>Greg Rosenblatt - Bash scripting for the reluctant</title><meta charset="utf-8" /><meta name="author" content="Greg Rosenblatt" /><meta name="description" content="Personal site of Greg Rosenblatt" /><link rel="stylesheet" href="/main.css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><script src="/main.js"></script></head><body><div id="content"><div id="nav-panel"><nav id="nav-main"><ul><li><a href="/./index.html">About</a></li><li><a href="/./writing/index.html">Writing</a></li></ul></nav><nav id="nav-local"><ul><li><p><a href="#audience">Target Audience</a></p></li><li><p><a href="#concepts-techniques">Concepts and techniques</a></p><ul><li><p><a href="#write-robust-scripts">Writing robust scripts</a></p></li><li><p><a href="#printf-instead-of-echo">Use printf instead of echo</a></p></li><li><p><a href="#special-params-vars">Special parameters and variables</a></p></li><li><p><a href="#script-relative-paths">Script-relative paths</a></p></li><li><p><a href="#pass-by-name">Passing arguments by name</a></p></li><li><p><a href="#input-output">Input and output</a></p></li><li><p><a href="#concurrency">Concurrency</a></p></li><li><p><a href="#effective-ssh">Effective use of ssh</a></p></li></ul></li><li><p><a href="#referenced-links">All the links</a></p></li></ul></nav></div><div id="content-main"><article><h1 class="content-title">Bash scripting for the reluctant</h1><section><div class="date-range"><span class="date">October 25, 2014</span><span class="date date-end">December 7, 2014</span></div></section><section class="summary"><a name="audience"></a><h2>Should I read this?</h2><p>This is a consolidated reference for helping those already familiar with bash to become more comfortable with it in order to leverage its strengths.  It links to informative references that explain their subject matter better than I can.</p></section><section><a name="concepts-techniques"></a><h2>Concepts and techniques</h2><section><a name="write-robust-scripts"></a><h3>Writing robust scripts</h3><p>There are several options for configuring bash to behave more sanely in the presence of surprises.  Some commands also have options for running in a more fail-friendly manner.</p><ul><li><code class="code-frag">set -u</code> or <code class="code-frag">set -o nounset</code></li><li><code class="code-frag">set -e</code> or <code class="code-frag">set -o errexit</code></li><li><code class="code-frag">set -o pipefail</code></li><li><code class="code-frag">mkdir -p</code></li><li><code class="code-frag">rm -f</code></li><li>quoting variable references, as in: <code class="code-frag">"$@"</code></li><li><code class="code-frag">find -print0 ... | xargs -0 ...</code></li><li><code class="code-frag">trap</code></li><li><code class="code-frag">set -o nonclobber</code></li></ul><p>If anything in this list falls outside of your comfort zone, read <a target="_blank" href="http://www.davidpashley.com/articles/writing-robust-shell-scripts/">this</a> before continuing.</p><p>Also, unless your script intentionally makes use of <a target="_blank" href="http://wiki.bash-hackers.org/syntax/expansion/globs">pathname expansion (aka globbing)</a>, you should disable it via <code class="code-frag">set -f</code>.  If you do make use of globbing, you should use <code class="code-frag">shopt -s failglob</code> to produce errors for non-matching patterns.</p></section><section><a name="printf-instead-of-echo"></a><h3>Use printf instead of echo</h3><p>There are serious <a target="_blank" href="https://unix.stackexchange.com/questions/65803/why-is-printf-better-than-echo">portability concerns</a> with using <code class="code-frag">echo</code> that can lead to nasty surprises.  Use the basic feature set of <code class="code-frag">printf</code> instead:</p><p><code class="code-frag">printf '%s\n' "$var"</code></p></section><section><a name="special-params-vars"></a><h3>Special parameters and variables</h3><p>It's not important to memorize what <code class="code-frag">$-</code>, <code class="code-frag">$_</code>, etc. are for, but make sure <a target="_blank" href="https://stackoverflow.com/a/5163260">this list</a> doesn't contain any surprises.  You should also be familiar with <code class="code-frag">$PPID</code> which is used to get the current parent process ID.</p></section><section><a name="script-relative-paths"></a><h3>Script-relative paths</h3><p>If your script is bundled with accompanying files, you will want to reference the paths of these files in terms of the current script's location.  Doing so allows you to both <strong>relocate the bundle</strong> and <strong>invoke the script from anywhere</strong> without breaking any of the relative file references.  Read <a target="_blank" href="http://stackoverflow.com/a/246128">this</a> for more options and detail.</p><p><pre class="code-block"><code>#!/bin/bash
 # dir-example
-set -eu
+set -euf -o pipefail
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &amp;&amp; pwd )"
 
@@ -8,13 +8,13 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &amp;&amp; pwd )"
 ... "$DIR/data" ...
 </code></pre></p></section><section><a name="pass-by-name"></a><h3>Passing arguments by name</h3><p>Passing arguments by name (or keyword), rather than position, makes them self-documenting.  When passing by position, it's easier to mistakenly transpose two arguments.</p><p>A <strong>typical solution</strong> to processing script arguments is to <strong>use something like <a target="_blank" href="http://stackoverflow.com/a/14203146"><code class="code-frag">getopts</code></a></strong>.</p><p>An <strong>alternative way</strong> to pass arguments by name is to <strong>assign them to variables</strong>.</p><p><pre class="code-block"><code>#!/bin/bash
 # var-arg-example
-set -eu
+set -euf -o pipefail
 
 # ARG1 is required.
 # ARG2 is optional; it will be assigned to 'default' if unset.
 # Use := instead of = to also perform assignment when ARG2 is the empty string.
 : ${ARG2='default'}
-echo "$ARG1" "$ARG2"
+printf '%s %s\n' "$ARG1" "$ARG2"
 </code></pre></p><p><pre class="code-block"><code># Invoke named-arg-example.
 
 &gt; ./var-arg-example
@@ -31,35 +31,35 @@ foo bar
 &gt; ARG1=crow ARG2=bar ./var-arg-example
 crow bar
 </code></pre></p><p>There is a <strong>trade-off being made with regard to name clashes</strong>.  The upside is using global variable parameters allows arguments to either be explicitly passed inline, or to be exported and used across multiple invocations with the option of overriding them.  The downside is the potential for unintentional name clashes with existing global variables.</p></section><section><a name="input-output"></a><h3>Input and output</h3><p>Manipulation of standard I/O in bash is somewhat indirect.  Unless using redirections, stdio is <strong>implicitly consumed/produced by subcommands</strong>.  Here are some useful formulas.</p><ul><li><p>Consume part of stdin, assigning to variables, using <a target="_blank" href="http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_08_02.html"><code class="code-frag">read</code></a>.</p><pre class="code-block"><code>&gt; read -n 3 threechars  # Your input ends on the same line as the next prompt.
-abc&gt; echo $threechars
+abc&gt; printf '%s\n' "$threechars"
 abc</code></pre><pre class="code-block"><code>&gt; read line  # This time, the next prompt starts on its own line.  Why?
 this input is read until you hit enter
-&gt; echo $line
+&gt; printf '%s\n' "$line"
 this input is read until you hit enter</code></pre></li><li><p>Consume all of stdin using <code class="code-frag">cat</code>.</p><pre class="code-block"><code>ALL_OF_STDIN=$(cat)  # this also demonstrates command-substitution
 ... use $ALL_OF_STDIN ...</code></pre></li><li><p>Consume all of stdin, writing it to a file while also sending it to stdout using <code class="code-frag">tee</code>.</p><pre class="code-block"><code># Here is another use of tee.
-echo 'important config' | sudo tee /etc/normally-cannot-write-here &gt; /dev/null
+printf '%s\n' 'important config' | sudo tee /etc/normally-cannot-write-here &gt; /dev/null
 
 # Note that the following will *not* normally succeed.
-sudo echo 'important config' &gt; /etc/normally-cannot-write-here</code></pre></li><li><p>Capture the stdout of a command as a string with <a target="_blank" href="http://www.tldp.org/LDP/abs/html/commandsub.html">command substitution</a>.</p><pre class="code-block"><code>echo "Today is $(date)"</code></pre></li><li><p>Treat a the I/O of a command like a file (more accurately, like a pipe) with <a target="_blank" href="http://tldp.org/LDP/abs/html/process-sub.html">process substitution</a>.</p><pre class="code-block"><code>diff data &lt;(uniq data)</code></pre></li><li><p>Redirect the current script's standard I/O using <a target="_blank" href="http://tldp.org/LDP/abs/html/x17974.html"><code class="code-frag">exec</code></a>.  More generally, use <a target="_blank" href="http://tldp.org/LDP/abs/html/x17974.html"><code class="code-frag">exec</code></a> to manipulate arbitrary file descriptors.</p><pre class="code-block"><code>echo 'this goes to stdout'
+sudo printf '%s\n' 'important config' &gt; /etc/normally-cannot-write-here</code></pre></li><li><p>Capture the stdout of a command as a string with <a target="_blank" href="http://www.tldp.org/LDP/abs/html/commandsub.html">command substitution</a>.</p><pre class="code-block"><code>printf '%s\n' "Today is $(date)"</code></pre></li><li><p>Treat a the I/O of a command like a file (more accurately, like a pipe) with <a target="_blank" href="http://tldp.org/LDP/abs/html/process-sub.html">process substitution</a>.</p><pre class="code-block"><code>diff data &lt;(uniq data)</code></pre></li><li><p>Redirect the current script's standard I/O using <a target="_blank" href="http://tldp.org/LDP/abs/html/x17974.html"><code class="code-frag">exec</code></a>.  More generally, use <a target="_blank" href="http://tldp.org/LDP/abs/html/x17974.html"><code class="code-frag">exec</code></a> to manipulate arbitrary file descriptors.</p><pre class="code-block"><code>printf '%s\n' 'this goes to stdout'
 exec &gt; some-file
-echo 'this goes to some-file'</code></pre></li><li><p>Flexibly tie the I/O of processes together using <a target="_blank" href="http://www.tldp.org/LDP/lpg/node15.html">named pipes</a>.</p><pre class="code-block"><code>&gt; mkfifo to-show
+printf '%s\n' 'this goes to some-file'</code></pre></li><li><p>Flexibly tie the I/O of processes together using <a target="_blank" href="http://www.tldp.org/LDP/lpg/node15.html">named pipes</a>.</p><pre class="code-block"><code>&gt; mkfifo to-show
 &gt; ls -l
 prw-r--r-- 1 user user    0 ... to-show|
 
 &gt; {
-&gt;   echo show &gt; to-show
-&gt;   echo these &gt; to-show
-&gt;   echo lines &gt; to-show
+&gt;   printf '%s\n' show &gt; to-show
+&gt;   printf '%s\n' these &gt; to-show
+&gt;   printf '%s\n' lines &gt; to-show
 &gt; } &amp;
 [1] 1234
 &gt; jobs
-[1]+  Running { echo show &gt; to-show; echo these &gt; to-show; echo lines &gt; to-show; } &amp;
+[1]+  Running { printf '%s\n' show &gt; to-show; printf '%s\n' these &gt; to-show; printf '%s\n' lines &gt; to-show; } &amp;
 
 &gt; cat &lt; to-show
 show
 these
 lines
-[1]+  Done    { echo show &gt; to-show; echo these &gt; to-show; echo lines &gt; to-show; }
+[1]+  Done    { printf '%s\n' show &gt; to-show; printf '%s\n' these &gt; to-show; printf '%s\n' lines &gt; to-show; }
 </code></pre></li><li><p>Describe input in-situ using <a target="_blank" href="http://tldp.org/LDP/abs/html/here-docs.html">'here documents'</a>.</p><pre class="code-block"><code>cat &lt;&lt; EXAMPLEDOC
 All of these
 lines are
@@ -75,7 +75,7 @@ wait
 </code></pre><p>Here is an example demonstrating more interaction with a child process.</p><pre class="code-block"><code># Though this example is a bit too simplistic, it's often a good idea to create
 # a temporary working directory to store data related to each child process.
 &gt; CHILD_DIR=$(mktemp -d child.XXXXXXXXXX)
-&gt; echo "$CHILD_DIR"
+&gt; printf '%s\n' "$CHILD_DIR"
 child.iu9Ncsshzc
 
 # Set up an output channel to receive messages from the child process.
@@ -86,19 +86,19 @@ child.iu9Ncsshzc
 &gt; {
 &gt;   while true; do
 &gt;     sleep 5
-&gt;     echo 'work asynchronously' &gt; "$CHILD_OUT"
+&gt;     printf '%s\n' 'work asynchronously' &gt; "$CHILD_OUT"
 &gt;   done
 &gt; } &amp;
 [1] 12345
 
 # Remember its PID.
 &gt; CHILD_PID="$!"
-&gt; echo "$CHILD_PID"
+&gt; printf '%s\n' "$CHILD_PID"
 12345
 
 &gt; jobs
 [1]+  Running                 { while true; do
-    sleep 5; echo 'work asynchronously' &gt; "$CHILD_OUT";
+    sleep 5; printf '%s\n' 'work asynchronously' &gt; "$CHILD_OUT";
 done; } &amp;
 
 # Pull some results out of the channel.
@@ -116,7 +116,7 @@ work asynchronously
 # to stop it.
 &gt; kill "$CHILD_PID"
 [1]+  Terminated              { while true; do
-    sleep 5; echo ' work asynchronously' &gt; "$CHILD_OUT";
+    sleep 5; printf '%s\n' ' work asynchronously' &gt; "$CHILD_OUT";
 done; }
 
 # Clean up.
@@ -126,4 +126,4 @@ done; }
 # Run our special process every 5 minutes.
 # Run it with flock to prevent overlap if it runs for longer than 5 minutes.
 */5 * * * *  user  flock -n /tmp/special-process.lock /path/to/special-process
-</code></pre></section><section><a name="effective-ssh"></a><h3>Effective use of ssh</h3><p>The <code class="code-frag">ssh</code> command is more than just a way to interactively log into a remote host.  It allows remote command execution, transferring files, and various forms of proxying.  <a target="_blank" href="http://matt.might.net/articles/ssh-hacks/">This</a> explains more.</p></section></section><section><a name="referenced-links"></a><h2>All of the above links</h2><ul><li><a target="_blank" href="http://www.davidpashley.com/articles/writing-robust-shell-scripts/">Writing Robust Bash Shell Scripts</a></li><li><a target="_blank" href="https://stackoverflow.com/a/5163260">What are the special dollar sign shell variables?</a></li><li><a target="_blank" href="http://stackoverflow.com/a/246128">Can a Bash script tell what directory it's stored in?</a></li><li><a target="_blank" href="http://stackoverflow.com/a/14203146">How do I parse command line arguments in bash?</a></li><li><a target="_blank" href="http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_08_02.html">Catching user input</a></li><li><a target="_blank" href="http://www.tldp.org/LDP/abs/html/commandsub.html">Command Substitution</a></li><li><a target="_blank" href="http://tldp.org/LDP/abs/html/process-sub.html">Process Substitution</a></li><li><a target="_blank" href="http://tldp.org/LDP/abs/html/x17974.html">Using exec</a></li><li><a target="_blank" href="http://www.tldp.org/LDP/lpg/node15.html">Named Pipes (FIFOs - First In First Out)</a></li><li><a target="_blank" href="http://tldp.org/LDP/abs/html/here-docs.html">Here Documents</a></li><li><a target="_blank" href="http://matt.might.net/articles/sql-in-the-shell/">Relational shell programming</a></li><li><a target="_blank" href="http://tldp.org/LDP/abs/html/x9644.html">Job Control Commands</a></li><li><a target="_blank" href="http://stackoverflow.com/a/169969">How to prevent a script from running simultaneously?</a></li><li><a target="_blank" href="http://matt.might.net/articles/ssh-hacks/">SSH: More than secure shell</a></li></ul></section></article></div></div></body></html>
+</code></pre></section><section><a name="effective-ssh"></a><h3>Effective use of ssh</h3><p>The <code class="code-frag">ssh</code> command is more than just a way to interactively log into a remote host.  It allows remote command execution, transferring files, and various forms of proxying.  <a target="_blank" href="http://matt.might.net/articles/ssh-hacks/">This</a> explains more.</p></section></section><section><a name="referenced-links"></a><h2>All of the above links</h2><ul><li><a target="_blank" href="http://www.davidpashley.com/articles/writing-robust-shell-scripts/">Writing Robust Bash Shell Scripts</a></li><li><a target="_blank" href="http://wiki.bash-hackers.org/syntax/expansion/globs">Pathname expansion (globbing)</a></li><li><a target="_blank" href="https://unix.stackexchange.com/questions/65803/why-is-printf-better-than-echo">Why is printf better than echo?</a></li><li><a target="_blank" href="https://stackoverflow.com/a/5163260">What are the special dollar sign shell variables?</a></li><li><a target="_blank" href="http://stackoverflow.com/a/246128">Can a Bash script tell what directory it's stored in?</a></li><li><a target="_blank" href="http://stackoverflow.com/a/14203146">How do I parse command line arguments in bash?</a></li><li><a target="_blank" href="http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_08_02.html">Catching user input</a></li><li><a target="_blank" href="http://www.tldp.org/LDP/abs/html/commandsub.html">Command Substitution</a></li><li><a target="_blank" href="http://tldp.org/LDP/abs/html/process-sub.html">Process Substitution</a></li><li><a target="_blank" href="http://tldp.org/LDP/abs/html/x17974.html">Using exec</a></li><li><a target="_blank" href="http://www.tldp.org/LDP/lpg/node15.html">Named Pipes (FIFOs - First In First Out)</a></li><li><a target="_blank" href="http://tldp.org/LDP/abs/html/here-docs.html">Here Documents</a></li><li><a target="_blank" href="http://matt.might.net/articles/sql-in-the-shell/">Relational shell programming</a></li><li><a target="_blank" href="http://tldp.org/LDP/abs/html/x9644.html">Job Control Commands</a></li><li><a target="_blank" href="http://stackoverflow.com/a/169969">How to prevent a script from running simultaneously?</a></li><li><a target="_blank" href="http://matt.might.net/articles/ssh-hacks/">SSH: More than secure shell</a></li></ul></section></article></div></div></body></html>
