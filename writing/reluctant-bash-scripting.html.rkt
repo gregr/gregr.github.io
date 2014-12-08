@@ -3,6 +3,7 @@
   (anchors `(
     (robust-bash "Writing Robust Bash Shell Scripts" "http://www.davidpashley.com/articles/writing-robust-shell-scripts/")
     (bh-pathname-expansion "Pathname expansion (globbing)" "http://wiki.bash-hackers.org/syntax/expansion/globs")
+    (unix-se-printf-vs-echo "Why is printf better than echo?" "https://unix.stackexchange.com/questions/65803/why-is-printf-better-than-echo")
     (so-bash-special-vars "What are the special dollar sign shell variables?" "https://stackoverflow.com/a/5163260")
     (so-script-dir "Can a Bash script tell what directory it's stored in?" "http://stackoverflow.com/a/246128")
     (so-parse-args "How do I parse command line arguments in bash?" "http://stackoverflow.com/a/14203146")
@@ -27,6 +28,7 @@
       ("audience" "Target Audience")
       ("concepts-techniques" "Concepts and techniques"
        (("write-robust-scripts" "Writing robust scripts")
+        ("printf-instead-of-echo" "Use printf instead of echo")
         ("special-params-vars" "Special parameters and variables")
         ("script-relative-paths" "Script-relative paths")
         ("pass-by-name" "Passing arguments by name")
@@ -65,6 +67,12 @@
            )
          (p "If anything in this list falls outside of your comfort zone, read " ,(ref 'robust-bash "this") " before continuing.")
          (p "Also, unless your script intentionally makes use of " ,(ref 'bh-pathname-expansion "pathname expansion (aka globbing)") ", you should disable it via " ,(code-frag "set -f") ".  If you do make use of globbing, you should use " ,(code-frag "shopt -s failglob") " to produce errors for non-matching patterns.")
+         )
+       (section
+         ,(anchor-target "printf-instead-of-echo")
+         (h3 "Use printf instead of echo")
+         (p "There are serious " ,(ref 'unix-se-printf-vs-echo "portability concerns") " with using " ,(code-frag "echo") " that can lead to nasty surprises.  Use the basic feature set of " ,(code-frag "printf") " instead:")
+         (p ,(code-frag "printf '%s\\n' \"$var\""))
          )
        (section
          ,(anchor-target "special-params-vars")
