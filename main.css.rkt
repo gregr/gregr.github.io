@@ -200,4 +200,11 @@
    (hash
      "display" "inline"
      ))
+
+  (".workflow .state"
+   (hash
+     "border-style" "dashed"
+     "border-width" "1px"
+     "border-color" "red"
+     ))
   )
