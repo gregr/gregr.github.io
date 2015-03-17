@@ -140,3 +140,8 @@ nav li {
 .education>.date {
   display: inline;
 }
+.workflow .state {
+  border-style: dashed;
+  border-width: 1px;
+  border-color: red;
+}
