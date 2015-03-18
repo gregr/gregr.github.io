@@ -1,7 +1,10 @@
 #!/bin/bash
-set -eu
+set -euo pipefail
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+trap 'kill $(jobs -p)' EXIT
+python -m SimpleHTTPServer &
 
 while cd "$DIR" && inotifywait -e modify *.rkt writing/*.rkt; do
   racket generate.rkt || true
