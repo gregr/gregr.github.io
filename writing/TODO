@@ -22,6 +22,20 @@ domain-specific programming tools
           the problem of having to simulate their behavior to perform analysis
           it seems the best we can do is provide tools that assist with this simulation?
 
+conveniently ubiquitous programming via html-embedded editor widgets
+  widget allows page-local manipulation/execution
+  can be rendered chrome-less (for seamless appearance) or expanded into the full editor in-page
+  can connect to externally hosted DBs to import/export additional programs/content
+    browsing a page with embedded code widgets and want to ...
+      ... interact with the embedded code later? export a reference/copy to your personal DB
+      ... interact with the embedded code while incorporating some of your own code? immediately import it from your personal DB
+    on top of serendipitous programming, enables working on personal projects from anywhere
+      assumes you trust the machine you run the browser on, or provide some other security mechanism, such as accessing revoke-able and/or read-only DB capabilities
+  editor can support more than just "code" editing
+    symbol manipulation (typical programming), graphics, sound, arbitrary html, other domain-specific editing
+      arbitrary html would mean you can run the editor in the editor...
+      similar ideas? http://blog.duangle.com/2015/01/conspire-programming-environment-for.html
+
 bash syntax highlighting css
   samp (sample output)
     http://www.w3.org/TR/html5/text-level-semantics.html#the-samp-element
