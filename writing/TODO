@@ -118,3 +118,31 @@ output-event sourcing (decision sourcing)
       instances in lock-step vs. merges of state updates, CRDTs, etc.
       single instance not even necessarily a synchronous pipeline under some trade-offs: delayed feedback of updated state into 'decide'
       crashing/restarting, state rebuilding, time to catch up
+
+ambitious project description
+  enhanced interpreter for a small extension of the lambda calculus + supporting tools
+    calculus
+      unit, bit, pair, pair-access, lam, lam-apply
+      de Bruijn indices and explicit substitutions
+      bubbling-up binders for side effects
+    small-step operational semantics + induction rule + proof checker = equational reasoning tools
+      provable property/specification satisfaction
+      provably-correct program transformations
+        exploration
+        program inference
+          run programs "backwards"
+          automated theorem proving (proof inference a special case of program inference)
+        refactoring
+        debugging
+        optimization
+          programmable automation (rule-based, supercompilation, etc.)
+          also can be manually-driven via editor
+        compilation
+          model an abstract machine, then translate to it
+    higher-level language encodings
+      meta interpretation, denotational semantics
+  static type systems, control-flow analyses, etc. as special cases of theorem proving
+  typeclasses via term inference
+  structure (AST) editor
+  viable target for importing, analyzing, transforming, exporting programs written in more common languages
+    ideally end up as the hub in a hub-and-spokes organization
