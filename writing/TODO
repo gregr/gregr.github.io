@@ -1,3 +1,10 @@
+bash syntax highlighting css
+  samp (sample output)
+    http://www.w3.org/TR/html5/text-level-semantics.html#the-samp-element
+  kbd (keyboard input)
+    http://www.w3.org/TR/html5/text-level-semantics.html#the-kbd-element
+  var
+
 open recursion in data and functions
   explain how to write fold/eval for such structures
     consider racket (dynamic types)
