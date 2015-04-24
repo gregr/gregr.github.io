@@ -31,6 +31,9 @@ bash syntax highlighting css
 
 macro-writing tips; continuation-passing-ish syntax-rules
 
+alternatives to macro-like syntactic transformation
+  address frankenprogramming
+
 open recursion in data and functions
   explain how to write fold/eval for such structures
     consider racket (dynamic types)
