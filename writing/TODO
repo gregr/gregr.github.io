@@ -36,6 +36,55 @@ conveniently ubiquitous programming via html-embedded editor widgets
       arbitrary html would mean you can run the editor in the editor...
       similar ideas? http://blog.duangle.com/2015/01/conspire-programming-environment-for.html
 
+understandable programming (improve math)
+  what we almost, but not quite, have now: symbolic manipulation
+    what is my program doing?
+      operational semantics: small steps; step in any order
+        typically verbose, unidirectional
+        we have stepping debuggers, but not many such tools for exploration via assisted program transformation: we can only step straight through in one order
+      abstract over small steps: provable equivalences; proof by rewriting
+        domain-specific symbolic reasoning
+        we have mostly-automatic systems like ACL2, but limited to first order
+        can do some of this in higher order systems like Coq
+    why does my program work?
+      write simple declarative statements describing properties of your program
+      prove that these statements are true: proof is the explanation of why
+        caveats
+          essential complexity remains
+          no guarantee that an automated solution will produce lucid proofs/explanations
+          but manual intervention can be supported and automation can be improved
+  can we do better?
+    express some ideas more directly with alternative paradigms
+      truth maintenance
+      temporal logic
+    we don't really have this yet: alternative channels of representation (not limited to visualization)
+      improved communication with our biological hardware
+      algebra and geometry
+      what is my program doing?
+        library authors provide the following
+          domain-specific data representations (such as images)
+            can be embedded directly in symbolic programs alongside other code
+          representative examples and random example generation for each class of data (similar to quicktest)
+            examples of compound data can be automatically synthesized if examples of sub-data already exist
+          certain operations marked as meaningful high-level steps
+          input->output representation interpolations for each of these operations/steps (motion, fade in/out, etc.)
+        using these libraries, programmers then
+          compose programs using domain-specific operations
+          interact with them using either specific or library-provided representative/random example data
+            high-level stepping
+            abstract over steps: lump multiple steps into animations; lump animations together as new animations
+      why does my program work?
+        visual proofs: explanatory images, diagrams and animations
+        https://mathoverflow.net/questions/8846/proofs-without-words
+      can we do even better?
+        use these libraries to build domain-specific editing tools (including using a domain-specific editing tool for making such tools!)
+          no longer editing code directly; editing medium of interest directly
+        might look something like: drawing dynamic visualizations
+      can we still do even better?
+        hitting limits of conventional hardware, so create new hardware
+          seeing spaces
+          humane representation of thought
+
 bash syntax highlighting css
   samp (sample output)
     http://www.w3.org/TR/html5/text-level-semantics.html#the-samp-element
