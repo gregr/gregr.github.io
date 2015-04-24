@@ -1,0 +1,5 @@
+open recursion in data and functions
+  explain how to write fold/eval for such structures
+    consider racket (dynamic types)
+  mention possibility of using typeclasses
+  maybe tie into: tail call optimization is not a red herring (guy steele)
