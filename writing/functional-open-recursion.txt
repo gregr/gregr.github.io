@@ -1,0 +1,72 @@
+Extensible Functions and Structures
+
+You've started learning a strongly-typed functional language. Let's say this language is Haskell.
+
+Most of your experience has been with object-oriented languages.  You're no stranger to extension via inheritance.  You may have even entertained "Visitors" in the past.
+
+You find yourself flailing about in the new language, trying to achieve patterns of extension similar to what you're familiar with.  But the algebraic data structures you've defined seem too rigid and inflexibile for this.  Something seems wrong.
+
+If you can identify with the above description, read on.
+
+If you have found similar or complementary material elsewhere, let me know.  If you're already an expert on this topic and have additional insights to share, please do!
+
+
+Top-level Either will work on flat data, but fall short for recursive structures.
+
+The trick is to parameterize over the recursive structure.
+
+
+Open recursion style functions
+Open data structures
+Almost compositional functions
+
+data Tree' a self = Branch a self self
+                  | Leaf
+
+newtype Tree a = Tree (Tree' a (Tree a))
+newtype LabeledTree label a = LabeledTree (label, (Tree' a (LabeledTree a)))
+
+----
+
+data MultiTree a = MultiBranch a [MultiTree a]
+                 | BaseTree a [Tree' a (MultiTree a)]
+
+-- or for more flexibility --
+
+data MultiBranch a self = MultiBranch a [self]
+
+newtype MultiTree a = MultiTree (Either (Tree' a (MultiTree a)) (MultiBranch a (MultiTree a)))
+
+----
+-- can even handle (some?) mutually-recursive structures
+
+data A x b = A x b
+           | NoA
+
+data B y a = B y a
+           | NoB
+
+newtype AB x y = AB (A x (B y (AB x y)))
+
+
+/*newtype MaybeTree a = MaybeTree (Maybe (Tree' a (MaybeTree a)))*/
+
+/*data Term' name term = Var name*/
+                     /*| Lam name term*/
+                     /*| App term term*/
+
+/*newtype Term name = Term (Term' name (Term name))*/
+
+
+You'll notice the techniques here are mostly for placating the type system.  In a dynamically-typed language, such as Scheme, this isn't strictly necessary as the structures you define are implicitly open.  Unless you're making optional use of a contract or type system, as in Racket, the only constraints on how you nest structures are those you impose informally.
+
+Perhaps interestingly, though you don't require special techniques to open your recursive structures in a language like Scheme, you may still require some technique to describe your recursive functions.  I'll describe one such technique which seems dual to open data structures: open recursion.
+
+You may have heard the term <code>open recursion</code> if you've studied object-oriented type theory.  We're able to make use of this idea in a functional setting. [see B. Pierce]
+-define explicitly open style "template" function **
+-then tying the knot for specific instantiations/extensions
+
+
+Benjamin Pierce's definition here: http://etymon.blogspot.ca/2006/04/open-recursion-definition.html
+Oleg Kiselyov "Strongly typed heterogeneous collections" http://okmij.org/ftp/Haskell/types.html#HList
+Oleg Kiselyov "Typed tagless-final interpretations" http://okmij.org/ftp/tagless-final/course/index.html
