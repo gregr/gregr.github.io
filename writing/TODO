@@ -34,3 +34,19 @@ open recursion in data and functions
     consider racket (dynamic types)
   mention possibility of using typeclasses
   maybe tie into: tail call optimization is not a red herring (guy steele)
+
+output-event sourcing (decision sourcing)
+  vs. input-event sourcing (command sourcing)
+  appropriate for online (as in https://en.wikipedia.org/wiki/Online_algorithm), reactive systems
+  diagram:
+    input-event/request -> decide (state -> input-event -> output-event/decision) -> log decision (example: kafka) -> update (state -> decision -> state) -> commit (write the actual updated state; example: rdbms) -> schedule/trigger downstream processes (send emails? launch missiles?) -> render views -> response
+    draw decision and new state flow through pipeline
+    point out mostly-pure functions making use of db/state interface
+      can still be thought of as pure functions if db:get is an interface to an immutable structure
+  scaling:
+    data size: external state storage
+    parallelism: multiple instances
+      consistency and availability trade-offs in design
+      instances in lock-step vs. merges of state updates, CRDTs, etc.
+      single instance not even necessarily a synchronous pipeline under some trade-offs: delayed feedback of updated state into 'decide'
+      crashing/restarting, state rebuilding, time to catch up
