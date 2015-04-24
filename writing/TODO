@@ -29,6 +29,8 @@ bash syntax highlighting css
     http://www.w3.org/TR/html5/text-level-semantics.html#the-kbd-element
   var
 
+macro-writing tips; continuation-passing-ish syntax-rules
+
 open recursion in data and functions
   explain how to write fold/eval for such structures
     consider racket (dynamic types)
