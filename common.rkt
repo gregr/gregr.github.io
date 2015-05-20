@@ -79,13 +79,14 @@
 (define (local-code-file subpath)
   (code-file (build-path local-directory subpath)))
 
-(define (head sub-title)
+(define (head sub-title (links '()))
   `(head
      (title ,(string-append "Greg Rosenblatt - " sub-title))
      (meta ((charset "utf-8")))
      (meta ((name "author") (content "Greg Rosenblatt")))
      (meta ((name "description") (content "Personal site of Greg Rosenblatt")))
      (link ((rel "stylesheet") (href "/main.css")))
+     ,@links
      (script ((src "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")))
      (script ((src "/main.js")))
      ))
@@ -96,9 +97,9 @@
           (li ,(node-ref 'writing))
           )))
 
-(define (content sub-title nav-local body)
+(define (content sub-title nav-local body (links '()))
   `(html
-     ,(head sub-title)
+     ,(head sub-title links)
      (body
        (div ((id "content"))
             (div ((id "nav-panel"))
