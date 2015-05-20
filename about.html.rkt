@@ -273,4 +273,6 @@
            (h2 "Some reading I've enjoyed and recommend")
            ,(anchor-reference anchor-list-reading)
            )
-         ))))
+         )
+      (list (atom-feed-link))
+      )))

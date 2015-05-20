@@ -37,7 +37,8 @@
     nav
     `(article
        (h1 ((class "content-title")) ,title)
-       ,@rest)))
+       ,@rest)
+    (list (atom-feed-link))))
 
 (define writing
   (list
