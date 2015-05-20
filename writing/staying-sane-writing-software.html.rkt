@@ -4,7 +4,7 @@
     title
     (nav-local '())
     `(section
-       ,(date-single "June 22, 2014")
+       ,(date-range "June 22, 2014" "May 20, 2015")
        )
     `(section
        (p "This is a collection of principles and techniques that lead to useful, quality software while preserving the sanity of the programmers writing it.  Mental health and project success go hand-in-hand.")
@@ -75,6 +75,11 @@
          (li "purely functional cores with imperative shells"
              (ul
                (li ,(ref-arch 'das-boundaries "Boundaries"))
+               ))
+         (li "shared global state without local state"
+             (ul
+               (li ,(ref-arch 'local-state-poison "Local State is Poison"))
+               (li ,(ref-arch 'local-state-harmful "Local state is harmful"))
                ))
          (li ,(ref-plt 'object-capability-model "object capabilities")
              (ul
