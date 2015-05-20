@@ -26,7 +26,7 @@
 
 (define home-href (string-append "http://www." domain))
 (define (writing-href name)
-  (string-append home-href "/writing/" (symbol->string name)))
+  (string-append home-href "/writing/" (symbol->string name) ".html"))
 
 (define writing-nodes
   (for/list ((name writing-names))
