@@ -3,6 +3,7 @@
   define-css
   define-site
   (struct-out node-ref)
+  write-xml-file
   )
 
 (require
@@ -40,6 +41,13 @@
 
 (define (write-css-file path css)
   (display-to-file* (css->string css) path))
+
+(define (xexpr->xml-string xexpr)
+  (string-append "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
+                 (xexpr->string xexpr)))
+
+(define (write-xml-file path xexpr)
+  (display-to-file* (xexpr->xml-string xexpr) path))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; CSS description
