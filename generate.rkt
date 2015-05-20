@@ -10,6 +10,8 @@
   "writing.html.rkt"
   )
 
+(write-xml-file "writing.xml" writing-feed)
+
 (define-site "."
   ; path structure
   `(
