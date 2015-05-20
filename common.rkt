@@ -53,6 +53,8 @@
     (consistent-hash "Consistent Hashing" "http://www.tomkleinpeter.com/2008/03/17/programmers-toolbox-part-3-consistent-hashing/")
     (raft-paxos "Raft: A more understandable consensus algorithm that is equivalent to Paxos" "http://www.reddit.com/comments/1c1rjx")
     (das-boundaries "Boundaries" "https://www.destroyallsoftware.com/talks/boundaries")
+    (local-state-poison "Local State is Poison" "https://awelonblue.wordpress.com/2012/10/21/local-state-is-poison/")
+    (local-state-harmful "Local state is harmful" "http://scattered-thoughts.net/blog/2014/02/17/local-state-is-harmful/")
     )))
 
 (define (nav-local-target target)
