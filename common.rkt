@@ -6,6 +6,8 @@
 (require
   "static-site.rkt"
   gregr-misc/match
+  gregr-misc/record
+  gregr-misc/sugar
   racket/runtime-path
   )
 
@@ -108,3 +110,38 @@
                  )
             (div ((id "content-main")) ,body)
             ))))
+
+(define domain "gregrosenblatt.com")
+
+(define feed-title "Greg Rosenblatt's Writing")
+(define feed-href "/writing.xml")
+
+(define (atom-feed-link)
+  `(link ((rel "alternate") (type "application/atom+xml")
+          (title ,feed-title) (href ,feed-href))))
+
+(record atom-entry title name href ymd-publish ymd-update summary)
+
+(def (atom-entry->xexpr
+       (atom-entry title name href ymd-publish ymd-update summary))
+  `(entry
+     (title ,title)
+     (link ((href ,href)))
+     (id ,(string-append "tag:" domain "," ymd-publish ":" name))
+     (updated ,(string-append ymd-update "T00:00:00Z"))
+     (summary ,summary)))
+
+(define (atom-feed href-self href entries)
+  (define updated
+    (string-append
+      (atom-entry-ymd-update
+        (car (append entries (list (atom-entry "" "" "" "" "2014-05-05" "")))))
+      "T00:00:00Z"))
+  `(feed ((xmlns "http://www.w3.org/2005/Atom"))
+     (title ,feed-title)
+     (link ((href ,href-self) (rel "self")))
+     (link ((href ,href)))
+     (id ,(string-append href "/"))
+     (updated ,updated)
+     (author (name "Greg Rosenblatt"))
+     ,@(map atom-entry->xexpr entries)))
