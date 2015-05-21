@@ -132,10 +132,13 @@
      (summary ,summary)))
 
 (define (atom-feed href-self href entries)
+  (def (entry>? (atom-entry _ _ _ _ ymd0 _) (atom-entry _ _ _ _ ymd1 _))
+    (string<? ymd1 ymd0))
   (define updated
     (string-append
       (atom-entry-ymd-update
-        (car (append entries (list (atom-entry "" "" "" "" "2014-05-05" "")))))
+        (car (append (sort entries entry>?)
+                     (list (atom-entry "" "" "" "" "2014-05-05" "")))))
       "T00:00:00Z"))
   `(feed ((xmlns "http://www.w3.org/2005/Atom"))
      (title ,feed-title)
