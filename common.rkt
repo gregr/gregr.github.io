@@ -45,6 +45,7 @@
     (props-as-types "Propositions as Types" "http://homepages.inf.ed.ac.uk/wadler/papers/propositions-as-types/propositions-as-types.pdf")
     (object-capability-model "Object-capability model" "https://en.wikipedia.org/wiki/Object-capability_model")
     (erights "E Programming Language" "http://erights.org")
+    (lattice-vars "LVars: Lattice-based Data Structures for Deterministic Parallelism" "https://www.cs.indiana.edu/~lkuper/papers/lvars-fhpc13.pdf")
     )))
 
 (match-define (list ref-arch anchor-list-arch)
