@@ -42,7 +42,10 @@
        (h3 "Relatively abstract")
        (ul
          (li "idempotence")
-         (li "monotonicity")
+         (li "monotonicity"
+             (ul
+               (li "accumulation described by sets or, more generally, lattices")
+               ))
          (li "commutativity"
              (ul
                (li ,(ref-arch 'scalable-commutativity-rule "The Scalable Commutativity Rule")
