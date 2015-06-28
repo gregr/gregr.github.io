@@ -108,6 +108,10 @@
                (li ,(ref-arch 'fault-tolerance-high-volume "service failure resilience"))
                ))
          (li "REST (in the hypermedia-driven sense)")
+         (li "CRDTs"
+             (ul
+               (li ,(ref-arch 'crdt "Conflict-free Replicated Data Types"))
+               ))
          )
        )
     ))
