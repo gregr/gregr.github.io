@@ -43,7 +43,12 @@
        (ul
          (li "idempotence")
          (li "monotonicity")
-         (li "commutativity")
+         (li "commutativity"
+             (ul
+               (li ,(ref-arch 'scalable-commutativity-rule "The Scalable Commutativity Rule")
+                   (ul
+                     (li "\"Whenever interface operations commute, they can be implemented in a way that scales.\"")
+               ))))
          (li "orthogonality")
          (li "composability")
          )
