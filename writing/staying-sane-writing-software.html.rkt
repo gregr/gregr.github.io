@@ -112,6 +112,10 @@
              (ul
                (li ,(ref-arch 'crdt "Conflict-free Replicated Data Types"))
                ))
+         (li "LVars"
+             (ul
+               (li ,(ref-plt 'lattice-vars "Lattice-based Data Structures"))
+               ))
          )
        )
     ))
