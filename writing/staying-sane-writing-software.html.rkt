@@ -33,6 +33,8 @@
          (li "easy rearrangement")
          (li "generalization")
          (li "customization")
+         (li "efficiency")
+         (li "scalability")
          )
        )
     `(section
@@ -51,8 +53,6 @@
          (li "redundancy")
          (li "tolerance")
          (li "isolation")
-         (li "efficiency")
-         (li "scalability")
          )
        )
     `(section
