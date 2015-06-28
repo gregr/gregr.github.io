@@ -57,6 +57,7 @@
     (das-boundaries "Boundaries" "https://www.destroyallsoftware.com/talks/boundaries")
     (local-state-poison "Local State is Poison" "https://awelonblue.wordpress.com/2012/10/21/local-state-is-poison/")
     (local-state-harmful "Local state is harmful" "http://scattered-thoughts.net/blog/2014/02/17/local-state-is-harmful/")
+    (scalable-commutativity-rule "Neha Narula on The Scalable Commutativity Rule" "https://www.youtube.com/watch?v=JE-jSZ8zToM")
     )))
 
 (define (nav-local-target target)
