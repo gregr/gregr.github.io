@@ -58,6 +58,7 @@
     (local-state-poison "Local State is Poison" "https://awelonblue.wordpress.com/2012/10/21/local-state-is-poison/")
     (local-state-harmful "Local state is harmful" "http://scattered-thoughts.net/blog/2014/02/17/local-state-is-harmful/")
     (scalable-commutativity-rule "Neha Narula on The Scalable Commutativity Rule" "https://www.youtube.com/watch?v=JE-jSZ8zToM")
+    (crdt "Conflict-free replicated data type" "https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type")
     )))
 
 (define (nav-local-target target)
