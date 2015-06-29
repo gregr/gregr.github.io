@@ -116,6 +116,11 @@
              (ul
                (li ,(ref-plt 'lattice-vars "Lattice-based Data Structures"))
                ))
+         (li "CALM"
+             (ul
+               (li "Consistency as logical monotonicity")
+               (li ,(ref-plt 'bloom-lang "as in the Bloom programming language"))
+               ))
          )
        )
     ))
