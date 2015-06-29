@@ -46,6 +46,7 @@
     (object-capability-model "Object-capability model" "https://en.wikipedia.org/wiki/Object-capability_model")
     (erights "E Programming Language" "http://erights.org")
     (lattice-vars "LVars: Lattice-based Data Structures for Deterministic Parallelism" "https://www.cs.indiana.edu/~lkuper/papers/lvars-fhpc13.pdf")
+    (bloom-lang "Bloom Programming Language" "http://www.bloom-lang.net/")
     )))
 
 (match-define (list ref-arch anchor-list-arch)
