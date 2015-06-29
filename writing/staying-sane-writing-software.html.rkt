@@ -4,7 +4,7 @@
     title
     (nav-local '())
     `(section
-       ,(date-range "June 22, 2014" "May 20, 2015")
+       ,(date-range "June 22, 2014" "June 29, 2015")
        )
     `(section
        (p "This is a collection of principles and techniques that lead to useful, quality software while preserving the sanity of the programmers writing it.  Mental health and project success go hand-in-hand.")

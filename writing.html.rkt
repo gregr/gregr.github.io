@@ -17,7 +17,7 @@
 (define names-dates
   '((creative-workflow ("2015-03-17" "2015-03-18"))
     (reluctant-bash-scripting ("2014-10-25" "2014-12-07"))
-    (staying-sane-writing-software ("2014-06-22" "2015-05-20"))
+    (staying-sane-writing-software ("2014-06-22" "2015-06-29"))
     ))
 (define writing-names (forl (list name _) <- names-dates
                             name))
