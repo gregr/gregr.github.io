@@ -1,3 +1,9 @@
+reinversion of control with delimited continuations
+  https://en.wikipedia.org/wiki/Inversion_of_control
+  http://community.schemewiki.org/?composable-continuations-tutorial
+  http://blog.sigfpe.com/2011/10/quick-and-dirty-reinversion-of-control.html
+  http://dcsobral.blogspot.ca/2009/07/delimited-continuations-explained-in.html
+
 many futures of programming
   Learnable Programming: http://worrydream.com/LearnableProgramming/
   Unison: http://unisonweb.org/
