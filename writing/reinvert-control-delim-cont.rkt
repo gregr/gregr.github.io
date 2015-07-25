@@ -1,10 +1,24 @@
 #lang racket
 
+(define async-ops (box '()))
+
+(define (event-loop)
+  (match (unbox async-ops)
+    ('() 'done)
+    ((cons op ops)
+     (set-box! async-ops ops)
+     (op)
+     (event-loop))))
+
 (define (async-op args succeed fail)
-  (displayln (format "async operation started with: ~v" args))
-  (sleep 2)
-  (displayln "async operation finished")
-  (if (= 0 (random 2)) (succeed) (fail)))
+  (define (op)
+    (displayln (format "async operation started with: ~v" args))
+    (sleep 2)
+    (displayln "async operation finished")
+    (if (= 0 (random 2)) (succeed) (fail)))
+  (set-box! async-ops (append (unbox async-ops) (list op))))
+
+
 
 (define (with-callbacks)
   (displayln "perform an async operation")
@@ -18,11 +32,23 @@
         (lambda () (displayln "handle failure of second operation"))))
     (lambda () (displayln "handle failure of first operation"))))
 
+(displayln "with-callbacks")
+(with-callbacks)
+(event-loop)
+
+
+
 (require racket/control)
 
-(define (async-op-direct . args)
-  (shift k
-    (async-op args (lambda () (k #t)) (lambda () (k #f)))))
+(define (with-callbacks->direct aop)
+  (lambda args
+    (shift k (aop args
+                  (lambda () (k #t))
+                  (lambda () (k #f))))))
+
+(define async-op-direct (with-callbacks->direct async-op))
+
+
 
 (define (direct)
   (reset
@@ -35,7 +61,6 @@
           (displayln "handle failure of second operation")))
       (displayln "handle failure of first operation"))))
 
-(displayln "with-callbacks")
-(with-callbacks)
 (displayln "direct")
 (direct)
+(event-loop)
