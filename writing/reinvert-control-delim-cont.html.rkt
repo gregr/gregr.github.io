@@ -15,7 +15,7 @@
     title
     (nav-local '())
     `(section
-       ,(date-single "July 25, 2015"))
+       ,(date-range "July 25, 2015" "July 26, 2015"))
     `(section
        ((class "summary"))
        (p "While discussing alternatives to javascript in the browser, a friend lamented that even if we were to replace javascript with a better language, we would still not escape \"callback hell\" if we were forced to keep the event loop model.  The problem is that the event loop " ,(ref 'inversion-of-control "inverts control") ".")
@@ -24,7 +24,7 @@
        (h2 "Event loops and asynchronous operations")
        (code "event-loop.rkt:")
        ,(local-code "event-loop.rkt")
-       (p "This module simulates an event loop that continuously processes a list of asynchronous operations until it is empty.")
+       (p "This module simulates an event loop by spawning worker threads to process asynchronous operations.")
        )
     `(section
        (h2 "Invoke asynchronous ops while passing callbacks")
@@ -42,5 +42,8 @@
        (h2 "Direct-style invocation")
        (code "user-direct.rkt:")
        ,(local-code "user-direct.rkt")
-       (p "Finally, we use a " ,(code-frag "reset") " block to indicate the extent of sequentially-executed code associated with a series of " ,(code-frag "async-op-direct") " invocations.  Invocations can be performed concurrently by wrapping them in separate blocks.  These blocks may be embedded in other blocks to control the timing of invocations, satisfying dependencies on earlier asynchronous results.")
+       (p "Finally, we use a " ,(code-frag "reset") " block to indicate the extent of sequentially-executed code associated with a series of " ,(code-frag "async-op-direct") " invocations.")
+       (code "user-direct-concurrency.rkt:")
+       ,(local-code "user-direct-concurrency.rkt")
+       (p "Invocations can be performed concurrently by wrapping them in separate " ,(code-frag "reset") " blocks.  These blocks may be embedded in other blocks to control the timing of invocations, satisfying dependencies on earlier asynchronous results.")
        )))
