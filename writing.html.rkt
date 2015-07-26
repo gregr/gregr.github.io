@@ -16,7 +16,7 @@
 
 (define names-dates
   '(
-    (reinvert-control-delim-cont ("2015-07-25" "2015-07-25"))
+    (reinvert-control-delim-cont ("2015-07-25" "2015-07-26"))
     (creative-workflow ("2015-03-17" "2015-03-18"))
     (reluctant-bash-scripting ("2014-10-25" "2014-12-07"))
     (staying-sane-writing-software ("2014-06-22" "2015-06-29"))
