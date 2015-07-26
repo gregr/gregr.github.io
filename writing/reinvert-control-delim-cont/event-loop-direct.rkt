@@ -1,15 +1,16 @@
 #lang racket
 (provide
   (all-from-out "event-loop.rkt")
-  async-op-direct)
+  async-op-direct
+  set-timeout-direct)
 (require
   "event-loop.rkt"
   racket/control)
 
-(define (with-callbacks->direct aop)
-  (lambda args
-    (shift k (aop args
-                  (lambda () (k #t))
-                  (lambda () (k #f))))))
+(define (async-op-direct . args)
+  (shift k (async-op args
+                     (lambda () (k #t))
+                     (lambda () (k #f)))))
 
-(define async-op-direct (with-callbacks->direct async-op))
+(define (set-timeout-direct latency)
+  (shift k (set-timeout latency (lambda () (k (void))))))

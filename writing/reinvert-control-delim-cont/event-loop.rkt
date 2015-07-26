@@ -1,7 +1,8 @@
 #lang racket
 (provide
   async-op
-  event-loop)
+  event-loop
+  set-timeout)
 
 (struct async-operation (compute finish))
 
@@ -32,3 +33,11 @@
         (displayln "async operation finished")
         (random 2))
       (lambda (result) (if (= 0 result) (succeed) (fail))))))
+
+(define (set-timeout latency callback)
+  (pending-add
+    (async-operation
+      (lambda ()
+        (displayln (format "sleeping for ~a" latency))
+        (sleep latency))
+      (lambda (_) (callback)))))
