@@ -1,6 +1,7 @@
 (define title "Reinvert control with delimited continuations")
 (match-define (list ref anchor-list)
   (anchors `(
+    (event-loop "Event loop" "https://en.wikipedia.org/wiki/Event_loop")
     (inversion-of-control "Inversion of control" "https://en.wikipedia.org/wiki/Inversion_of_control")
     (composable-cont-tutorial "Composable continuations tutorial" "http://community.schemewiki.org/?composable-continuations-tutorial")
     (quick-dirty-reinvert-ctrl "Quick and dirty reinversion of control" "http://blog.sigfpe.com/2011/10/quick-and-dirty-reinversion-of-control.html")
@@ -18,7 +19,7 @@
        ,(date-range "July 25, 2015" "July 26, 2015"))
     `(section
        ((class "summary"))
-       (p "While discussing alternatives to javascript in the browser, a friend lamented that even if we were to replace javascript with a better language, we would still not escape \"callback hell\" if we were forced to keep the event loop model.  The problem is that the event loop " ,(ref 'inversion-of-control "inverts control") ".")
+       (p "While discussing alternatives to javascript in the browser, a friend lamented that even if we were to replace javascript with a better language, we would still not escape \"callback hell\" if we were forced to keep the " ,(ref 'event-loop "event loop") " model.  The problem is that the event loop " ,(ref 'inversion-of-control "inverts control") ".")
        (p "But given a language with delimited continuation operators, it turns out that you can reinvert control.  This article uses the " ,(code-frag "shift") " and " ,(code-frag "reset") " operators in " ,(ref 'racket-cont "racket") " to demonstrate a technique possible in languages such as " ,(ref 'composable-cont-tutorial "scheme") ", " ,(ref 'quick-dirty-reinvert-ctrl "haskell") " and " ,(ref 'delim-cont-in-scala "scala") "."))
     `(section
        (h2 "Event loops and asynchronous operations")
