@@ -110,13 +110,12 @@
 (define (direct-concurrency)
   (define count 10)
   (define results (box '()))
+  (define (add-result result)
+    (set-box! results (cons result (unbox results))))
   (reset
     (displayln "perform async operations concurrently")
     (for ((index (range count)))
-      (reset
-        (set-box! results
-          (cons (async-op-direct index)
-                (unbox results)))))
+      (reset (add-result (async-op-direct index))))
     (wait-until (= count (length (unbox results))))
     (displayln results)))
 
