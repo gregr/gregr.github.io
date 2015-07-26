@@ -1,26 +1,47 @@
-<!DOCTYPE html><html><head><title>Greg Rosenblatt - Reinvert control with delimited continuations</title><meta charset="utf-8" /><meta name="author" content="Greg Rosenblatt" /><meta name="description" content="Personal site of Greg Rosenblatt" /><link rel="stylesheet" href="/main.css" /><link rel="alternate" type="application/atom+xml" title="Greg Rosenblatt's Writing" href="/writing.xml" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><script src="/main.js"></script></head><body><div id="content"><div id="nav-panel"><nav id="nav-main"><ul><li><a href="/./index.html">About</a></li><li><a href="/./writing/index.html">Writing</a></li></ul></nav><nav id="nav-local"><ul></ul></nav></div><div id="content-main"><article><h1 class="content-title">Reinvert control with delimited continuations</h1><section><div class="date">July 25, 2015</div></section><section class="summary"><p>While discussing alternatives to javascript in the browser, a friend lamented that even if we were to replace javascript with a better language, we would still not escape "callback hell" if we were forced to keep the event loop model.  The problem is that the event loop <a target="_blank" href="https://en.wikipedia.org/wiki/Inversion_of_control">inverts control</a>.</p><p>But given a language with delimited continuation operators, it turns out that you can reinvert control.  This article uses the <code class="code-frag">shift</code> and <code class="code-frag">reset</code> operators in <a target="_blank" href="http://docs.racket-lang.org/reference/cont.html">racket</a> to demonstrate a technique possible in languages such as <a target="_blank" href="http://community.schemewiki.org/?composable-continuations-tutorial">scheme</a>, <a target="_blank" href="http://blog.sigfpe.com/2011/10/quick-and-dirty-reinversion-of-control.html">haskell</a> and <a target="_blank" href="http://dcsobral.blogspot.ca/2009/07/delimited-continuations-explained-in.html">scala</a>.</p></section><section><h2>Event loops and asynchronous operations</h2><code>event-loop.rkt:</code><pre class="code-block"><code>#lang racket
+<!DOCTYPE html><html><head><title>Greg Rosenblatt - Reinvert control with delimited continuations</title><meta charset="utf-8" /><meta name="author" content="Greg Rosenblatt" /><meta name="description" content="Personal site of Greg Rosenblatt" /><link rel="stylesheet" href="/main.css" /><link rel="alternate" type="application/atom+xml" title="Greg Rosenblatt's Writing" href="/writing.xml" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><script src="/main.js"></script></head><body><div id="content"><div id="nav-panel"><nav id="nav-main"><ul><li><a href="/./index.html">About</a></li><li><a href="/./writing/index.html">Writing</a></li></ul></nav><nav id="nav-local"><ul></ul></nav></div><div id="content-main"><article><h1 class="content-title">Reinvert control with delimited continuations</h1><section><div class="date-range"><span class="date">July 25, 2015</span><span class="date date-end">July 26, 2015</span></div></section><section class="summary"><p>While discussing alternatives to javascript in the browser, a friend lamented that even if we were to replace javascript with a better language, we would still not escape "callback hell" if we were forced to keep the <a target="_blank" href="https://en.wikipedia.org/wiki/Event_loop">event loop</a> model.  The problem is that the event loop <a target="_blank" href="https://en.wikipedia.org/wiki/Inversion_of_control">inverts control</a>.</p><p>But given a language with delimited continuation operators, it turns out that you can reinvert control.  This article uses the <code class="code-frag">shift</code> and <code class="code-frag">reset</code> operators in <a target="_blank" href="http://docs.racket-lang.org/reference/cont.html">racket</a> to demonstrate a technique possible in languages such as <a target="_blank" href="http://community.schemewiki.org/?composable-continuations-tutorial">scheme</a>, <a target="_blank" href="http://blog.sigfpe.com/2011/10/quick-and-dirty-reinversion-of-control.html">haskell</a> and <a target="_blank" href="http://dcsobral.blogspot.ca/2009/07/delimited-continuations-explained-in.html">scala</a>.</p></section><section><h2>Event loops and asynchronous operations</h2><code>event-loop.rkt:</code><pre class="code-block"><code>#lang racket
 (provide
   async-op
-  event-loop)
+  event-loop
+  set-timeout)
 
-(define async-ops (box '()))
+(struct async-operation (compute finish))
+
+(define pending (make-channel))
+(define finished (make-channel))
+
+(define (pending-loop)
+  (match-let (((async-operation compute finish) (channel-get pending)))
+    (thread (lambda ()
+              (let ((result (compute)))
+                (channel-put finished (lambda () (finish result)))))))
+  (pending-loop))
+(void (thread pending-loop))
 
 (define (event-loop)
-  (match (unbox async-ops)
-    ('() 'done)
-    ((cons op ops)
-     (set-box! async-ops ops)
-     (op)
-     (event-loop))))
+  (let loop ()
+    ((channel-get finished))
+    (loop)))
+
+(define (pending-add aop) (channel-put pending aop))
 
 (define (async-op args succeed fail)
-  (define (op)
-    (displayln (format "async operation started with: ~v" args))
-    (sleep 2)
-    (displayln "async operation finished")
-    (if (= 0 (random 2)) (succeed) (fail)))
-  (set-box! async-ops (append (unbox async-ops) (list op))))
-</code></pre><p>This module simulates an event loop that continuously processes a list of asynchronous operations until it is empty.</p></section><section><h2>Invoke asynchronous ops while passing callbacks</h2><code>user-with-callbacks.rkt:</code><pre class="code-block"><code>#lang racket
+  (pending-add
+    (async-operation
+      (lambda ()
+        (displayln (format "async operation started with: ~v" args))
+        (sleep 2)
+        (displayln "async operation finished")
+        (random 2))
+      (lambda (result) (if (= 0 result) (succeed) (fail))))))
+
+(define (set-timeout latency callback)
+  (pending-add
+    (async-operation
+      (lambda ()
+        (displayln (format "sleeping for ~a" latency))
+        (sleep latency))
+      (lambda (_) (callback)))))
+</code></pre><p>This module simulates an event loop by spawning worker threads to process asynchronous operations.</p></section><section><h2>Invoke asynchronous ops while passing callbacks</h2><code>user-with-callbacks.rkt:</code><pre class="code-block"><code>#lang racket
 (require
   "event-loop.rkt")
 
@@ -42,18 +63,19 @@
 </code></pre><p>To invoke asynchronous operations, we pass two first-class functions representing how to proceed when the operation either succeeds or fails.  The callbacks can be seen as manually-lifted first-class continuations.  Taken to the extreme, it can be more difficult to read/write programs in such a style.</p></section><section><h2>Reinverting control</h2><code>event-loop-direct.rkt:</code><pre class="code-block"><code>#lang racket
 (provide
   (all-from-out "event-loop.rkt")
-  async-op-direct)
+  async-op-direct
+  set-timeout-direct)
 (require
   "event-loop.rkt"
   racket/control)
 
-(define (with-callbacks-&gt;direct aop)
-  (lambda args
-    (shift k (aop args
-                  (lambda () (k #t))
-                  (lambda () (k #f))))))
+(define (async-op-direct . args)
+  (shift k (async-op args
+                     (lambda () (k #t))
+                     (lambda () (k #f)))))
 
-(define async-op-direct (with-callbacks-&gt;direct async-op))
+(define (set-timeout-direct latency)
+  (shift k (set-timeout latency (lambda () (k (void))))))
 </code></pre><p>We can use the <code class="code-frag">shift</code> operator to grab the continuation to which we want to pass the result of an asynchronous operation when invoked in direct-style.  Asynchronous operations transformed in this way can be provided by libraries without any cooperation from the event-loop implementation, demonstrating the technique's general applicability.</p></section><section><h2>Direct-style invocation</h2><code>user-direct.rkt:</code><pre class="code-block"><code>#lang racket
 (require
   "event-loop-direct.rkt"
@@ -73,4 +95,32 @@
 (displayln "direct")
 (direct)
 (event-loop)
-</code></pre><p>Finally, we use a <code class="code-frag">reset</code> block to indicate the extent of sequentially-executed code associated with a series of <code class="code-frag">async-op-direct</code> invocations.  Invocations can be performed concurrently by wrapping them in separate blocks.  These blocks may be embedded in other blocks to control the timing of invocations, satisfying dependencies on earlier asynchronous results.</p></section></article></div></div></body></html>
+</code></pre><p>Finally, we use a <code class="code-frag">reset</code> block to indicate the extent of sequentially-executed code associated with a series of <code class="code-frag">async-op-direct</code> invocations.</p><code>user-direct-concurrency.rkt:</code><pre class="code-block"><code>#lang racket
+(require
+  "event-loop-direct.rkt"
+  racket/control)
+
+(define-syntax-rule (wait-until body ...)
+  (let loop ()
+    (set-timeout-direct 1)
+    (displayln "are we there yet?")
+    (if (begin body ...) (displayln "we're there!")
+      (begin (displayln "no, not there yet") (loop)))))
+
+(define (direct-concurrency)
+  (define count 10)
+  (define results (box '()))
+  (reset
+    (displayln "perform async operations concurrently")
+    (for ((index (range count)))
+      (reset
+        (set-box! results
+          (cons (async-op-direct index)
+                (unbox results)))))
+    (wait-until (= count (length (unbox results))))
+    (displayln results)))
+
+(displayln "direct-concurrency")
+(direct-concurrency)
+(event-loop)
+</code></pre><p>Invocations can be performed concurrently by wrapping them in separate <code class="code-frag">reset</code> blocks.  These blocks may be embedded in other blocks to control the timing of invocations, satisfying dependencies on earlier asynchronous results.</p></section></article></div></div></body></html>
