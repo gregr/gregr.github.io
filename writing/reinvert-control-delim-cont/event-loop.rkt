@@ -3,20 +3,32 @@
   async-op
   event-loop)
 
-(define async-ops (box '()))
+(struct async-operation (compute finish))
+
+(define pending (make-channel))
+(define finished (make-channel))
+
+(define (pending-loop)
+  (match-let (((async-operation compute finish) (channel-get pending)))
+    (thread (lambda ()
+              (let ((result (compute)))
+                (channel-put finished (lambda () (finish result)))))))
+  (pending-loop))
+(void (thread pending-loop))
 
 (define (event-loop)
-  (match (unbox async-ops)
-    ('() 'done)
-    ((cons op ops)
-     (set-box! async-ops ops)
-     (op)
-     (event-loop))))
+  (let loop ()
+    ((channel-get finished))
+    (loop)))
+
+(define (pending-add aop) (channel-put pending aop))
 
 (define (async-op args succeed fail)
-  (define (op)
-    (displayln (format "async operation started with: ~v" args))
-    (sleep 2)
-    (displayln "async operation finished")
-    (if (= 0 (random 2)) (succeed) (fail)))
-  (set-box! async-ops (append (unbox async-ops) (list op))))
+  (pending-add
+    (async-operation
+      (lambda ()
+        (displayln (format "async operation started with: ~v" args))
+        (sleep 2)
+        (displayln "async operation finished")
+        (random 2))
+      (lambda (result) (if (= 0 result) (succeed) (fail))))))
