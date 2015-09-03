@@ -1,3 +1,31 @@
+alternative-to-macros-and-fexprs
+  best of both worlds? statically-determined operative behavior as in minikernel
+  static reasoning:
+    does a combination/call-site behave like a procedure application or an operative/macro invocation?
+    this is important for avoiding unintentional context capture and enabling local analysis/reasoning/optimization
+    comparison
+      hygienic scheme macros:
+        macro/procedure behavior is determined statically, based on syntactic class of let-defined names (let: definition body must be immediately present)
+        unintentional context capture statically preventable
+        amenable to local reasoning after mandatory partial evaluation (aka macro expansion)
+      kernel:
+        operative/applicative behavior is determined at runtime, based on whether the invoked combiner (procedure-like object) is 'wrapped' as an applicative
+        unintentional context capture mitigated via operative naming conventions ($-prefixes); higher-order abstractions leak by default (operand capture)
+        significant non-local partial evaluation may be required to support reasoning
+      minikernel:
+        operative/applicative behavior is determined statically, based on syntactic class of lambda-defined names (lambda: definition body may be deferred)
+        unintentional context capture statically preventable
+        amenable to local reasoning after optional partial evaluation
+  implementation complexity:
+    how complex is the task of implementing new abstractions while maintaining hygiene?
+    comparison
+      hygienic scheme macros:
+        within the reach of syntax-rules, complexity is not terrible, but syntax-rules is not practical for much more than sugar
+        beyond syntax-rules, complexity quickly becomes onerous
+      kernel and minikernel:
+        implementations directly compute their results with the benefit of lexical scope and the dynamic calling environment
+        no need to juggle/arrange/prepare syntax for a later expansion phase that won't otherwise have the right context available to map identifiers correctly
+
 many futures of programming
   Learnable Programming: http://worrydream.com/LearnableProgramming/
   Unison: http://unisonweb.org/
