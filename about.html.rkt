@@ -200,6 +200,16 @@
            (h2 "Professional experience")
            (ul ((class "employment-list"))
                (li
+                 ,(employment "500px" "Toronto, ON"
+                              "Platform Engineer"
+                              "July 2014" "February 2015"
+                              `(p "Improved platform stability and performance")
+                              `(ul
+                                 (li "Kafka-based data pipeline prototype")
+                                 (li "Refactoring of Rails application to produce microservices written in Go")
+                                 (li "Internal libraries/tools that simplify creation of new Go services")
+                                 )))
+               (li
                  ,(employment "Tulip Retail" "Toronto, ON"
                               "Software Engineer"
                               "October 2013" "June 2014"
