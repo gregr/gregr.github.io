@@ -213,8 +213,8 @@
                  ,(employment "Tulip Retail" "Toronto, ON"
                               "Software Engineer"
                               "October 2013" "June 2014"
-                              `(p "Part of the founding team originally from Well.ca.")
-                              `(p "Worked on both retail platform and individual client projects.")
+                              `(p "Part of the founding team originally from Well.ca")
+                              `(p "Worked on both retail platform and individual client projects")
                               `(ul
                                  (li "Re-design of data model and platform in terms of a service-oriented architecture")
                                  (li "Framework for building hypermedia APIs")
@@ -248,7 +248,7 @@
                  ,(employment "Ellington Management Group" "Old Greenwich, CT"
                               "Quantitative Developer"
                               "May 2006" "August 2009"
-                              `(p "Developed and maintained various modelling and trading systems.")
+                              `(p "Developed and maintained various modelling and trading systems")
                               `(ul
                                  (li "Distributed computing infrastructure")
                                  (li "Cross-language services and remote procedure call library")
