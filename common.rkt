@@ -47,6 +47,13 @@
     (erights "E Programming Language" "http://erights.org")
     (lattice-vars "LVars: Lattice-based Data Structures for Deterministic Parallelism" "https://www.cs.indiana.edu/~lkuper/papers/lvars-fhpc13.pdf")
     (bloom-lang "Bloom Programming Language" "http://www.bloom-lang.net/")
+    (yield-mainstream-delim-cont "Yield: Mainstream Delimited Continuations" "http://www.cs.indiana.edu/~sabry/papers/yield.pdf")
+    (eff-lang "Eff -- a functional language with effect handlers" "http://www.eff-lang.org/")
+    )))
+
+(match-define (list ref-dsalgo anchor-list-dsalgo)
+  (anchors `(
+    (zipper "Zipper (data structure)" "https://en.wikipedia.org/wiki/Zipper_(data_structure)")
     )))
 
 (match-define (list ref-arch anchor-list-arch)
