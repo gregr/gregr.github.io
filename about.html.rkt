@@ -165,6 +165,19 @@
            (ul ((class "personal-project-list"))
                (li
                  ,(personal-project
+                    (anchor "https://github.com/gregr/racket-misc" "Racket-Misc")
+                    "2014" "present"
+                    `(p "This is a library of miscellaneous utilities for the " ,(ref-tech 'racket "Racket")
+                        " programming language.  It features records, cursors ("
+                        ,(ref-dsalgo 'zipper "zippers")
+                        " and lenses), unrestricted "
+                        ,(ref-plt 'yield-mainstream-delim-cont "generators")
+                        ", "
+                        ,(ref-plt 'eff-lang "algebraic effects")
+                        ", gratuitous experiments in syntactic sugar, and more.")
+                    ))
+               (li
+                 ,(personal-project
                     (anchor "https://github.com/gregr/chive" "The Chive Programming Language")
                     "2009" "2010"
                     `(p "This was my first serious attempt at a full programming language implementation.  It features a scheme-like hygienic macro system based on syntactic closures.")
