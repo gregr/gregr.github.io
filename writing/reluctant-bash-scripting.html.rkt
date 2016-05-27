@@ -39,7 +39,7 @@
       ("referenced-links" "All the links")
       ))
     `(section
-       ,(date-range "October 25, 2014" "December 7, 2014")
+       ,(date-range "October 25, 2014" "May 27, 2016")
        )
     `(section
        ((class "summary"))
@@ -102,7 +102,7 @@
          (ul
            (li (p "Consume part of stdin, assigning to variables, using " ,(ref 'beg-bash-input (code-frag "read")) ".")
                ,(code-block "> read -n 3 threechars  # Your input ends on the same line as the next prompt.\nabc> printf '%s\\n' \"$threechars\"\nabc")
-               ,(code-block "> read line  # This time, the next prompt starts on its own line.  Why?\nthis input is read until you hit enter\n> printf '%s\\n' \"$line\"\nthis input is read until you hit enter")
+               ,(code-block "> read line  # This time, the next prompt starts on its own line.  Why?\n#this input is read until you hit enter\n> printf '%s\\n' \"$line\"\n#this input is read until you hit enter")
                )
            (li (p "Consume all of stdin using " ,(code-frag "cat") ".")
                ,(code-block "ALL_OF_STDIN=$(cat)  # this also demonstrates command-substitution\n... use $ALL_OF_STDIN ...")
@@ -141,7 +141,6 @@
          (p "Read more about these and other " ,(ref 'adv-bash-jobs "job control") " commands.")
          (p "Avoid running multiple instances of a command at the same time by using " ,(ref 'so-flock (code-frag "flock")) ".")
          ,(local-code "cron-flock-example")
-         ;,(code-block "# /etc/cron.d/special\n... typical cron things ...\n# Run our special process every 5 minutes.\n# Run it with flock to prevent overlap if it runs for longer than 5 minutes.\n*/5 * * * *  user  flock -n /tmp/special-process.lock /path/to/special-process")
          )
        (section
          ,(anchor-target "effective-ssh")

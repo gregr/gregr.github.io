@@ -1,8 +1,8 @@
 #!/bin/bash
 # dir-example
-set -euf -o pipefail
+set -eufo pipefail
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+here="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # refer to the 'data' file living in the script directory
-... "$DIR/data" ...
+... "$here/data" ...

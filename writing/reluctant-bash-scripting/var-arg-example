@@ -1,6 +1,6 @@
 #!/bin/bash
 # var-arg-example
-set -euf -o pipefail
+set -eufo pipefail
 
 # ARG1 is required.
 # ARG2 is optional; it will be assigned to 'default' if unset.
