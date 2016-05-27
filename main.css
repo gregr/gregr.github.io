@@ -69,7 +69,7 @@ nav li {
 }
 .code-frag {
   color: brown;
-  background-color: bisque;
+  background-color: beige;
   font-weight: bold;
   padding: 0.2em;
 }
@@ -157,7 +157,7 @@ nav li {
   font-style: italic;
 }
 .pandoc code > span.kw {
-  color: #43a8ed;
+  color: #0050aa;
   font-weight: bold;
 }
 .pandoc code > span.st {
