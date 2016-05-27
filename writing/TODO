@@ -122,13 +122,6 @@ understandable programming (improve math)
           seeing spaces
           humane representation of thought
 
-bash syntax highlighting css
-  samp (sample output)
-    http://www.w3.org/TR/html5/text-level-semantics.html#the-samp-element
-  kbd (keyboard input)
-    http://www.w3.org/TR/html5/text-level-semantics.html#the-kbd-element
-  var
-
 macro-writing tips; continuation-passing-ish syntax-rules
 
 alternatives to macro-like syntactic transformation
