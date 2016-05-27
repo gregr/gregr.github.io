@@ -9,6 +9,7 @@
   gregr-misc/record
   gregr-misc/sugar
   racket/runtime-path
+  xml
   )
 
 (define (anchor href description)
@@ -91,6 +92,22 @@
   (code-block (call-with-input-file path port->string)))
 (define (local-code-file subpath)
   (code-file (build-path local-directory subpath)))
+
+(def (pandoc-highlight lang source)
+  source = (string-append "~~~" lang "\n" source "\n~~~")
+  (list pout pin _ perr _) = (process "pandoc")
+  _ = (displayln source pin)
+  _ = (close-output-port pin)
+  highlighted-source = (port->string pout)
+  _ = (begin (close-input-port pout)
+             (close-input-port perr))
+  highlighted-source)
+(define (code-block/pandoc lang source)
+  `(div ((class "pandoc")) ,(string->xexpr (pandoc-highlight lang source))))
+(define (code-file/pandoc lang path)
+  (code-block/pandoc lang (call-with-input-file path port->string)))
+(define (local-code-file/pandoc lang subpath)
+  (code-file/pandoc lang (build-path local-directory subpath)))
 
 (define (head sub-title (links '()))
   `(head
