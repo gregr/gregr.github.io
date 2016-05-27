@@ -207,4 +207,25 @@
      "border-width" "1px"
      "border-color" "red"
      ))
+
+
+  ;; pandoc syntax highlighting
+
+  (".pandoc code" (hash "white-space" "pre"))
+  (".pandoc pre, pandoc code" (hash "color" "#bdae9d" "background-color" "#2a211c"))
+  (".pandoc code > span.kw" (hash "color" "#43a8ed" "font-weight" "bold"))
+  (".pandoc code > span.dt" (hash "text-decoration" "underline"))
+  (".pandoc code > span.dv" (hash "color" "#44aa43"))
+  (".pandoc code > span.bn" (hash "color" "#44aa43"))
+  (".pandoc code > span.fl" (hash "color" "#44aa43"))
+  (".pandoc code > span.ch" (hash "color" "#049b0a"))
+  (".pandoc code > span.st" (hash "color" "#049b0a"))
+  (".pandoc code > span.co" (hash "color" "#0066ff" "font-style" "italic"))
+  (".pandoc code > span.al" (hash "color" "#ffff00"))
+  (".pandoc code > span.fu" (hash "color" "#ff9358" "font-weight" "bold"))
+  (".pandoc code > span.er" (hash "font-weight" "bold"))
+  ;table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode { ;margin: 0; padding: 0; vertical-align: baseline; border: none; }
+  ;table.sourceCode { width: 100%; line-height: 100%; background-color: #2a211c; color: #bdae9d; }
+  ;td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #2a211c; color: #bdae9d; border-right: 1px solid #bdae9d; }
+  ;td.sourceCode { padding-left: 5px; }
   )
