@@ -9,7 +9,7 @@
     (racket-cont "The Racket Reference: Continuations" "http://docs.racket-lang.org/reference/cont.html")
     )))
 (define (local-code filename)
-  (local-code-file
+  (local-code-file/pandoc "scheme"
     (build-path "writing/reinvert-control-delim-cont/" filename)))
 (list title
   (writing-content
