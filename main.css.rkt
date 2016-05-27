@@ -109,7 +109,7 @@
      "padding" "0.2em"
      "font-weight" "bold"
      "color" "brown"
-     "background-color" "bisque"
+     "background-color" "beige"
      ))
 
   (".code-block"
@@ -214,7 +214,7 @@
   (".pandoc code" (hash "white-space" "pre"))
   (".pandoc pre, pandoc code" (hash "color" "brown" "background-color" "beige"))
   (".pandoc code > span.co" (hash "color" "grey" "font-style" "italic"))
-  (".pandoc code > span.kw" (hash "color" "#43a8ed" "font-weight" "bold"))
+  (".pandoc code > span.kw" (hash "color" "#0050aa" "font-weight" "bold"))
   (".pandoc code > span.st" (hash "color" "#049b0a"))
   (".pandoc code > span.dt" (hash "text-decoration" "underline"))
   (".pandoc code > span.dv" (hash "color" "#44aa43"))
