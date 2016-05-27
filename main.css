@@ -1,7 +1,7 @@
 body {
-  font-family: 'Lucida Grande', Verdana, Helvetica, sans-serif;
-  line-height: 120%;
   font-size: 80%;
+  line-height: 120%;
+  font-family: 'Lucida Grande', Verdana, Helvetica, sans-serif;
 }
 nav {
   margin-bottom: 6em;
@@ -31,12 +31,12 @@ a:hover {
   text-decoration: underline;
 }
 #content {
-  width: 1160px;
   margin: auto;
+  width: 1160px;
 }
 #nav-panel {
-  width: 280px;
   float: left;
+  width: 280px;
 }
 #nav-panel a:link, #nav-panel a:visited {
   color: #333333;
@@ -46,15 +46,15 @@ a:hover {
   color: #666666;
 }
 #content-main {
-  margin-right: 280px;
   margin-left: 280px;
+  margin-right: 280px;
 }
 #nav-local {
   margin-right: 1em;
 }
 nav ul {
-  list-style-type: none;
   margin: 0;
+  list-style-type: none;
   padding-left: 1em;
 }
 nav li {
@@ -69,18 +69,18 @@ nav li {
 }
 .code-frag {
   color: brown;
-  padding: 0.2em;
   background-color: bisque;
   font-weight: bold;
+  padding: 0.2em;
 }
 .code-block {
   color: brown;
-  padding: 1em;
   background-color: beige;
+  padding: 1em;
 }
 .multipart-series li {
-  padding: 10px;
   display: inline;
+  padding: 10px;
 }
 .personal-project-list {
   list-style-type: none;
@@ -89,8 +89,8 @@ nav li {
   margin-bottom: 2em;
 }
 .personal-project-name {
-  margin-right: 1em;
   display: inline;
+  margin-right: 1em;
 }
 .personal-project .date-range {
   display: inline;
@@ -114,8 +114,8 @@ nav li {
   content: "\A";
 }
 .employment-title {
-  margin-right: 1em;
   display: inline;
+  margin-right: 1em;
 }
 .employment>.date-range {
   margin-bottom: 1em;
@@ -131,8 +131,8 @@ nav li {
   margin-bottom: 2em;
 }
 .education-name {
-  margin-right: 1em;
   display: inline;
+  margin-right: 1em;
 }
 .education>.date-range {
   display: inline;
@@ -144,4 +144,47 @@ nav li {
   border-style: dashed;
   border-width: 1px;
   border-color: red;
+}
+.pandoc code {
+  white-space: pre;
+}
+.pandoc pre, pandoc code {
+  color: brown;
+  background-color: beige;
+}
+.pandoc code > span.co {
+  color: grey;
+  font-style: italic;
+}
+.pandoc code > span.kw {
+  color: #43a8ed;
+  font-weight: bold;
+}
+.pandoc code > span.st {
+  color: #049b0a;
+}
+.pandoc code > span.dt {
+  text-decoration: underline;
+}
+.pandoc code > span.dv {
+  color: #44aa43;
+}
+.pandoc code > span.bn {
+  color: #44aa43;
+}
+.pandoc code > span.fl {
+  color: #44aa43;
+}
+.pandoc code > span.ch {
+  color: #049b0a;
+}
+.pandoc code > span.al {
+  color: #ffff00;
+}
+.pandoc code > span.fu {
+  color: #ff9358;
+  font-weight: bold;
+}
+.pandoc code > span.er {
+  font-weight: bold;
 }
