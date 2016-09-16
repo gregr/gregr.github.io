@@ -41,7 +41,12 @@
 
 (match-define (list ref-plt anchor-list-plt)
   (anchors `(
+    (minikanren "miniKanren" "http://minikanren.org/")
     (minikanren-video "miniKanren" "https://www.youtube.com/watch?v=5Q9x16uIsKA")
+    (prob-prog "Probabilistic Programming" "https://en.wikipedia.org/wiki/Probabilistic_programming_language")
+
+    (probcomp-project "The MIT Probabilistic Computing Project" "http://probcomp.csail.mit.edu/")
+    (probmods "Probabilistic Models of Cognition" "https://probmods.org/")
     (role-of-PL-study "The Role of the Study of Programming Languages" "http://www.cs.indiana.edu/~dfried/mex.pdf")
     (props-as-types "Propositions as Types" "http://homepages.inf.ed.ac.uk/wadler/papers/propositions-as-types/propositions-as-types.pdf")
     (object-capability-model "Object-capability model" "https://en.wikipedia.org/wiki/Object-capability_model")
