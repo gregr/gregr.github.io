@@ -41,7 +41,7 @@
 
 (match-define (list ref-plt anchor-list-plt)
   (anchors `(
-    (relational-prog "miniKanren" "https://www.youtube.com/watch?v=5Q9x16uIsKA")
+    (minikanren-video "miniKanren" "https://www.youtube.com/watch?v=5Q9x16uIsKA")
     (role-of-PL-study "The Role of the Study of Programming Languages" "http://www.cs.indiana.edu/~dfried/mex.pdf")
     (props-as-types "Propositions as Types" "http://homepages.inf.ed.ac.uk/wadler/papers/propositions-as-types/propositions-as-types.pdf")
     (object-capability-model "Object-capability model" "https://en.wikipedia.org/wiki/Object-capability_model")

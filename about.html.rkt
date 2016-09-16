@@ -108,7 +108,7 @@
                     " "
                     ,(ref-arch 'raft-paxos "on")
                     " "
-                    ,(ref-plt 'relational-prog "general")
+                    ,(ref-plt 'minikanren-video "general")
                     " "
                     ,(ref-plt 'props-as-types "ideas")
                     " than on specific technologies.  Though, I do like to choose "
