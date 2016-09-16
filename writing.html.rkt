@@ -19,7 +19,7 @@
     (reinvert-control-delim-cont ("2015-07-25" "2015-07-26"))
     (creative-workflow ("2015-03-17" "2015-03-18"))
     (reluctant-bash-scripting ("2014-10-25" "2016-5-27"))
-    (staying-sane-writing-software ("2014-06-22" "2015-06-29"))
+    (staying-sane-writing-software ("2014-06-22" "2016-09-16"))
     ))
 (define writing-names (forl (list name _) <- names-dates
                             name))

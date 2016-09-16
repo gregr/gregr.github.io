@@ -4,10 +4,10 @@
     title
     (nav-local '())
     `(section
-       ,(date-range "June 22, 2014" "June 29, 2015")
+       ,(date-range "June 22, 2014" "September 16, 2016")
        )
     `(section
-       (p "This is a collection of principles and techniques that lead to useful, quality software while preserving the sanity of the programmers writing it.  Mental health and project success go hand-in-hand.")
+       (p "This is a collection of principles, techniques, and paradigms that lead to useful, quality software while preserving the sanity of the programmers writing it.  Mental health and project success go hand-in-hand.")
        (p "Not all of the principles mentioned here can hold in all cases.  Some may conflict in a particular setting.  But where possible, applying these ideas seems to lead to the most satisfying results.")
        (p "Currently this is just an outline.")
        )
@@ -16,6 +16,7 @@
        (h3 "What most people (should) want")
        (ul
          (li "features!")
+         (li "customization")
          (li "privacy")
          (li "security")
          (li "robustness")
@@ -32,32 +33,34 @@
          (li "local reasoning")
          (li "easy rearrangement")
          (li "generalization")
-         (li "customization")
          (li "efficiency")
          (li "scalability")
+         (li "consistency")
          )
        )
     `(section
        (h2 "Qualities that help satisfy these desires")
        (h3 "Relatively abstract")
        (ul
-         (li "idempotence")
          (li "monotonicity"
              (ul
                (li "accumulation described by sets or, more generally, lattices")
                ))
+         (li "idempotence")
          (li "commutativity"
              (ul
                (li ,(ref-arch 'scalable-commutativity-rule "The Scalable Commutativity Rule")
                    (ul
                      (li "\"Whenever interface operations commute, they can be implemented in a way that scales.\"")
                ))))
+         (li "associativity")
          (li "orthogonality")
          (li "composability")
          )
        (h3 "Somewhat more concrete")
        (ul
          (li "principle of least authority")
+         (li "declarative description")
          (li "redundancy")
          (li "tolerance")
          (li "isolation")
@@ -91,7 +94,7 @@
                ))
          (li ,(ref-plt 'object-capability-model "object capabilities")
              (ul
-               (li ,(ref-plt 'erights "as in the E Programming Language"))
+               (li "as in the " ,(ref-plt 'erights "E Programming Language"))
                ))
          (li "caching")
          (li "replication")
@@ -111,6 +114,7 @@
          (li "CRDTs"
              (ul
                (li ,(ref-arch 'crdt "Conflict-free Replicated Data Types"))
+               (li "Strong eventual consistency")
                ))
          (li "LVars"
              (ul
@@ -119,8 +123,17 @@
          (li "CALM"
              (ul
                (li "Consistency as logical monotonicity")
-               (li ,(ref-plt 'bloom-lang "as in the Bloom programming language"))
+               (li "as in the " ,(ref-plt 'bloom-lang "Bloom programming language"))
                ))
+         (li "Relational Programming"
+             (ul
+               (li "Programs that can be run in multiple directions")
+               (li "as in the " ,(ref-plt 'minikanren "miniKanren EDSL"))))
+         (li ,(ref-plt 'prob-prog "Probabilistic Programming")
+             (ul
+               (li "Programs that describe and perform inference in probabilistic models")
+               (li "as used in " ,(ref-plt 'probmods "Probabilistic Models of Cognition"))
+               (li ,(ref-plt 'probcomp-project "The MIT Probabilistic Computing Project"))))
          )
        )
     ))
