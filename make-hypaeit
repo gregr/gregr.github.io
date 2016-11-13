@@ -1,0 +1,6 @@
+#!/bin/bash
+set -eufo pipefail
+
+here="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+cd "$here" && racket hypaeit.scrbl > hypaeit.md && markdown hypaeit.md > hypaeit.html
