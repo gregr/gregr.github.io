@@ -211,12 +211,13 @@
                     ))))
          (section
            ,(anchor-target "non-work-experience")
-           (h2 "Unprofessional experience")
+           (h2 "Extraprofessional experience")
            (ul ((class "employment-list"))
                (li
                  ,(employment "Funemployment" "Toronto, ON"
                               "Independent Researcher"
                               "February 2015" "present"
+                              `(p "Working with Will Byrd on " ,(anchor "https://github.com/webyrd/Barliman" "Barliman") ", a prototype smart editor capable of real-time program synthesis")
                               `(p "Taking the programming out of programming")
                               `(ul
                                  (li "Making the programming a better place")
