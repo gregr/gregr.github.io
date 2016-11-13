@@ -81,10 +81,10 @@ Proceedings of the 20th ACM SIGPLAN workshop on Partial evaluation and program m
 Second International Workshop on Metacomputation in Russia, pages 82-101, Ailamazyan University of Pereslavl, 2010.
 
 @(ref sc-neilm) Neil Mitchell.  Comment: The state and future of supercompilation in GHC.
-https://www.reddit.com/r/haskell/comments/2s97d0/the\_state\_and\_future\_of\_supercompilation\_in\_ghc/cnngoxt
+https://www.reddit.com/r/haskell/comments/2s97d0/the_state_and_future_of_supercompilation_in_ghc/cnngoxt
 
 @(ref sc-spj) Simon Peyton Jones.  Comment: The state and future of supercompilation in GHC.
-https://www.reddit.com/r/haskell/comments/2s97d0/the\_state\_and\_future\_of\_supercompilation\_in\_ghc/cnx2saj
+https://www.reddit.com/r/haskell/comments/2s97d0/the_state_and_future_of_supercompilation_in_ghc/cnx2saj
 
 @(ref shrinking) Andrew W. Appel, Trevor Jim.  Shrinking lambda expressions in linear time.
 Journal of Functional Programming, v.7 n.5, p.515-540, September 1997
