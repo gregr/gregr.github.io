@@ -194,7 +194,7 @@ It may be possible to simultaneously maximize both comprehensibility and efficie
 
 To explore programming with views, we propose a minimal set of tools including:
 
-* a small, extensible programming language for exploring various paradigms @(cite paradigms)
+* a small, extensible programming language for exploring various paradigms @(cite sicp paradigms)
 * an intermediate notation for layered languages @(cite lightning)
 * a logical framework for equational reasoning with this notation @(cite vau milawa)
 * meaning-preserving, compositional program transformations within and across layers for symbolic exploration
@@ -226,60 +226,85 @@ This formulation of views produces predictable, observable program transformatio
 Seen this way, views provide access to a spectrum of transformation activities between the fully automated and the fully manual.  If desired, they can still be used to support the extreme cases without additional effort, yet with the additional benefits that come with linked representations @(cite bv-media).
 
 
-## Related Work
+## Tools With the Right Affordances
 
-To perform meaningful experiments with view-oriented programming, this proposal leverages a breadth of existing work.
+To conduct our experiment we need tools appropriate for view-oriented programming.  We now describe a minimal set of tools that should suffice.
 
 
-### Small, extensible programming language
+### Extensible language
 
-"Structure and Interpretation of Computer Programs" @(cite sicp) demonstrates the versatility of Scheme, a small programming language that uses first-class procedures and convenient metalinguistic abstraction for extension.  Scheme is used to explore topics such as:
-
-* symbolic differentiation and algebra
-* flexible data modeling with coercion, single and multiple dispatch polymorphism
-* mutable state
-* concurrency
-* stream processing
-* interpreters, including variants for:
-    * lazy evaluation
-    * nondeterministic computing
-    * logic programming
-* abstract hardware models
-
-Scheme inspires the small language proposed for experimentation.
+Because our tooling must support a wide variety of uses, some of which may not have been anticipated, it is important to build on a flexible foundation, capable of providing multiple forms of programming and metaprogramming.  Embedded interpreters provide the natural extensibility we need to be this flexible.  For this reason, we start with a simple, homoiconic language.  Homoiconicity enables convenient metalinguistic abstraction @(cite sicp), making it less disruptive to invoke our embedded interpreters.
 
 
 ### Programming paradigms and layered structure
 
-Peter Van Roy categorizes programming paradigms @(cite paradigms), describing their relationships in terms of the concepts they consist of and discussing their properties, such as observable nondeterminism.  Interesting concepts include deterministic concurrency and constraints.
+Peter Van Roy categorizes programming paradigms @(cite paradigms), describing their relationships in terms of the concepts they consist of and discussing their properties, such as observable nondeterminism.  Interesting concepts include deterministic concurrency and constraints.  A definitive language is described as having a layered structure @(cite lightning), each incorporating some combination of the following concepts: functional programming, deterministic concurrency, message-passing concurrency and shared-state concurrency.  To be useful, our tools must such concepts.
 
-A definitive language is described as having a layered structure @(cite lightning), each incorporating some combination of the following concepts: functional programming, deterministic concurrency, message-passing concurrency and shared-state concurrency.  To be useful, our proposed intermediate notation needs to be capable of supporting such concepts.
+To work with multiple paradigms manageably, we will layer our concepts.  Concepts introducing similar complexity are grouped in in the same layer, with subsequent layers indicating increased expressiveness at the cost of more difficult reasoning.  In order of increasing expressiveness, the layers we've chosen include:
 
+* functional programming: simple data, first-class procedures
+* deterministic concurrency: single-writer dataflow, laziness, constraints, logical monotonicity @(cite lvars calm)
+* nondeterminism: asynchrony, message-passing concurrency, probabilistic choice @(cite probmods)
+* sequential control: delimited continuations, coroutines, implicit context
 
-### Logical frameworks
+The core functional layer is chosen to be small, strict, pure, and untyped for the following reasons:
 
-John Shutt defines the Kernel programming language which includes an interesting abstraction mechanism based on Fexprs @(cite vau).  In order to study this abstraction, several vau-calculi are developed, assessing the term equivalences they can express.  The impure vau-calculi are well-behaved, introducing control effects and mutable state without losing Church-Rosser-ness of the step relation.  Unlike lambdas, state and control variable binders bubble up ahead of escaping references, dynamically maintaining lexical scope.  This technique seems useful for reasoning about effects in general.
+* small and strict: to describe deterministic computational processes with simple, sequential operational semantics
+* pure: for strong compositional reasoning
+* untyped: for versatility and simpler metaprogramming
 
-Jared Davis defines Milawa, a self-verifying theorem prover @(cite milawa) that puts an ACL2-like system on firmer ground by bootstrapping it from a simple proof checker.  Its logic is computational, describing term equality axioms similar to the step relation of an operational semantics.  It is self-applicable through quotation.  For tractable self-verification, a reflection rule @(cite reflection) is used to install progressively more sophisticated proof checkers that are proved faithful to the original.  Our proposed logic is similar and self-applicability may benefit the comprehensibility and efficiency of our tools.
-
-
-### Goal-oriented search
-
-ACL2 @(cite acl2) is a theorem prover based on a computational logic.  Rather than programmable tactics, the preferred ACL2 proof method @(cite acl2method) involves an intuitive, interactive, recursive goal-oriented search.  The users specifies a goal and interprets failure feedback to choose lemmas to prove as subgoals.  In doing so, the user builds up a library of rewrite rules capable of automatically proving the original goal.
-
-ACL2 employs term-rewriting strategies that resemble supercompilation @(cite hlsc), suggesting applicability to user-directed optimization search.
-
-
-### Supercompilation
-
-Supercompilation @supercompilers is a powerful whole-program approach to optimization that, while showing great potential, has trouble scaling to the general case.  Issues include intense compile-time resource usage and unnecessarily large increases in program size @(cite sc-spj).  These issues stem from an inability to focus efforts on genuinely important parts of a program.
-
-By limiting the scope of its application to hotspots, a programmer may be able to guide a supercompiler well enough to mitigate these disadvantages.  We hope to experiment with supercompilation both as a directly-applied tactic and for proving term equivalences @(cite hlsc) as part of a goal-oriented search implementation.
+We introduce subsequent concepts only as needed.  Language-level support for a concept is needed when introducing the concept would otherwise require nonlocal program transformations (page 9 of @(cite lightning)).  To only pay for additional complexity when necessary, concept support may be added compositionally by locally invoking an interpreter with the appropriate semantics.
 
 
-### Explaining provenance
+### Intermediate notation and logical framework for equational reasoning
 
-"Functional Programs That Explain Their Work" @(cite trace-slices) introduces trace slicing to explain the relationship between a functional computation and its result.  Trace slices may be useful for explaining the provenance of an elaborated view.
+To leverage existing work and yield a simple logical framework, we base our intermediate notation on the call-by-value lambda calculus.  To support the functional programming layer, this notation includes bits, pairs, and single-argument procedures.
+
+Depending on the use case, additional concepts may be supported either by functional modelling or by extending the notation with impure terms.  Functional modelling allows the most re-use of existing machinery but may not support as precise a level of reasoning as a dedicated extension.  An example of improved reasoning through better notation are the impure variable binders @(cite impure-binders) of John Shutt.  In order to study an abstraction based on Fexprs @(cite vau), Shutt develops several vau-calculi, assessing the term equivalences they can express.  The impure vau-calculi developed are well-behaved, introducing control effects and mutable state without losing Church-Rosser-ness of the step relation.  Unlike lambdas, state and control variable binders bubble up ahead of escaping references, dynamically maintaining lexical scope.  This technique seems useful for reasoning about effects in general and seems difficult with functional modelling alone.
+
+A minimal logical framework based on the operational semantics of our intermediate notation should suffice for equational reasoning.  Rather than introduce the complexities of a multi-tiered reasoning system involving higher order type theory, we choose a computational logic similar to ACL2 @(cite acl2) and Milawa @(cite milawa).  Milawa is a self-verifying theorem prover that puts an ACL2-like system on firmer ground by bootstrapping it from a simple proof checker, using a reflection rule @(cite reflection) to install progressively more sophisticated proof checkers that are proved faithful to the original.  Its logic describes term equality axioms similar to the step relation of an operational semantics.  We prefer this style of logic because it leverages the operational intuitions developed while learning how to program, and seems to complement our use of metalinguistic abstraction.  We believe such a logic:
+
+* corresponds to common programmer mental models for evaluation, composition and generalization
+* presents a shorter learning curve than higher order type theory
+* is capable of expressing various type systems and analysis frameworks, supporting pluralism
+
+
+### Meaning-preserving transformation, programmable tactics, and goal-oriented search
+
+Equationally reasoning about programs requires the ability to transform them while preserving their meaning.  A transformation is meaning-preserving if it only replaces a term with an operationally-equivalent one.  The simplest of these transformations are based on the small step relation of our logic, allowing transition in either direction.  Such transformations can be thought of as being justified by extremely simple equivalence proofs.  Complex transformations are enabled by complex equivalence proofs, possibly involving term induction.
+
+There is also a lateral direction to consider when traversing computational models.  Generally, we have three basic directions corresponding to different programmer intentions and activities:
+
+* up: consolidation of meaning; refactoring
+* down: elaboration; optimization
+* lateral: reinterpretation; compilation
+
+Direct, manual use of basic transformations is a relatively low-level mode of operation, useful for precise symbolic exploration and fine-tuning of a computational process.  A more typical mode of operation involves programmer-definable tactics that compose the basic transformations to carry out more sophisticated rewritings, allowing the programmer to focus at the right level of abstraction for a given problem.
+
+The simplest tactics behave like basic transformations that replace terms of larger granularity.  For instance, when manipulating computations occurring in an embedded domain-specific language, it makes more sense for the default step-like transformation a programmer reaches for to correspond to the step relation of the embedded language rather than that of the host language.  In contrast, when the intention is to specialize the invocation of an embedded language interpreter, a compilation activity, host language transformations become relevant again.  However, rather than manually applying the host language's step relation, it would be more effective to use tactics designed specifically for compilation.
+
+While programmed tactics should be an effective way to automate transformations, it may in general be more intuitive to develop rewrite rules by providing goals to a search system in the style of ACL2 @(cite acl2).  ACL2 is a theorem prover based on a computational logic.  Rather than programmable tactics, the preferred ACL2 proof method @(cite acl2method) involves an intuitive, interactive, recursive goal-oriented search.  The user specifies a goal and interprets failure feedback to choose lemmas to prove as subgoals.  In doing so, the user builds up a library of rewrite rules capable of automatically proving the original goal.
+
+By providing an ACL2-inspired search system, users can remain focused on high-level problems, only delving into low-level details when the system needs new suggestions.  The system becomes more effective as the library of rewrite rules is gradually built up, naturally developing capabilities similar to a domain-specific solver.  Aside from being more intuitive, goal-oriented search should also be more robust to small changes in program semantics as the user only specifies the source and target of a goal rather than the path to achieving it.  Once a sufficient rewrite rule library is developed, it may also be possible to obtain some forms of program verification for free.  By encoding program properties as predicates in the programming language, verification conditions may be asserted with rewrite rules.  For instance, program 'x' has property 'P' if 'P("x")' ('P' applied to the quoted program 'x') is equivalent to the boolean value 'True': if the search system succeeds in such a rewrite, the property holds. @(cite props-as-progs)
+
+ACL2 employs term-rewriting strategies that happen to resemble supercompilation @(cite hlsc), suggesting another source of existing work we can leverage.  Supercompilation @supercompilers is a powerful whole-program approach to optimization that, while showing great potential, has had trouble scaling to the general case.  Issues include intense compile-time resource usage and unnecessarily large increases in program size @(cite sc-spj).  These issues stem from an inability to focus efforts on genuinely important parts of a program.  By limiting the scope of its application to hotspots, a programmer may be able to guide a supercompiler well enough to mitigate these disadvantages.  We hope to experiment with supercompilation both as a directly-applied tactic and for proving term equivalences @(cite hlsc) as part of a goal-oriented search implementation.
+
+
+### Version control
+
+Rather than textual diffs, histories of semantic actions such as edits and transformations are more useful representations of program changes.  Since they carry programmer intent, semantic actions allow tools that work with multiple versions of a program to more intelligently compare, merge, and undo changes.
+
+Additionally, each view of a program must be stored with enough information to derive provenance.
+
+
+### Tracking provenance
+
+When producing a transformed program view, we want to be able to correlate the transformed subterms of our resulting program to their sources in the original.  A simple way to achieve this is to tag terms with unique annotations, then track the flow of these annotations during transformation.  By highlighting terms with shared annotations in the original and final programs, we provide linked representations @(cite bv-media) for enhanced reasoning.
+
+
+## Extended tools
+
+If our initial experiment proves successful, we anticipate needing an extended set of tools to completely eliminate tradeoffs between comprehensibility and efficiency.  We briefly describe existing work we could leverage or draw inspiration from in developing these tools.
 
 
 ### Cost semantics
@@ -303,86 +328,6 @@ SKETCH-N-SKETCH @(cite pdm) is a tool for programming with two views: one symbol
 David M. Barbour discusses an idea for embedding interactive, non-symbolic value representations @(cite elo) within a symbolic program.  It lists examples including representations for sound, images, animations, 3D models, spreadsheets and other elaborate structures.
 
 Before a set of tools for view-oriented programming can really be considered complete it must incorporate direct manipulation views.  It should be possible to extend support to any medium representable by the hardware.
-
-
-## Tools With the Right Affordances
-
-To conduct our experiment we need tools appropriate for view-oriented programming.  We now describe a minimal set of tools that should suffice.
-
-
-### Extensible language
-
-We design a homoiconic language with a layered concept structure @(cite lightning).  Concepts introducing similar complexity are grouped in layers, with subsequent layers indicating increased expressiveness at the cost of more difficult reasoning.  In order of increasing expressiveness, the layers chosen include:
-
-* functional programming: simple data, first-class procedures
-* deterministic concurrency: single-writer dataflow, laziness, constraints, logical monotonicity @(cite lvars calm)
-* nondeterminism: asynchrony, message-passing concurrency, probabilistic choice @(cite probmods)
-* sequential control: delimited continuations, coroutines, implicit context
-
-The core functional layer is chosen to be small, strict, pure, and untyped for the following reasons:
-
-* small and strict: to describe deterministic computational processes with simple, sequential operational semantics
-* pure: for strong compositional reasoning
-* untyped: for versatility and simpler metaprogramming
-
-We introduce subsequent concepts only as needed.  Language-level support for a concept is needed when introducing the concept would otherwise require nonlocal program transformations (page 9 of @(cite lightning)).  To only pay for additional complexity when necessary, concept support may be added compositionally by locally invoking an interpreter with alternative semantics.  Homoiconicity should minimize the disruptiveness of these invocations.
-
-
-### Intermediate notation
-
-To leverage existing work and yield a simple logical framework, we base our intermediate notation on the call-by-value lambda calculus.  To support the functional programming layer, this notation includes bits, pairs, and single-argument procedures.
-
-Depending on the use case, additional concepts may be supported either by functional modelling or by extending the notation with impure terms.  Functional modelling allows the most re-use of existing machinery but may not support as precise a level of reasoning as a dedicated extension.  For an example of improving reasoning by using better notation, see the impure variable binders described @(cite impure-binders) by John Shutt.
-
-
-### Logical framework for equational reasoning
-
-A minimal logical framework based on the operational semantics of our intermediate notation should suffice for equational reasoning.  Rather than introduce the complexities of a multi-tiered reasoning system involving higher order type theory, we choose a computational logic similar to Milawa @(cite milawa) and ACL2 @(cite acl2) that leverages the operational intuitions developed while learning how to program.  We believe such a logic:
-
-* corresponds to common programmer mental models for evaluation, composition and generalization
-* presents a shorter learning curve than higher order type theory
-* is capable of expressing various type systems and analysis frameworks, supporting pluralism
-
-
-### Meaning-preserving transformation
-
-A transformation is meaning-preserving if it only replaces a term with an operationally-equivalent one.  The simplest of these transformations are based on the small step relation of our logic, allowing transition in either direction.  Such transformations can be thought of as being justified by extremely simple equivalence proofs.  Complex transformations are enabled by complex equivalence proofs, possibly involving term induction.
-
-There is also a lateral direction to consider when traversing computational models.  Generally, we have three basic directions corresponding to different programmer intentions and activities:
-
-* up: consolidation of meaning; refactoring
-* down: elaboration; optimization
-* lateral: reinterpretation; compilation
-
-
-### Programmable transformation tactics
-
-Direct, manual use of the basic transformations is a relatively low-level mode of operation, useful for precise symbolic exploration and fine-tuning of a computational process.  A more typical mode of operation involves programmer-definable tactics that compose the basic transformations to carry out more sophisticated rewritings, allowing the programmer to focus at the right level of abstraction for a given problem.
-
-The simplest tactics behave like basic transformations that replace terms of larger granularity.  For instance, when manipulating computations occurring in an embedded domain-specific language, it makes more sense for the default step-like transformation a programmer reaches for to correspond to the step relation of the embedded language rather than that of the host language.  In contrast, when the intention is to specialize the invocation of an embedded language interpreter, a compilation activity, host language transformations become relevant again.  However, rather than manually applying the host language's step relation, it would be more effective to use tactics designed specifically for compilation.
-
-
-### Goal-oriented transformation search
-
-While programmed tactics should be an effective way to automate transformations, it may in general be more intuitive to develop rewrite rules by providing goals to a search system, as with ACL2 while following The Method @(cite acl2method).  In doing so, the user can remain focused on the high-level problem, only delving into low-level details when the system needs new suggestions.  The system becomes more effective as the library of rewrite rules is gradually built up, naturally developing capabilities similar to a domain-specific solver.
-
-Aside from being more intuitive, goal-oriented search should also be more robust to small changes in program semantics as the user only specifies the source and target of a goal rather than the path to achieving it.
-
-Similar to ACL2, once a sufficient rewrite rule library is developed, it may also be possible to obtain some forms of program verification for free.  By encoding program properties as predicates in the programming language, verification conditions may be asserted with rewrite rules.  For instance, program 'x' has property 'P' if 'P("x")' ('P' applied to the quoted program 'x') is equivalent to the boolean value 'True': if the search system succeeds in such a rewrite, the property holds. @(cite props-as-progs)
-
-
-### Version control
-
-Rather than textual diffs, histories of semantic actions such as edits and transformations are more useful representations of program changes.  Since they carry programmer intent, semantic actions allow tools that work with multiple versions of a program to more intelligently compare, merge, and undo changes.
-
-Additionally, each view of a program must be stored with enough information to derive provenance.
-
-
-### Tracking provenance
-
-When producing a transformed program view, we want to be able to correlate the transformed subterms of our resulting program to their sources in the original.  A simple way to achieve this is to tag terms with unique annotations, then track the flow of these annotations during transformation.  By highlighting terms with shared annotations in the original and final programs, we provide linked representations @(cite bv-media) for enhanced reasoning.
-
-We should also consider incorporating trace slicing to more precisely visualize computational histories @(cite trace-slices).
 
 
 ## Building Bridges
