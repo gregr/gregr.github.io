@@ -1,4 +1,5 @@
 #lang scribble/text
+@(define (url href) (format "[~a](~a)" href href))
 @(define references (make-hash))
 @(define (bref name)
   (if (hash-has-key? references name)
@@ -12,7 +13,7 @@
 
 @(define reference-list @list{
 @(ref kasparov) Garry Kasparov.  The Chess Master and the Computer.
-http://www.nybooks.com/articles/2010/02/11/the-chess-master-and-the-computer/
+@(url "http://www.nybooks.com/articles/2010/02/11/the-chess-master-and-the-computer/")
 
 @(ref sicp) Harold Abelson, Gerald J. Sussman.  Structure and Interpretation of Computer Programs, 2nd edition.
 MIT Press, Cambridge, MA, USA, (ISBN 0262011530), 1996.
@@ -27,10 +28,10 @@ G. Assayag and A. Gerzso (eds.) New Computational Paradigms for Computer Music, 
 Proceedings of the 2nd ACM SIGPLAN workshop on Functional high-performance computing, Boston, Massachusetts, USA, September 23-23, 2013.
 
 @(ref calm) CALM: consistency as logical monotonicity.
-http://bloom-lang.net/calm/
+@(url "http://bloom-lang.net/calm/")
 
 @(ref probmods) Noah D. Goodman, Joshua B. Tenenbaum. Probabilistic Models of Cognition.
-https://probmods.org/
+@(url "https://probmods.org/")
 
 @(ref wiley) Hanne Riis Nielson, Flemming Nielson.  Semantics with Applications: A Formal Introduction.
 Wiley Professional Computing, (240 pages, ISBN 0 471 92980 8), Wiley, 1992.
@@ -39,31 +40,31 @@ Wiley Professional Computing, (240 pages, ISBN 0 471 92980 8), Wiley, 1992.
 PhD thesis, Worcester Polytechnic Institute, September 2010.
 
 @(ref impure-binders) John N Shutt.  Continuations and term-rewriting calculi.
-http://fexpr.blogspot.ca/2014/03/continuations-and-term-rewriting-calculi.html
+@(url "http://fexpr.blogspot.ca/2014/03/continuations-and-term-rewriting-calculi.html")
 
 @(ref milawa) Jared Davis. A Self-Verifying Theorem Prover.
 PhD dissertation. The University of Texas at Austin. December, 2009
 
 @(ref acl2) Matt Kaufmann, J Strother Moore.  ACL2: A Computational Logic for Applicative Common Lisp.
-https://www.cs.utexas.edu/users/moore/acl2/
+@(url "https://www.cs.utexas.edu/users/moore/acl2/")
 
 @(ref acl2method) Matt Kaufmann, J Strother Moore.  A Brief ACL2 Tutorial.
-https://www.cs.utexas.edu/users/kaufmann/tutorial/rev3.html
+@(url "https://www.cs.utexas.edu/users/kaufmann/tutorial/rev3.html")
 
 @(ref reflection) John Harrison.  Metatheory and reflection in theorem proving: A survey and critique.
 Technical Report CRC-053, SRI Cambridge, Millers Yard, Cambridge, UK, 1995.
 
 @(ref bedrock) Adam Chlipala et al.  Bedrock, a Coq library for verified low-level programming.
-http://plv.csail.mit.edu/bedrock/
+@(url "http://plv.csail.mit.edu/bedrock/")
 
 @(ref props-as-progs) Yin Wang.  Propositions as programs.
-https://yinwang0.wordpress.com/2012/04/26/propositions-as-programs/
+@(url "https://yinwang0.wordpress.com/2012/04/26/propositions-as-programs/")
 
 @(ref futamura) Dan Piponi.  The Three Projections of Doctor Futamura.
-http://blog.sigfpe.com/2009/05/three-projections-of-doctor-futamura.html
+@(url "http://blog.sigfpe.com/2009/05/three-projections-of-doctor-futamura.html")
 
 @(ref death-opt-compilers) Daniel J. Bernstein.  The death of optimizing compilers.
-http://cr.yp.to/talks/2015.04.16/slides-djb-20150416-a4.pdf
+@(url "http://cr.yp.to/talks/2015.04.16/slides-djb-20150416-a4.pdf")
 
 @(ref mlton) Stephen Weeks.  Whole-program compilation in MLton.
 Proceedings of the 2006 workshop on ML, p.1-1, September 16-16, 2006, Portland, Oregon, USA.
@@ -81,22 +82,22 @@ Proceedings of the 20th ACM SIGPLAN workshop on Partial evaluation and program m
 Second International Workshop on Metacomputation in Russia, pages 82-101, Ailamazyan University of Pereslavl, 2010.
 
 @(ref sc-neilm) Neil Mitchell.  Comment: The state and future of supercompilation in GHC.
-https://www.reddit.com/r/haskell/comments/2s97d0/the_state_and_future_of_supercompilation_in_ghc/cnngoxt
+@(url "https://www.reddit.com/r/haskell/comments/2s97d0/the_state_and_future_of_supercompilation_in_ghc/cnngoxt")
 
 @(ref sc-spj) Simon Peyton Jones.  Comment: The state and future of supercompilation in GHC.
-https://www.reddit.com/r/haskell/comments/2s97d0/the_state_and_future_of_supercompilation_in_ghc/cnx2saj
+@(url "https://www.reddit.com/r/haskell/comments/2s97d0/the_state_and_future_of_supercompilation_in_ghc/cnx2saj")
 
 @(ref shrinking) Andrew W. Appel, Trevor Jim.  Shrinking lambda expressions in linear time.
 Journal of Functional Programming, v.7 n.5, p.515-540, September 1997
 
 @(ref parma) Andrew Taylor.  PARMA-bridging the performance gap between imperative and logic programming.
-Journal of Logic Programming, 29(1–3), 1996.
+Journal of Logic Programming, 29(1-3), 1996.
 
 @(ref logic-vs-imperative) Peter Lodewijk Van Roy.  Can Logic Programming Execute as Fast as Imperative Programming?
 PhD dissertation, Technical Report UCB/CSD 90/600, Computer Science Division, UC Berkeley, December 1990.
 
 @(ref domain-specific-opt) Oleg Kiselyov.  Modular, convenient, assured domain-specific optimizations.
-http://okmij.org/ftp/meta-programming/Shonan1.html
+@(url "http://okmij.org/ftp/meta-programming/Shonan1.html")
 
 @(ref trace-slices) Roly Perera, Umut A. Acar, James Cheney and Paul Blain Levy.  Functional Programs That Explain Their Work.
 ICFP 2012: 17th ACM SIGPLAN International Conference on Functional Programming, Copenhagen, Denmark, 2012.
@@ -111,7 +112,7 @@ Journal of Functional Programming. 20 (5-6), 2011.
 POPL '13 Proceedings of the 40th annual ACM SIGPLAN-SIGACT symposium on Principles of programming languages, Pages 39-50. January 2013.
 
 @(ref cost-semantics-slides) Guy E. Blelloch.  Cost Models based on the Lambda-Calculus or The Church Calculus the Other Turing Machine.
-https://www.cs.cmu.edu/~guyb/papers/lambdaInria.pdf
+@(url "https://www.cs.cmu.edu/~guyb/papers/lambdaInria.pdf")
 
 @(ref quickcheck) Koen Claessen, John Hughes.  QuickCheck: a lightweight tool for random testing of Haskell programs.
 Proceedings of the fifth ACM SIGPLAN international conference on Functional programming, p.268-279, September 2000.
@@ -120,19 +121,19 @@ Proceedings of the fifth ACM SIGPLAN international conference on Functional prog
 2012 Workshop on Scheme and Functional Programming, September 2012.
 
 @(ref bv-learnable) Bret Victor.  Learnable Programming.
-http://worrydream.com/LearnableProgramming/
+@(url "http://worrydream.com/LearnableProgramming/")
 
 @(ref bv-magicink) Bret Victor.  Magic Ink.
-http://worrydream.com/MagicInk/
+@(url "http://worrydream.com/MagicInk/")
 
 @(ref bv-iop) Bret Victor.  Inventing on Principle.
-http://vimeo.com/36579366
+@(url "http://vimeo.com/36579366")
 
 @(ref bv-ddv) Bret Victor.  Drawing Dynamic Visualizations.
-http://worrydream.com/DrawingDynamicVisualizationsTalkAddendum/
+@(url "http://worrydream.com/DrawingDynamicVisualizationsTalkAddendum/")
 
 @(ref bv-media) Bret Victor.  Media for Thinking the Unthinkable.
-http://worrydream.com/MediaForThinkingTheUnthinkable/
+@(url "http://worrydream.com/MediaForThinkingTheUnthinkable/")
 
 @(ref dm-step) Ben Shneiderman.  Direct Manipulation: A Step Beyond Programming Languages.
 Computer, August 1983.
