@@ -77,7 +77,7 @@ Because our tooling must support a wide variety of uses, some of which may not h
 
 ### Programming paradigms and layered structure
 
-Peter Van Roy categorizes programming paradigms [[3](#3)], describing their relationships in terms of the concepts they consist of and discussing their properties, such as observable nondeterminism.  Interesting concepts include deterministic concurrency and constraints.  A definitive language is described as having a layered structure [[4](#4)], each incorporating some combination of the following concepts: functional programming, deterministic concurrency, message-passing concurrency and shared-state concurrency.  To be useful, our tools must such concepts.
+Peter Van Roy categorizes programming paradigms [[3](#3)], describing their relationships in terms of the concepts they consist of and discussing their properties, such as observable nondeterminism.  Interesting concepts include deterministic concurrency and constraints.  A definitive language is described as having a layered structure [[4](#4)], each incorporating some combination of the following concepts: functional programming, deterministic concurrency, message-passing concurrency and shared-state concurrency.  To be useful, our tools must support such concepts.
 
 To work with multiple paradigms manageably, we will layer our concepts.  Concepts introducing similar complexity are grouped in in the same layer, with subsequent layers indicating increased expressiveness at the cost of more difficult reasoning.  In order of increasing expressiveness, the layers we've chosen include:
 
