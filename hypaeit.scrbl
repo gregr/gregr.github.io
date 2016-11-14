@@ -161,7 +161,7 @@ arXiv:1507.02988v2 [cs.PL] 20, Nov 2015
 @(define bvictor (cite bv-iop bv-ddv bv-media))
 # Have your program and eat it too: eliminating tradeoffs between comprehensibility and efficiency
 
-*February 11, 2016*
+*February 11, 2016 - November 14, 2016*
 
 Gregory Rosenblatt
 
