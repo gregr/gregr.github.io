@@ -217,7 +217,10 @@
                  ,(employment "Funemployment" "Toronto, ON"
                               "Independent Researcher"
                               "February 2015" "present"
-                              `(p "Working with Will Byrd on " ,(anchor "https://github.com/webyrd/Barliman" "Barliman") ", a prototype smart editor capable of real-time program synthesis")
+                              `(p "Drawing the future into the present")
+                              `(ul
+                                 (li "Joint work with Will Byrd on " ,(anchor "https://github.com/webyrd/Barliman" "Barliman") ", a prototype smart editor capable of real-time program synthesis")
+                                 (li "Sketched an " ,(anchor "https://github.com/gregr/demo-livingnet" "alternative to the web")))
                               `(p "Taking the programming out of programming")
                               `(ul
                                  (li "Making the programming a better place")
