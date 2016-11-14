@@ -6,8 +6,11 @@
     (error (format "duplicate reference: ~a" name))
     (let ((uid (+ 1 (hash-count references))))
       (hash-set! references name uid)
-      (format "[~a]" uid))))
-@(define (bcite names) (format "[~a]" (string-join (map (lambda (name) (format "~a" (hash-ref references name))) names) ", ")))
+      (format "<a name=\"~a\"></a>[~a]" uid uid))))
+@(define (bcite names)
+  (let* ((uids (map (lambda (name) (format "~a" (hash-ref references name))) names))
+         (links (string-join (map (lambda (uid) (format "[~a](#~a)" uid uid)) uids) ", ")))
+    (format "[~a]" links)))
 @(define-syntax ref (syntax-rules () ((_ name) (bref 'name))))
 @(define-syntax cite (syntax-rules () ((_ names ...) (bcite '(names ...)))))
 
