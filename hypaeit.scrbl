@@ -141,21 +141,23 @@ Computer, August 1983.
 arXiv:1507.02988v2 [cs.PL] 20, Nov 2015
 
 @(ref elo) David M. Barbour.  Embedded Literal Objects.
-https://awelonblue.wordpress.com/2014/07/22/embedded-literal-objects/
+@(url "https://awelonblue.wordpress.com/2014/07/22/embedded-literal-objects/")
 
 @(ref subtext) Jonathan Edwards.  Subtext programming language.
-http://www.subtext-lang.org/
+@(url "http://www.subtext-lang.org/")
 
 @(ref bracha-debugging-metaphors) Gilad Bracha.  Debugging Visual Metaphors.
-http://gbracha.blogspot.ca/2008/07/debugging-visual-metaphors.html
+@(url "http://gbracha.blogspot.ca/2008/07/debugging-visual-metaphors.html")
 
 @(ref bracha-debug-mode) Gilad Bracha.  Debug Mode is the Only Mode.
-http://gbracha.blogspot.ca/2012/11/debug-mode-is-only-mode.html
+@(url "http://gbracha.blogspot.ca/2012/11/debug-mode-is-only-mode.html")
 })
 @(define supercompilers (cite cbn-superc superc-taming hlsc))
 @(define gblelloch (cite cost-semantics space-profiling memory-hierarchy cost-semantics-slides))
 @(define bvictor (cite bv-iop bv-ddv bv-media))
 # Have your program and eat it too: eliminating tradeoffs between comprehensibility and efficiency
+
+*February 11, 2016*
 
 Gregory Rosenblatt
 
