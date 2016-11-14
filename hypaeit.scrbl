@@ -168,7 +168,7 @@ Gregory Rosenblatt
 
 ## Abstract
 
-We describe view-oriented programming and its supporting tools as an attempt to achieve both comprehensibility and efficiency without compromise.  In this approach a program consists of multiple linked views, each providing a medium for focusing on some facet of comprehensibility and efficiency without being needlessly disrupted by actions taken in other views.
+We describe hyperprograms and their supporting tools as an attempt to achieve both comprehensibility and efficiency without compromise.  A hyperprogram consists of multiple semantically-equivalent programs along with smooth transitions between them.  Each program within a hyperprogram provides a medium for focusing on some facet of comprehensibility and efficiency without being needlessly disrupted by actions taken with its sibling programs.
 
 
 ## Introduction
@@ -188,11 +188,22 @@ Problem-specific knowledge can help tame the optimization search space before ru
 In terms of the comprehensibility and efficiency tradeoff, general-purpose automation and problem-specific manual tuning each seem to be strong where the other is weak.  Is there some way to reconcile the two approaches to get the best of both?
 
 
+### Hyperprograms
+
+It may be possible to simultaneously maximize both comprehensibility and efficiency of programs using tools that maintain multiple, semantically-equivalent views of the same computation.  These views are themselves programs expressing this computation.  We refer to a set of such programs, along with evidence of their semantic equivalence, a hyperprogram.  As an example, one subset of these programs could consolidate meaning in a high level, maximally comprehensible manner, while another subset could elaborate computational details for efficiency.  The evidence of equivalence enables tooling for smooth transition between all these programs, allowing the programmer to navigate between the most relevant computational views for the task at hand.
+
+Hyperprograms support factoring the task of programming into separate reasoning activities, allowing each activity to proceed without impeding the others unnecessarily.  Taken together, the programs of a hyperprogram can constitute the programmer's mental model of that computation.  Each program emphasizes qualities useful for a particular reasoning task.  The highest level program will correspond most closely to the desired outcome or meaning, ideally formulated as a specification or an intuitive representation.  Other programs will likely highlight different facets of a computational strategy, with the lowest levels mapping directly to machine implementations.
+
+A hypothetical process for creating new hyperprograms may first involve either direct manipulation @(cite dm-step) or symbolic specification in a declarative programming language.  If performance is not acceptable, hotspots would be identified through profiling, then elaborated in one or more new programs.  This elaboration would likely begin with algorithmic and data representation improvements in a high level language.  If the improvements expressible in this high level language are not sufficient, the programmer may descend to a lower level for more control.
+
+This formulation of programming produces predictable, observable transformation artifacts as additional programs.  Unlike the ephemeral output of typical automated tools, programs are produced and ultimately controlled by the activity of programming.  They will not vanish or change violently without explanation.  When changes in meaning do occur, dependent programs will be updated and any conflicting programmer decisions will be highlighted.  Aided by the evidence of equivalence, robustness can be achieved through programmable tactics and goal-oriented search techniques, decreasing the occurrence of conflicts compared to a fully manual effort.
+
+Seen this way, hyperprograms provide access to a spectrum of transformation activities between the fully automated and the fully manual.  If desired, they can still be used to support the extreme cases without additional effort, as the degenerate case of a hyperprogram is just a normal program.
+
+
 ### Proposal
 
-It may be possible to simultaneously maximize both comprehensibility and efficiency of programs using tools that maintain **multiple semantically-equivalent views** of the same program.  One set of views would consolidate meaning as a high level, maximally comprehensible program.  Another set of views would elaborate the program's computational details for efficiency.  All the views in these sets are linked by their semantic equivalence, supporting smooth transition between them, allowing a programmer to work with the views that best support the task at hand.
-
-To explore programming with views, we propose a minimal set of tools including:
+To explore hyperprogramming, we propose a minimal set of tools including:
 
 * a small, extensible programming language for exploring various paradigms @(cite sicp paradigms)
 * an intermediate notation for layered languages @(cite lightning)
@@ -200,10 +211,10 @@ To explore programming with views, we propose a minimal set of tools including:
 * meaning-preserving, compositional program transformations within and across layers for symbolic exploration
 * programmable tactics for robust, problem-specific driving of these transformations
 * goal-oriented, interactive transformation search @(cite acl2 hlsc)
-* transformation-aware version control for programs and their views
-* provenance-tracking and visualization to indicate related subterms across views @(cite trace-slices)
+* transformation-aware version control for hyperprograms and their programs
+* provenance-tracking and visualization to indicate related subterms across programs @(cite trace-slices)
 
-With these tools, we can build a view-oriented programming editor.  Such an editor would support operations for opening new linked views of a program that, despite possible differences in formulation, always have the same behavior.  Changes to one view would be reflected in the other.  Aside from basic editing to define and change program behavior, the editor would provide access to interactive and programmable transformation commands guaranteed to not change program behavior, allowing views to diverge in interesting ways while maintaining equivalence.
+With these tools, we can build a hyperprogramming editor.  Such an editor would support operations for creating new linked programs that, despite possible differences in formulation, always have the same behavior.  Changes to one program would be reflected in the other.  Aside from basic editing to define and change hyperprogram behavior, the editor would provide access to interactive and programmable transformation commands guaranteed to not change hyperprogram behavior, allowing programs to diverge in interesting ways while maintaining equivalence.
 
 If these tools prove useful, a more complete set could be worth developing, including:
 
@@ -212,23 +223,12 @@ If these tools prove useful, a more complete set could be worth developing, incl
 * type systems, property verification, abstract debugging and other static analyses defined using the logical framework
 * program synthesis for editing assistance, test generation and inferring examples to automatically document programs @(cite quines quickcheck)
 * extending version control to a database and distribution system for collaborative program composition
-* an editor supporting extremely high-level programming via non-symbolic program elements @(cite elo) and direct manipulation views @(cite bv-iop bv-ddv bv-media pdm)
-
-
-### Why views matter
-
-Views support factoring the task of programming into separate reasoning activities, allowing each activity to proceed without impeding the others unnecessarily.  Taken together, the views of a program constitute the programmer's mental model of that program.  Each view emphasizes program qualities useful for a particular reasoning task.  The highest level view will correspond most closely to the desired outcome or meaning, ideally formulated as a specification.  Other views will likely highlight different facets of a computational strategy, with the lowest levels mapping directly to machine implementations.
-
-A typical process for new programs will first involve either direct manipulation @(cite dm-step) or symbolic specification in a declarative programming language.  If performance is not already acceptable, hotspots are identified through profiling and elaboration begins locally with those in one or more new views.  This elaboration will initially involve algorithmic and data representational improvements in a high level language.  If the improvements expressible in this high level language are not sufficient, the programmer will descend a level for more control, moving closer to a direct machine implementation each time this happens.
-
-This formulation of views produces predictable, observable program transformation artifacts.  That is not to say views won't change at all: they must change when the program's meaning changes.  But unlike the ephemeral output of typical automated tools, views are produced and ultimately controlled by the activity of programming.  They will not vanish or change violently without explanation.  When changes occur, dependent views will be updated and any conflicting programmer decisions will be highlighted.  Robustness can be achieved through programmable tactics and goal-oriented search techniques, decreasing the occurrence of conflicts compared to a fully manual effort.
-
-Seen this way, views provide access to a spectrum of transformation activities between the fully automated and the fully manual.  If desired, they can still be used to support the extreme cases without additional effort, yet with the additional benefits that come with linked representations @(cite bv-media).
+* an editor supporting extremely high-level programming via non-symbolic program elements @(cite elo) and direct manipulation @(cite bv-iop bv-ddv bv-media pdm)
 
 
 ## Tools With the Right Affordances
 
-To conduct our experiment we need tools appropriate for view-oriented programming.  We now describe a minimal set of tools that should suffice.
+To conduct our exploration, we need tools appropriate for hyperprogramming.  We now describe a minimal set of tools that should suffice.
 
 
 ### Extensible language
@@ -258,11 +258,9 @@ We introduce subsequent concepts only as needed.  Language-level support for a c
 
 ### Intermediate notation and logical framework for equational reasoning
 
-To leverage existing work and yield a simple logical framework, we base our intermediate notation on the call-by-value lambda calculus.  To support the functional programming layer, this notation includes bits, pairs, and single-argument procedures.
+To leverage existing work and yield a simple logical framework, we base our intermediate notation on the call-by-value lambda calculus.  To support the functional programming layer, this notation includes bits, pairs, and single-argument procedures.  Depending on the use case, additional concepts may be supported either by functional modelling or by extending the notation with impure terms.  Functional modelling allows the most re-use of existing machinery but may not support as precise a level of reasoning as a dedicated extension.  An example of improved reasoning through better notation are the impure variable binders @(cite impure-binders) of John Shutt.  In order to study an abstraction based on Fexprs @(cite vau), Shutt develops several vau-calculi, assessing the term equivalences they can express.  The impure vau-calculi developed are well-behaved, introducing control effects and mutable state without losing Church-Rosser-ness of the step relation.  Unlike lambdas, state and control variable binders bubble up ahead of escaping references, dynamically maintaining lexical scope.  This technique seems useful for reasoning about effects in general and seems difficult with functional modelling alone.
 
-Depending on the use case, additional concepts may be supported either by functional modelling or by extending the notation with impure terms.  Functional modelling allows the most re-use of existing machinery but may not support as precise a level of reasoning as a dedicated extension.  An example of improved reasoning through better notation are the impure variable binders @(cite impure-binders) of John Shutt.  In order to study an abstraction based on Fexprs @(cite vau), Shutt develops several vau-calculi, assessing the term equivalences they can express.  The impure vau-calculi developed are well-behaved, introducing control effects and mutable state without losing Church-Rosser-ness of the step relation.  Unlike lambdas, state and control variable binders bubble up ahead of escaping references, dynamically maintaining lexical scope.  This technique seems useful for reasoning about effects in general and seems difficult with functional modelling alone.
-
-A minimal logical framework based on the operational semantics of our intermediate notation should suffice for equational reasoning.  Rather than introduce the complexities of a multi-tiered reasoning system involving higher order type theory, we choose a computational logic similar to ACL2 @(cite acl2) and Milawa @(cite milawa).  Milawa is a self-verifying theorem prover that puts an ACL2-like system on firmer ground by bootstrapping it from a simple proof checker, using a reflection rule @(cite reflection) to install progressively more sophisticated proof checkers that are proved faithful to the original.  Its logic describes term equality axioms similar to the step relation of an operational semantics.  We prefer this style of logic because it leverages the operational intuitions developed while learning how to program, and seems to complement our use of metalinguistic abstraction.  We believe such a logic:
+To represent, produce, and manipulate evidence of equivalence, we need tools for equational reasoning.  A minimal logical framework based on the operational semantics of our intermediate notation should suffice.  Rather than introduce the complexities of a multi-tiered reasoning system involving higher order type theory, we choose a computational logic similar to ACL2 @(cite acl2) and Milawa @(cite milawa).  Milawa is a self-verifying theorem prover that puts an ACL2-like system on firmer ground by bootstrapping it from a simple proof checker, using a reflection rule @(cite reflection) to install progressively more sophisticated proof checkers that are proved faithful to the original.  Its logic describes term equality axioms similar to the step relation of an operational semantics.  We prefer this style of logic because it leverages the operational intuitions developed while learning how to program, and seems to complement our use of metalinguistic abstraction.  We believe such a logic:
 
 * corresponds to common programmer mental models for evaluation, composition and generalization
 * presents a shorter learning curve than higher order type theory
@@ -294,7 +292,7 @@ ACL2 employs term-rewriting strategies that happen to resemble supercompilation 
 
 Rather than textual diffs, histories of semantic actions such as edits and transformations are more useful representations of program changes.  Since they carry programmer intent, semantic actions allow tools that work with multiple versions of a program to more intelligently compare, merge, and undo changes.
 
-Additionally, each view of a program should be stored with enough information to conveniently derive provenance.  When producing a transformed program view, we want to be able to correlate the transformed subterms of our resulting program with their sources in the original.  A simple way to achieve this is to tag terms with unique annotations, then track the flow of these annotations during transformation.  By highlighting terms with shared annotations in the original and final programs, we provide linked representations @(cite bv-media) for enhanced reasoning.
+Additionally, each program of a hyperprogram should be stored with enough information to conveniently derive provenance.  When transforming a program, we want to be able to correlate the transformed subterms of our resulting program with their sources in the original.  A simple way to achieve this is to tag terms with unique annotations, then track the flow of these annotations during transformation.  By highlighting terms with shared annotations in the original and final programs, we provide linked representations @(cite bv-media) for enhanced reasoning.
 
 
 ## Extended tools
@@ -316,13 +314,13 @@ William Byrd demonstrates relational interpreters @(cite quines) capable of gene
 
 ### Direct manipulation and linked representation
 
-Bret Victor demonstrates @bvictor that direct manipulation @(cite dm-step) of a medium can be significantly more effective than indirect, symbolic programming of it.  One example @(cite bv-ddv) transforms drawing into a medium for highly comprehensible dynamic graphical programming.  Another set of demonstrations @(cite bv-media) illustrate working with direct representations of various systems.  All the techniques on display are relevant, particularly multiple representations as views, and linked representations for explaining provenance and other relationships.
+Bret Victor demonstrates @bvictor that direct manipulation @(cite dm-step) of a medium can be significantly more effective than indirect, symbolic programming of it.  One example @(cite bv-ddv) transforms drawing into a medium for highly comprehensible dynamic graphical programming.  Another set of demonstrations @(cite bv-media) illustrate working with direct representations of various systems.  All the techniques on display are relevant, particularly multiple representations, and links for explaining provenance and other relationships.
 
-SKETCH-N-SKETCH @(cite pdm) is a tool for programming with two views: one symbolic, the other for graphical direct manipulation.  Meaning is preserved by reconciling updates in one view with corresponding updates in the other using triggers and trace-based synthesis.
+SKETCH-N-SKETCH @(cite pdm) is a tool for programming with two computational views: one symbolic, the other for graphical direct manipulation.  Meaning is preserved by reconciling updates in one view with corresponding updates in the other using triggers and trace-based synthesis.
 
 David M. Barbour discusses an idea for embedding interactive, non-symbolic value representations @(cite elo) within a symbolic program.  It lists examples including representations for sound, images, animations, 3D models, spreadsheets and other elaborate structures.
 
-Before a set of tools for view-oriented programming can really be considered complete it must incorporate direct manipulation views.  It should be possible to extend support to any medium representable by the hardware.
+Before a set of tools for hyperprogramming can really be considered complete it should incorporate direct manipulation views as programs.  It should be possible to extend support to any medium representable by the hardware.
 
 
 ## Building Bridges
@@ -332,13 +330,13 @@ For our work to be relevant we need to produce a self-applicable system capable 
 
 ### Bootstrapping
 
-We would like our tools to be self-applicable so that their implementations may also benefit from view-oriented programming.  Ideally this would include self-applicability in the sense of Futamura projections @(cite futamura).
+We would like our tools to be self-applicable so that their implementations may also benefit from hyperprogramming.  Ideally this would include self-applicability in the sense of Futamura projections @(cite futamura).
 
 Obtaining self-applicable versions of our tools requires us to somehow implement them with our example programming language.  For this language to even materialize in the first place we must first produce bootstrap versions of some of the tools, including an interpreter.
 
 To derive the most benefit from our efforts, we closely match our functional syntax to the intermediate notation, even implementing the functional layer primitives using the intermediate notation itself.  Primitives in hand, we complete our bootstrap interpreter with a simple functional syntax parser, assembler, and evaluator for the intermediate notation.  The rest of the functional layer is bootstrapped using its own syntactic extension facilities.
 
-Subsequent layers are initially implemented as interpreters in the functional layer, sufficient for view-based reasoning and manipulation.  Communication outside of the functional model can be achieved by connecting it to a simple input/output trampoline that implements the desired effects.  Effect invocation takes the form of a functional computation returning a pair containing the encoding for an effect request and a continuation to pass the response to.  Given the response, the continuation will proceed with the remainder of the program, at least until the next effect request.  The trampoline responds to effect requests until the program returns a final result, tagged as such.
+Subsequent layers are initially implemented as interpreters in the functional layer.  Communication outside of the functional model can be achieved by connecting it to a simple input/output trampoline that implements the desired effects.  Effect invocation takes the form of a functional computation returning a pair containing the encoding for an effect request and a continuation to pass the response to.  Given the response, the continuation will proceed with the remainder of the program, at least until the next effect request.  The trampoline responds to effect requests until the program returns a final result, tagged as such.
 
 Ultimately we wish to eliminate interpretive overhead and leverage hardware support for parallelism, storage, etc.  To do so, we build machine models that allow us to reason about and target concrete machines for compilation.
 
@@ -356,7 +354,7 @@ Aside from basic language models, there is also plenty of room for communities t
 
 ### Experimentation and assessment
 
-A meaningful experiment should assess the effectiveness of view-oriented programming across a representative set of programming activities.  We now describe such a set of activities and corresponding success criteria.
+A meaningful experiment should assess the effectiveness of hyperprogramming across a representative set of programming activities.  We now describe such a set of activities and corresponding success criteria.
 
 
 #### Implementing specifications
@@ -388,14 +386,14 @@ Going to the extreme, this activity also encompasses inferring specifications fo
 
 #### Response to change
 
-Are views robust in response to program modifications?  Are behavior-preserving algorithm substitutions and data representation adjustments needlessly disruptive?  Conflicts will certainly arise when a program is updated with different behavior.  Successful tools will be effective arbiters for unimportant conflicts that do not deserve programmer attention.
+Are programs robust in response to hyperprogram modifications?  Are behavior-preserving algorithm substitutions and data representation adjustments needlessly disruptive?  Conflicts will certainly arise when a hyperprogram is updated with different behavior.  Successful tools will shield the programmer from unimportant conflicts that do not deserve attention.
 
 
 ## Conclusion
 
-Programming with views makes use of a different kind of infrastructure than that which is currently used.  Before we can properly investigate the effectiveness of view-oriented programming we must invest in new tools and repurpose some existing ones.  Lack of appropriate infrastructure would have inhibited exploration of this approach in the past.  In fact, the idea may have eluded awareness completely due to the absence of tool affordances that even suggest it.
+Hyperprogramming makes use of a different kind of infrastructure than that which is currently used.  Before we can properly investigate the effectiveness of hyperprogramming we must invest in new tools and repurpose some existing ones.  Lack of appropriate infrastructure would have inhibited exploration of this approach in the past.  In fact, the idea may have eluded awareness completely due to the absence of tool affordances that even suggest it.
 
-Once we have the proper tools, we will be able to test whether views can, in practice, support both comprehensibility and efficiency for the same program better than fully automated and fully manual efforts.  We may finally be able to have our cake and eat it too.
+Once we have the proper tools, we will be able to test whether hyperprograms can, in practice, support both comprehensibility and efficiency for the same computation better than fully automated and fully manual efforts.  We may finally be able to have our cake and eat it too.
 
 
 ## References
