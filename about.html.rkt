@@ -78,7 +78,7 @@
   (nav-local `(
     ("summary"             "Summary")
     ("personal-projects"   "Personal Projects")
-    ("non-work-experience" "Unprofessional Experience")
+    ("non-work-experience" "Extraprofessional Experience")
     ("work-experience"     "Professional Experience")
     ("education"           "Education")
     ("recommended-reading" "Recommended Reading")
