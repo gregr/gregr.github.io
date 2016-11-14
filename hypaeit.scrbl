@@ -290,16 +290,11 @@ By providing an ACL2-inspired search system, users can remain focused on high-le
 ACL2 employs term-rewriting strategies that happen to resemble supercompilation @(cite hlsc), suggesting another source of existing work we can leverage.  Supercompilation @supercompilers is a powerful whole-program approach to optimization that, while showing great potential, has had trouble scaling to the general case.  Issues include intense compile-time resource usage and unnecessarily large increases in program size @(cite sc-spj).  These issues stem from an inability to focus efforts on genuinely important parts of a program.  By limiting the scope of its application to hotspots, a programmer may be able to guide a supercompiler well enough to mitigate these disadvantages.  We hope to experiment with supercompilation both as a directly-applied tactic and for proving term equivalences @(cite hlsc) as part of a goal-oriented search implementation.
 
 
-### Version control
+### Version control and provenance
 
 Rather than textual diffs, histories of semantic actions such as edits and transformations are more useful representations of program changes.  Since they carry programmer intent, semantic actions allow tools that work with multiple versions of a program to more intelligently compare, merge, and undo changes.
 
-Additionally, each view of a program must be stored with enough information to derive provenance.
-
-
-### Tracking provenance
-
-When producing a transformed program view, we want to be able to correlate the transformed subterms of our resulting program to their sources in the original.  A simple way to achieve this is to tag terms with unique annotations, then track the flow of these annotations during transformation.  By highlighting terms with shared annotations in the original and final programs, we provide linked representations @(cite bv-media) for enhanced reasoning.
+Additionally, each view of a program should be stored with enough information to conveniently derive provenance.  When producing a transformed program view, we want to be able to correlate the transformed subterms of our resulting program with their sources in the original.  A simple way to achieve this is to tag terms with unique annotations, then track the flow of these annotations during transformation.  By highlighting terms with shared annotations in the original and final programs, we provide linked representations @(cite bv-media) for enhanced reasoning.
 
 
 ## Extended tools
