@@ -314,8 +314,8 @@ We design a homoiconic language with a layered concept structure @(cite lightnin
 
 * functional programming: simple data, first-class procedures
 * deterministic concurrency: single-writer dataflow, laziness, constraints, logical monotonicity @(cite lvars calm)
-* sequential control: delimited continuations, coroutines, implicit context
 * nondeterminism: asynchrony, message-passing concurrency, probabilistic choice @(cite probmods)
+* sequential control: delimited continuations, coroutines, implicit context
 
 The core functional layer is chosen to be small, strict, pure, and untyped for the following reasons:
 
