@@ -124,6 +124,24 @@
      "display" "inline"
      "padding" "10px"))
 
+  (".talk-list"
+   (hash
+     "list-style-type" "none"
+     ))
+  (".talk-list>li"
+   (hash
+     "margin-bottom" "2em"
+     ))
+  (".talk-name"
+   (hash
+     "display" "inline"
+     "margin-right" "1em"
+   ))
+  (".talk .date-range"
+   (hash
+     "display" "inline"
+   ))
+
   (".personal-project-list"
    (hash
      "list-style-type" "none"
