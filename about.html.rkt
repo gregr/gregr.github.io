@@ -56,6 +56,10 @@
     (prog-pearls "Programming Pearls" "http://www.cs.bell-labs.com/cm/cs/pearls/")
     )))
 
+(define (talk name . details)
+  `(div ((class "talk"))
+        (h3 ((class "talk-name")) ,name)
+        (div ((class "talk-details")) ,@details)))
 (define (personal-project name start end . details)
   `(div ((class "personal-project"))
         (h3 ((class "personal-project-name")) ,name)
@@ -78,6 +82,7 @@
   (nav-local `(
     ("summary"             "Summary")
     ("personal-projects"   "Personal Projects")
+    ("talks"               "Talks")
     ("non-work-experience" "Extraprofessional Experience")
     ("work-experience"     "Professional Experience")
     ("education"           "Education")
@@ -209,6 +214,15 @@
                          (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-iv-the-r1803" "IV"))
                          (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-v-func-r1877" "V")))
                     ))))
+         (section
+           ,(anchor-target "talks")
+           (h2 "Talks")
+           (ul ((class "talk-list"))
+               (li
+                 ,(talk (anchor "https://www.youtube.com/watch?v=er_lLvkklsk" "Barliman: trying the halting problem backwards, blindfolded")
+                        `(p ,(anchor "http://2016.clojure-conj.org/barliman/" "Clojure/conj 2016"))
+                        `(p ,(anchor "https://purelyfunctional.tv/speaker-interview/greg-rosenblatt-clojureconj-2016-speaker-interview/" "Speaker Interview"))
+                        `(p "Barliman is a prototype smart editor capable of program synthesis: given part of a program and a set of tests to pass, Barliman attempts to complete the program for you.")))))
          (section
            ,(anchor-target "non-work-experience")
            (h2 "Extraprofessional experience")
