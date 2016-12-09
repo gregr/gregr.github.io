@@ -82,6 +82,19 @@ nav li {
   display: inline;
   padding: 10px;
 }
+.talk-list {
+  list-style-type: none;
+}
+.talk-list>li {
+  margin-bottom: 2em;
+}
+.talk-name {
+  display: inline;
+  margin-right: 1em;
+}
+.talk .date-range {
+  display: inline;
+}
 .personal-project-list {
   list-style-type: none;
 }
