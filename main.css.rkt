@@ -124,6 +124,24 @@
      "display" "inline"
      "padding" "10px"))
 
+  (".publication-list"
+   (hash
+     "list-style-type" "none"
+     ))
+  (".publication-list>li"
+   (hash
+     "margin-bottom" "2em"
+     ))
+  (".publication-name"
+   (hash
+     "display" "inline"
+     "margin-right" "1em"
+   ))
+  (".publication .date-range"
+   (hash
+     "display" "inline"
+   ))
+
   (".talk-list"
    (hash
      "list-style-type" "none"
