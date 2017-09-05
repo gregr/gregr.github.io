@@ -56,6 +56,10 @@
     (prog-pearls "Programming Pearls" "http://www.cs.bell-labs.com/cm/cs/pearls/")
     )))
 
+(define (publication name . details)
+  `(div ((class "publication"))
+        (h3 ((class "publication-name")) ,name)
+        (div ((class "publication-details")) ,@details)))
 (define (talk name . details)
   `(div ((class "talk"))
         (h3 ((class "talk-name")) ,name)
@@ -82,6 +86,7 @@
   (nav-local `(
     ("summary"             "Summary")
     ("personal-projects"   "Personal Projects")
+    ("publications"        "Publications")
     ("talks"               "Talks")
     ("non-work-experience" "Extraprofessional Experience")
     ("work-experience"     "Professional Experience")
@@ -215,6 +220,15 @@
                          (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-v-func-r1877" "V")))
                     ))))
          (section
+           ,(anchor-target "publications")
+           (h2 "Publications")
+           (ul ((class "publication-list"))
+               (li
+                 ,(publication (anchor "https://dl.acm.org/citation.cfm?id=3110252" "A unified approach to solving seven programming problems")
+                               `(p "ICFP 2017")
+                               `(p ,(anchor "https://github.com/gregr/icfp2017-artifact-auas7pp" "Reusable artifact"))
+                               `(p "We present seven programming challenges in Racket, and an elegant, unified approach to solving them using constraint logic programming in miniKanren.")))))
+         (section
            ,(anchor-target "talks")
            (h2 "Talks")
            (ul ((class "talk-list"))
@@ -222,6 +236,7 @@
                  ,(talk (anchor "https://www.youtube.com/watch?v=er_lLvkklsk" "Barliman: trying the halting problem backwards, blindfolded")
                         `(p ,(anchor "http://2016.clojure-conj.org/barliman/" "Clojure/conj 2016"))
                         `(p ,(anchor "https://purelyfunctional.tv/speaker-interview/greg-rosenblatt-clojureconj-2016-speaker-interview/" "Speaker Interview"))
+                        `(p ,(anchor "https://github.com/webyrd/Barliman" "Barliman"))
                         `(p "Barliman is a prototype smart editor capable of program synthesis: given part of a program and a set of tests to pass, Barliman attempts to complete the program for you.")))))
          (section
            ,(anchor-target "non-work-experience")
