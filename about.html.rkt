@@ -56,13 +56,14 @@
     (prog-pearls "Programming Pearls" "http://www.cs.bell-labs.com/cm/cs/pearls/")
     )))
 
-(define (publication name . details)
+(define (publication authors name . details)
   `(div ((class "publication"))
-        (h3 ((class "publication-name")) ,name)
+        (div ((class "publication-authors")) ,authors)
+        (div ((class "publication-name")) ,name)
         (div ((class "publication-details")) ,@details)))
 (define (talk name . details)
   `(div ((class "talk"))
-        (h3 ((class "talk-name")) ,name)
+        (div ((class "talk-name")) ,name)
         (div ((class "talk-details")) ,@details)))
 (define (personal-project name start end . details)
   `(div ((class "personal-project"))
@@ -224,8 +225,10 @@
            (h2 "Publications")
            (ul ((class "publication-list"))
                (li
-                 ,(publication (anchor "https://dl.acm.org/citation.cfm?id=3110252" "A unified approach to solving seven programming problems")
-                               `(p "ICFP 2017")
+                 ,(publication "William E. Byrd, Michael Ballantyne, Gregory Rosenblatt, Matthew Might"
+                               (anchor "https://dl.acm.org/citation.cfm?id=3110252"
+                                       "A unified approach to solving seven programming problems (functional pearl)")
+                               `(p "Proceedings of the ACM on Programming Languages.  Volume 1, Issue ICFP, September 2017. Article No. 8")
                                `(p ,(anchor "https://github.com/gregr/icfp2017-artifact-auas7pp" "Reusable artifact"))
                                `(p "We present seven programming challenges in Racket, and an elegant, unified approach to solving them using constraint logic programming in miniKanren.")))))
          (section
@@ -233,11 +236,11 @@
            (h2 "Talks")
            (ul ((class "talk-list"))
                (li
-                 ,(talk (anchor "https://www.youtube.com/watch?v=er_lLvkklsk" "Barliman: trying the halting problem backwards, blindfolded")
+                 ,(talk `(p ,(anchor "https://www.youtube.com/watch?v=er_lLvkklsk" "Barliman: trying the halting problem backwards, blindfolded")
+                            " (with William E. Byrd)")
                         `(p ,(anchor "http://2016.clojure-conj.org/barliman/" "Clojure/conj 2016"))
-                        `(p ,(anchor "https://purelyfunctional.tv/speaker-interview/greg-rosenblatt-clojureconj-2016-speaker-interview/" "Speaker Interview"))
-                        `(p ,(anchor "https://github.com/webyrd/Barliman" "Barliman"))
-                        `(p "Barliman is a prototype smart editor capable of program synthesis: given part of a program and a set of tests to pass, Barliman attempts to complete the program for you.")))))
+                        `(p ,(anchor "https://purelyfunctional.tv/speaker-interview/greg-rosenblatt-clojureconj-2016-speaker-interview/" "My speaker Interview"))
+                        `(p ,(anchor "https://github.com/webyrd/Barliman" "Barliman ") "is a prototype smart editor capable of program synthesis: given part of a program and a set of tests to pass, Barliman attempts to complete the program for you.")))))
          (section
            ,(anchor-target "non-work-experience")
            (h2 "Extraprofessional experience")
@@ -248,7 +251,7 @@
                               "February 2015" "present"
                               `(p "Drawing the future into the present")
                               `(ul
-                                 (li "Joint work with Will Byrd on " ,(anchor "https://github.com/webyrd/Barliman" "Barliman") ", a prototype smart editor capable of real-time program synthesis")
+                                 (li "Joint work with William E. Byrd on " ,(anchor "https://github.com/webyrd/Barliman" "Barliman") ", a prototype smart editor capable of real-time program synthesis")
                                  (li "Described " ,(anchor "hypaeit.html" "Hyperprograms") " for reconciling program comprehensibility and efficiency")
                                  (li "Sketched an " ,(anchor "https://github.com/gregr/demo-livingnet" "alternative to the web")))
                               `(p "Taking the programming out of programming")
