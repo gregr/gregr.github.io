@@ -101,10 +101,6 @@ nav li {
 .talk-list>li {
   margin-bottom: 2em;
 }
-.talk-name {
-  display: inline;
-  margin-right: 1em;
-}
 .talk .date-range {
   display: inline;
 }
