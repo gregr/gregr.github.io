@@ -225,6 +225,15 @@
            (h2 "Publications")
            (ul ((class "publication-list"))
                (li
+                 ,(publication "Lisa Zhang, Gregory Rosenblatt, Ethan Fetaya, Renjie Liao, William E. Byrd, Raquel Urtasun, Richard Zemel"
+                               (anchor "https://openreview.net/forum?id=HJIHtIJvz"
+                                       "Leveraging Constraint Logic Programming for Neural Guided Program Synthesis")
+                               `(p "ICLR 2018 Workshop")
+                               `(p "Abstract: We present a method for solving Programming by Example (PBE) problems that tightly integrates a neural network with a constraint logic programming system called miniKanren. Internally, miniKanren searches for a program that satisfies the recursive constraints imposed by the provided examples. Our Recurrent Neural Network (RNN) model uses these constraints as input to score candidate programs. We show evidence that using our method to guide miniKanren’s search is a promising approach to solving PBE problems.")
+                               `(p "TL;DR: We use a neural model to guide the search of a constraint logic programming system performing program synthesis, where the neural model uses as input the internal representation of the symbolic system.")
+                               `(p "Keywords: Program synthesis, deductive search, deep learning, recurrent neural networks")))
+
+               (li
                  ,(publication "William E. Byrd, Michael Ballantyne, Gregory Rosenblatt, Matthew Might"
                                (anchor "https://dl.acm.org/citation.cfm?id=3110252"
                                        "A unified approach to solving seven programming problems (functional pearl)")
