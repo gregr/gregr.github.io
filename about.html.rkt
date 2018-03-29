@@ -110,7 +110,7 @@
          (section ((class "summary"))
                   ,(anchor-target "summary")
                   (h2 "Summary")
-                  (p "I currently live in Toronto, Ontario, where I used to work as a Software Engineer.  I currently do independent research.")
+                  (p "I currently live in Toronto, Ontario.  I used to be a Software Engineer.  Then I did independent research for a little while.  Now I work for the University of Alabama at Birmingham.")
                   (p
                     "My "
                     ,(ref-arch 'beat-cap "focus")
