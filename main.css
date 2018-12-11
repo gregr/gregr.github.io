@@ -36,7 +36,7 @@ a:hover {
 }
 #nav-panel {
   float: left;
-  width: 280px;
+  width: 255px;
 }
 #nav-panel a:link, #nav-panel a:visited {
   color: #333333;
@@ -46,8 +46,8 @@ a:hover {
   color: #666666;
 }
 #content-main {
-  margin-left: 280px;
-  margin-right: 280px;
+  margin-left: 255px;
+  margin-right: 255px;
 }
 #nav-local {
   margin-right: 1em;
@@ -83,7 +83,7 @@ nav li {
   padding: 10px;
 }
 .publication-list {
-  list-style-type: none;
+  list-style-type: square;
 }
 .publication-list>li {
   margin-bottom: 2em;
@@ -96,10 +96,14 @@ nav li {
   display: inline;
 }
 .talk-list {
-  list-style-type: none;
+  list-style-type: square;
 }
 .talk-list>li {
   margin-bottom: 2em;
+}
+.talk-name {
+  display: inline;
+  margin-right: 1em;
 }
 .talk .date-range {
   display: inline;
