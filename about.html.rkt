@@ -56,10 +56,10 @@
     (prog-pearls "Programming Pearls" "http://www.cs.bell-labs.com/cm/cs/pearls/")
     )))
 
-(define (publication authors name . details)
+(define (publication name authors . details)
   `(div ((class "publication"))
-        (div ((class "publication-authors")) ,authors)
         (div ((class "publication-name")) ,name)
+        (div ((class "publication-authors")) ,authors)
         (div ((class "publication-details")) ,@details)))
 (define (talk name . details)
   `(div ((class "talk"))
@@ -225,18 +225,18 @@
            (h2 "Publications")
            (ul ((class "publication-list"))
                (li
-                 ,(publication "Lisa Zhang, Gregory Rosenblatt, Ethan Fetaya, Renjie Liao, William E. Byrd, Raquel Urtasun, Richard Zemel"
-                               (anchor "https://openreview.net/forum?id=HJIHtIJvz"
-                                       "Leveraging Constraint Logic Programming for Neural Guided Program Synthesis")
-                               `(p "ICLR 2018 Workshop")
-                               `(p "Abstract: We present a method for solving Programming by Example (PBE) problems that tightly integrates a neural network with a constraint logic programming system called miniKanren. Internally, miniKanren searches for a program that satisfies the recursive constraints imposed by the provided examples. Our Recurrent Neural Network (RNN) model uses these constraints as input to score candidate programs. We show evidence that using our method to guide miniKanren’s search is a promising approach to solving PBE problems.")
-                               `(p "TL;DR: We use a neural model to guide the search of a constraint logic programming system performing program synthesis, where the neural model uses as input the internal representation of the symbolic system.")
-                               `(p "Keywords: Program synthesis, deductive search, deep learning, recurrent neural networks")))
-
+                 ,(publication (anchor "http://papers.nips.cc/paper/7445-neural-guided-constraint-logic-programming-for-program-synthesis"
+                                       "Neural Guided Constraint Logic Programming for Program Synthesis")
+                               "Lisa Zhang, Gregory Rosenblatt, Ethan Fetaya, Renjie Liao, William E. Byrd, Matthew Might, Raquel Urtasun, Richard Zemel"
+                               `(p "Neural Information Processing Systems (NeurIPS), 2018")
+                               "["(anchor "https://arxiv.org/abs/1809.02840"            "arXiv") "] "
+                               "["(anchor "http://lisazhang.ca/NIPS2018_CLP_poster.pdf" "Poster") "] "
+                               "["(anchor "https://github.com/xuexue/neuralkanren"      "Code") "] "
+                               "["(anchor "https://openreview.net/forum?id=HJIHtIJvz"   "Workshop") "]"))
                (li
-                 ,(publication "William E. Byrd, Michael Ballantyne, Gregory Rosenblatt, Matthew Might"
-                               (anchor "https://dl.acm.org/citation.cfm?id=3110252"
+                 ,(publication (anchor "https://dl.acm.org/citation.cfm?id=3110252"
                                        "A unified approach to solving seven programming problems (functional pearl)")
+                               "William E. Byrd, Michael Ballantyne, Gregory Rosenblatt, Matthew Might"
                                `(p "Proceedings of the ACM on Programming Languages.  Volume 1, Issue ICFP, September 2017. Article No. 8")
                                `(p ,(anchor "https://github.com/gregr/icfp2017-artifact-auas7pp" "Reusable artifact"))
                                `(p "We present seven programming challenges in Racket, and an elegant, unified approach to solving them using constraint logic programming in miniKanren.")))))
