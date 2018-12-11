@@ -4,7 +4,7 @@
   )
 
 (define nav-content-width "1160px")
-(define nav-width "280px")
+(define nav-width "255px")
 
 (define-css "main.css"
   ("body"
@@ -126,7 +126,7 @@
 
   (".publication-list"
    (hash
-     "list-style-type" "none"
+     "list-style-type" "square"
      ))
   (".publication-list>li"
    (hash
@@ -144,12 +144,17 @@
 
   (".talk-list"
    (hash
-     "list-style-type" "none"
+     "list-style-type" "square"
      ))
   (".talk-list>li"
    (hash
      "margin-bottom" "2em"
      ))
+  (".talk-name"
+   (hash
+     "display" "inline"
+     "margin-right" "1em"
+   ))
   (".talk .date-range"
    (hash
      "display" "inline"

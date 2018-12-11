@@ -58,12 +58,13 @@
 
 (define (publication name authors . details)
   `(div ((class "publication"))
-        (div ((class "publication-name")) ,name)
+        (h3 ((class "publication-name")) ,name)
         (div ((class "publication-authors")) ,authors)
         (div ((class "publication-details")) ,@details)))
-(define (talk name . details)
+(define (talk name authors . details)
   `(div ((class "talk"))
-        (div ((class "talk-name")) ,name)
+        (h3 ((class "talk-name")) ,name)
+        (div ((class "talk-authors")) ,authors)
         (div ((class "talk-details")) ,@details)))
 (define (personal-project name start end . details)
   `(div ((class "personal-project"))
@@ -86,13 +87,13 @@
 (define nav-about
   (nav-local `(
     ("summary"             "Summary")
-    ("personal-projects"   "Personal Projects")
+    ("personal-projects"   "Projects")
     ("publications"        "Publications")
     ("talks"               "Talks")
-    ("non-work-experience" "Extraprofessional Experience")
-    ("work-experience"     "Professional Experience")
+    ("non-work-experience" "Extraprofessional")
+    ("work-experience"     "Professional")
     ("education"           "Education")
-    ("recommended-reading" "Recommended Reading")
+    ("recommended-reading" "Reading")
   )))
 
 (define about
@@ -229,27 +230,27 @@
                                        "Neural Guided Constraint Logic Programming for Program Synthesis")
                                "Lisa Zhang, Gregory Rosenblatt, Ethan Fetaya, Renjie Liao, William E. Byrd, Matthew Might, Raquel Urtasun, Richard Zemel"
                                `(p "Neural Information Processing Systems (NeurIPS), 2018")
-                               "["(anchor "https://arxiv.org/abs/1809.02840"            "arXiv") "] "
-                               "["(anchor "http://lisazhang.ca/NIPS2018_CLP_poster.pdf" "Poster") "] "
-                               "["(anchor "https://github.com/xuexue/neuralkanren"      "Code") "] "
-                               "["(anchor "https://openreview.net/forum?id=HJIHtIJvz"   "Workshop") "]"))
+                               "[" (anchor "https://arxiv.org/abs/1809.02840"            "arXiv") "] "
+                               "[" (anchor "http://lisazhang.ca/NIPS2018_CLP_poster.pdf" "Poster") "] "
+                               "[" (anchor "https://github.com/xuexue/neuralkanren"      "Code") "] "
+                               "[" (anchor "https://openreview.net/forum?id=HJIHtIJvz"   "Workshop") "]"))
                (li
                  ,(publication (anchor "https://dl.acm.org/citation.cfm?id=3110252"
                                        "A unified approach to solving seven programming problems (functional pearl)")
                                "William E. Byrd, Michael Ballantyne, Gregory Rosenblatt, Matthew Might"
                                `(p "Proceedings of the ACM on Programming Languages.  Volume 1, Issue ICFP, September 2017. Article No. 8")
-                               `(p ,(anchor "https://github.com/gregr/icfp2017-artifact-auas7pp" "Reusable artifact"))
+                               `(p "[" ,(anchor "https://github.com/gregr/icfp2017-artifact-auas7pp" "Reusable artifact") "]")
                                `(p "We present seven programming challenges in Racket, and an elegant, unified approach to solving them using constraint logic programming in miniKanren.")))))
          (section
            ,(anchor-target "talks")
            (h2 "Talks")
            (ul ((class "talk-list"))
                (li
-                 ,(talk `(p ,(anchor "https://www.youtube.com/watch?v=er_lLvkklsk" "Barliman: trying the halting problem backwards, blindfolded")
-                            " (with William E. Byrd)")
-                        `(p ,(anchor "http://2016.clojure-conj.org/barliman/" "Clojure/conj 2016"))
-                        `(p ,(anchor "https://purelyfunctional.tv/speaker-interview/greg-rosenblatt-clojureconj-2016-speaker-interview/" "My speaker Interview"))
-                        `(p ,(anchor "https://github.com/webyrd/Barliman" "Barliman ") "is a prototype smart editor capable of program synthesis: given part of a program and a set of tests to pass, Barliman attempts to complete the program for you.")))))
+                 ,(talk (anchor "https://www.youtube.com/watch?v=er_lLvkklsk" "Barliman: trying the halting problem backwards, blindfolded")
+                        "with William E. Byrd"
+                        `(p "[" ,(anchor "http://2016.clojure-conj.org/barliman/" "Clojure/conj 2016") "] "
+                            "[" ,(anchor "https://github.com/webyrd/Barliman" "Code") "]")
+                        `(p "Barliman is a prototype smart editor capable of program synthesis: given part of a program and a set of tests to pass, Barliman attempts to complete the program for you.")))))
          (section
            ,(anchor-target "non-work-experience")
            (h2 "Extraprofessional experience")
