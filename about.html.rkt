@@ -258,7 +258,7 @@
                (li
                  ,(employment "Funemployment" "Toronto, ON"
                               "Independent Researcher"
-                              "February 2015" "present"
+                              "February 2015" "September 2017"
                               `(p "Drawing the future into the present")
                               `(ul
                                  (li "Joint work with William E. Byrd on " ,(anchor "https://github.com/webyrd/Barliman" "Barliman") ", a prototype smart editor capable of real-time program synthesis")
@@ -282,6 +282,15 @@
            ,(anchor-target "work-experience")
            (h2 "Professional experience")
            (ul ((class "employment-list"))
+               (li
+                 ,(employment "University of Alabama at Birmingham" "Birmingham, AL"
+                              "Bioinformatician"
+                              "September 2017" "present"
+                              `(p "Applying computer science to build medical reasoning tools")
+                              `(ul
+                                 (li "mediKanren user interface")
+                                 (li "Relational programming system extended with graph database and search")
+                                 (li "Automated ingestion and reformatting of biological graph data sources"))))
                (li
                  ,(employment "500px" "Toronto, ON"
                               "Platform Engineer"
