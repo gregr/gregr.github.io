@@ -226,6 +226,12 @@
            (h2 "Publications")
            (ul ((class "publication-list"))
                (li
+                 ,(publication (anchor "http://minikanren.org/workshop/2019/minikanren19-final2.pdf"
+                                       "First-order miniKanren representation: Great for tooling and search")
+                               "Gregory Rosenblatt, Lisa Zhang, William E. Byrd, Matthew Might"
+                               `(p "miniKanren Workshop, 2019")
+                               `(p "[" ,(anchor "https://github.com/gregr/first-order-miniKanren" "Implementation and examples") "]")))
+               (li
                  ,(publication (anchor "http://papers.nips.cc/paper/7445-neural-guided-constraint-logic-programming-for-program-synthesis"
                                        "Neural Guided Constraint Logic Programming for Program Synthesis")
                                "Lisa Zhang, Gregory Rosenblatt, Ethan Fetaya, Renjie Liao, William E. Byrd, Matthew Might, Raquel Urtasun, Richard Zemel"
