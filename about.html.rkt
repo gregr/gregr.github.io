@@ -71,12 +71,14 @@
         (h3 ((class "personal-project-name")) ,name)
         ,(date-range start end)
         (div ((class "personal-project-details")) ,@details)))
-(define (employment employer location title start end . details)
+(define (employment employer location roles . details)
   `(div ((class "employment"))
         (h3 ((class "employment-employer")) ,employer)
         (div ((class "employment-location")) ,location)
-        (h4 ((class "employment-title")) ,title)
-        ,(date-range start end)
+        ,@(append* (map (lambda (r)
+                          (match-define (list title start end) r)
+                          `((h4 ((class "employment-title")) ,title)
+                            ,(date-range start end))) roles))
         (div ((class "employment-details")) ,@details)))
 (define (education name date . details)
   `(div ((class "education"))
@@ -263,8 +265,8 @@
            (ul ((class "employment-list"))
                (li
                  ,(employment "Funemployment" "Toronto, ON"
-                              "Independent Researcher"
-                              "February 2015" "September 2017"
+                              '(("Independent Researcher"
+                                 "February 2015" "September 2017"))
                               `(p "Drawing the future into the present")
                               `(ul
                                  (li "Joint work with William E. Byrd on " ,(anchor "https://github.com/webyrd/Barliman" "Barliman") ", a prototype smart editor capable of real-time program synthesis")
@@ -290,8 +292,8 @@
            (ul ((class "employment-list"))
                (li
                  ,(employment "University of Alabama at Birmingham" "Birmingham, AL"
-                              "Bioinformatician"
-                              "September 2017" "present"
+                              '(("Bioinformatician"
+                                 "September 2017" "present"))
                               `(p "Applying computer science to build medical reasoning tools")
                               `(ul
                                  (li "mediKanren user interface")
@@ -299,8 +301,8 @@
                                  (li "Automated ingestion and reformatting of biological graph data sources"))))
                (li
                  ,(employment "500px" "Toronto, ON"
-                              "Platform Engineer"
-                              "July 2014" "February 2015"
+                              '(("Platform Engineer"
+                                 "July 2014" "February 2015"))
                               `(p "Improved platform stability and performance")
                               `(ul
                                  (li "Kafka-based data pipeline prototype")
@@ -309,8 +311,8 @@
                                  )))
                (li
                  ,(employment "Tulip Retail" "Toronto, ON"
-                              "Software Engineer"
-                              "October 2013" "June 2014"
+                              '(("Software Engineer"
+                                 "October 2013" "June 2014"))
                               `(p "Part of the founding team originally from Well.ca")
                               `(p "Worked on both retail platform and individual client projects")
                               `(ul
@@ -321,8 +323,8 @@
                                  )))
                (li
                  ,(employment "Well.ca" "Kitchener, ON"
-                              "Software Engineer"
-                              "August 2012" "October 2013"
+                              '(("Software Engineer"
+                                 "August 2012" "October 2013"))
                               `(p "Refactored and redesigned the warehouse management system")
                               `(ul
                                  (li "Separation of WMS into an independent service providing a web API")
@@ -331,8 +333,8 @@
                                  )))
                (li
                  ,(employment "Facebook" "Palo Alto, CA"
-                              "Software Engineer"
-                              "January 2011" "June 2012"
+                              '(("Software Engineer"
+                                 "January 2011" "June 2012"))
                               `(p "Developed and maintained internal development tools and infrastructure")
                               `(ul
                                  (li "Distributed continuous test run infrastructure")
@@ -344,8 +346,8 @@
                                  )))
                (li
                  ,(employment "Ellington Management Group" "Old Greenwich, CT"
-                              "Quantitative Developer"
-                              "May 2006" "August 2009"
+                              '(("Quantitative Developer"
+                                 "May 2006" "August 2009"))
                               `(p "Developed and maintained various modelling and trading systems")
                               `(ul
                                  (li "Distributed computing infrastructure")
