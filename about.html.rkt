@@ -292,8 +292,10 @@
            (ul ((class "employment-list"))
                (li
                  ,(employment "University of Alabama at Birmingham" "Birmingham, AL"
-                              '(("Bioinformatician"
-                                 "September 2017" "present"))
+                              '(("Scientist"
+                                 "February 2020" "present")
+                                ("Bioinformatician"
+                                 "September 2017" "February 2020"))
                               `(p "Applying computer science to build medical reasoning tools")
                               `(ul
                                  (li "mediKanren user interface")
