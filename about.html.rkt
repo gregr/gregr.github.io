@@ -228,6 +228,11 @@
            (h2 "Publications")
            (ul ((class "publication-list"))
                (li
+                 ,(publication (anchor "https://www.coalg.org/tease-lp/2020/accelerating-program-synthesis-in-minikanren/"
+                                       "Accelerating Program Synthesis in miniKanren")
+                               "Robert Zinkov, Michael Ballantyne, Gregory L. Rosenblatt and William E. Byrd"
+                               `(p "Workshop on Trends, Extensions, Applications and Semantics of Logic Programming, 2020")))
+               (li
                  ,(publication (anchor "http://minikanren.org/workshop/2019/minikanren19-final2.pdf"
                                        "First-order miniKanren representation: Great for tooling and search")
                                "Gregory Rosenblatt, Lisa Zhang, William E. Byrd, Matthew Might"
