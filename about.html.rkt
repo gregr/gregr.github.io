@@ -113,7 +113,9 @@
          (section ((class "summary"))
                   ,(anchor-target "summary")
                   (h2 "Summary")
-                  (p "I currently live in Toronto, Ontario.  I used to be a Software Engineer.  Then I did independent research for a little while.  Now I work for the University of Alabama at Birmingham.")
+                  (p "I currently live in Toronto, Ontario.  I used to be a Software Engineer.  Then I did independent research for a little while.  "
+                     "Now I work for the " (a ((target "_blank") (href "https://www.uab.edu/medicine/pmi/"))
+                                              "Hugh Kaul Precision Medicine Institute") " at the University of Alabama at Birmingham.")
                   (p
                     "My "
                     ,(ref-arch 'beat-cap "focus")
