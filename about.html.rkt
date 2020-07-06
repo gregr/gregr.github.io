@@ -295,7 +295,7 @@
                                  "February 2015" "September 2017"))
                               `(p "Drawing the future into the present")
                               `(ul
-                                 (li "Joint work with William E. Byrd on " ,(anchor "https://github.com/webyrd/Barliman" "Barliman") ", a prototype smart editor capable of real-time program synthesis")
+                                 (li "Worked with William E. Byrd on " ,(anchor "https://github.com/webyrd/Barliman" "Barliman") ", a prototype smart editor capable of real-time program synthesis")
                                  (li "Described " ,(anchor "/hypaeit.html" "Hyperprograms") " for reconciling program comprehensibility and efficiency")
                                  (li "Sketched an " ,(anchor "https://github.com/gregr/demo-livingnet" "alternative to the web")))
                               `(p "Taking the programming out of programming")
@@ -337,7 +337,7 @@
 
          (section
            ,(anchor-target "personal-projects")
-           (h2 "Older personal projects")
+           (h2 "Older projects")
            (ul ((class "personal-project-list"))
                (li
                  ,(personal-project
