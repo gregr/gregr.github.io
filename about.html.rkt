@@ -89,12 +89,12 @@
 (define nav-about
   (nav-local `(
     ("summary"             "Summary")
-    ("personal-projects"   "Projects")
     ("publications"        "Publications")
     ("talks"               "Talks")
     ("work-experience"     "Professional")
     ("non-work-experience" "Extraprofessional")
     ("education"           "Education")
+    ("personal-projects"   "Old projects")
     ("recommended-reading" "Reading")
   )))
 
@@ -175,56 +175,7 @@
                     ,(ref-misc 'weiqi "Go/Weiqi/Baduk")
                     " at the 5 dan level."
                     ))
-         (section
-           ,(anchor-target "personal-projects")
-           (h2 "Notable personal projects")
-           (p "The following projects were the product of significant effort made as I grew up as a programmer.")
-           (ul ((class "personal-project-list"))
-               (li
-                 ,(personal-project
-                    (anchor "https://github.com/gregr/racket-misc" "Racket-Misc")
-                    "2014" "present"
-                    `(p "This is a library of miscellaneous utilities for the " ,(ref-tech 'racket "Racket")
-                        " programming language.  It features records, cursors ("
-                        ,(ref-dsalgo 'zipper "zippers")
-                        " and lenses), unrestricted "
-                        ,(ref-plt 'yield-mainstream-delim-cont "generators")
-                        ", "
-                        ,(ref-plt 'eff-lang "algebraic effects")
-                        ", gratuitous experiments in syntactic sugar, and more.")
-                    ))
-               (li
-                 ,(personal-project
-                    (anchor "https://github.com/gregr/chive" "The Chive Programming Language")
-                    "2009" "2010"
-                    `(p "This was my first serious attempt at a full programming language implementation.  It features a scheme-like hygienic macro system based on syntactic closures.")
-                    `(p "It was put aside when I started working at Facebook.")
-                    ))
-               (li
-                 ,(personal-project
-                    (anchor "https://github.com/gregr/uriel" "Uriel")
-                    "2005" "2006"
-                    `(p "a tile-based multiplayer game framework")
-                    `(p "Several amusing games were made with this.  They are lost.")
-                    ))
-               (li
-                 ,(personal-project
-                    (anchor "https://github.com/gregr/starscape" "Starscape")
-                    "1999" "2005"
-                    `(p "a 3D game programming system, including a GUI library")
-                    ))
-               (li
-                 ,(personal-project
-                    "Creating a Scripting System in C++"
-                    "2002" "2003"
-                    `(p "This is an article series I wrote for " ,(anchor "http://www.gamedev.net/" "gamedev.net") " in five parts.")
-                    `(ul ((class "multipart-series"))
-                         (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-i-an-i-r1633" "I"))
-                         (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-ii-dat-r1686" "II"))
-                         (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-iii-dy-r1788" "III"))
-                         (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-iv-the-r1803" "IV"))
-                         (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-v-func-r1877" "V")))
-                    ))))
+
          (section
            ,(anchor-target "publications")
            (h2 "Publications")
@@ -403,6 +354,57 @@
                         " and "
                         ,(anchor "https://www.udacity.com/" "udacity")
                         " were spun off.")))))
+
+         (section
+           ,(anchor-target "personal-projects")
+           (h2 "Older personal projects")
+           (ul ((class "personal-project-list"))
+               (li
+                 ,(personal-project
+                    (anchor "https://github.com/gregr/racket-misc" "Racket-Misc")
+                    "2014" "present"
+                    `(p "This is a library of miscellaneous utilities for the " ,(ref-tech 'racket "Racket")
+                        " programming language.  It features records, cursors ("
+                        ,(ref-dsalgo 'zipper "zippers")
+                        " and lenses), unrestricted "
+                        ,(ref-plt 'yield-mainstream-delim-cont "generators")
+                        ", "
+                        ,(ref-plt 'eff-lang "algebraic effects")
+                        ", gratuitous experiments in syntactic sugar, and more.")
+                    ))
+               (li
+                 ,(personal-project
+                    (anchor "https://github.com/gregr/chive" "The Chive Programming Language")
+                    "2009" "2010"
+                    `(p "This was my first serious attempt at a full programming language implementation.  It features a scheme-like hygienic macro system based on syntactic closures.")
+                    `(p "It was put aside when I started working at Facebook.")
+                    ))
+               (li
+                 ,(personal-project
+                    (anchor "https://github.com/gregr/uriel" "Uriel")
+                    "2005" "2006"
+                    `(p "a tile-based multiplayer game framework")
+                    `(p "Several amusing games were made with this.  They are lost.")
+                    ))
+               (li
+                 ,(personal-project
+                    (anchor "https://github.com/gregr/starscape" "Starscape")
+                    "1999" "2005"
+                    `(p "a 3D game programming system, including a GUI library")
+                    ))
+               (li
+                 ,(personal-project
+                    "Creating a Scripting System in C++"
+                    "2002" "2003"
+                    `(p "This is an article series I wrote for " ,(anchor "http://www.gamedev.net/" "gamedev.net") " in five parts.")
+                    `(ul ((class "multipart-series"))
+                         (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-i-an-i-r1633" "I"))
+                         (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-ii-dat-r1686" "II"))
+                         (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-iii-dy-r1788" "III"))
+                         (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-iv-the-r1803" "IV"))
+                         (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-v-func-r1877" "V")))
+                    ))))
+
          (section
            ,(anchor-target "recommended-reading")
            (h2 "Some reading I've enjoyed and recommend")
