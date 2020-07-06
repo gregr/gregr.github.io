@@ -130,7 +130,7 @@
         (ul
           (li ,(node-ref 'about))
           (li ,(node-ref 'writing))
-          (li ,(anchor "hypaeit.html" "Whitepaper Draft"))
+          (li ,(anchor "/hypaeit.html" "Whitepaper Draft"))
           )))
 
 (define (content sub-title nav-local body (links '()))
