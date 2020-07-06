@@ -89,6 +89,7 @@
 (define nav-about
   (nav-local `(
     ("summary"             "Summary")
+    ("research-interests"  "Research interests")
     ("publications"        "Publications")
     ("talks"               "Talks")
     ("work-experience"     "Professional")
@@ -175,6 +176,19 @@
                     ,(ref-misc 'weiqi "Go/Weiqi/Baduk")
                     " at the 5 dan level."
                     ))
+
+         (section
+           ,(anchor-target "research-interests")
+           (h2 "Research interests")
+           (ul
+             (li "Relational (constraint logic) programming")
+             (li "Old-school symbolic artificial intelligence")
+             (li "Program synthesis")
+             (li "Computational reflection")
+             (li "Supercompilation")
+             (li "Multi-stage programming")
+             (li "Semi-automated theorem proving")
+             ))
 
          (section
            ,(anchor-target "publications")
