@@ -114,51 +114,17 @@
          (section ((class "summary"))
                   ,(anchor-target "summary")
                   (h2 "Summary")
-                  (p "I currently live in Toronto, Ontario.  I used to be a Software Engineer.  Then I did independent research for a little while.  "
-                     "Now I work for the " (a ((target "_blank") (href "https://www.uab.edu/medicine/pmi/"))
-                                              "Hugh Kaul Precision Medicine Institute") " at the University of Alabama at Birmingham.")
-                  (p
-                    "My "
-                    ,(ref-arch 'beat-cap "focus")
-                    " is "
-                    ,(ref-arch 'consistent-hash "more")
-                    " "
-                    ,(ref-arch 'raft-paxos "on")
-                    " "
-                    ,(ref-plt 'minikanren-video "general")
-                    " "
-                    ,(ref-plt 'props-as-types "ideas")
-                    " than on specific technologies.  Though, I do like to choose "
-                    ,(ref-tech 'postgres "which")
-                    " "
-                    ,(ref-tech 'redis "technologies")
-                    " to work with, "
-                    ,(ref-tech 'racket "preferring")
-                    " "
-                    ,(ref-tech 'haskell "well-designed")
-                    " "
-                    ,(ref-tech 'python "languages")
-                    ", "
-                    ,(ref-tech 'git "tools")
-                    " and "
-                    ,(ref-tech '100-percent-solutions "100% solutions")
-                    ".  Unfortunately I have "
-                    ,(ref-tech-poor 'c++-fqa "plenty")
-                    " of "
-                    ,(ref-tech-poor 'wat-talk "experience")
-                    " with "
-                    ,(ref-tech-poor 'php-fractally-bad "poorly-designed")
-                    " "
-                    ,(ref-tech-poor 'mysql-choose-something-else "technology")
-                    ".")
-                  (p
-                    "I enjoy being "
-                    ,(ref-reading 'peopleware "managed")
-                    " well.")
+                  (p "I work for the " (a ((target "_blank") (href "https://www.uab.edu/medicine/pmi/"))
+                                          "Hugh Kaul Precision Medicine Institute")
+                     " at the University of Alabama at Birmingham."
+                     "  I build "
+                     ,(anchor "https://github.com/webyrd/mediKanren" "biomedical reasoning tools")
+                     " using relational programming techniques."
+                     "  I live in Toronto, Ontario.")
                   (p
                     "My approach to problem solving emphasizes "
                     ,(ref-reading 'prag-prog "tool-building and automation")
-                    ".  This includes code generation, transformation and other "
+                    ".  This includes generating and transforming code, and other "
                     ,(ref-plt 'role-of-PL-study "language-oriented")
                     " techniques.  When solving mysteries, I understand and reason about code before jumping into a debugger.")
                   (p
