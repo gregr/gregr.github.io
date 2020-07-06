@@ -92,8 +92,8 @@
     ("personal-projects"   "Projects")
     ("publications"        "Publications")
     ("talks"               "Talks")
-    ("non-work-experience" "Extraprofessional")
     ("work-experience"     "Professional")
+    ("non-work-experience" "Extraprofessional")
     ("education"           "Education")
     ("recommended-reading" "Reading")
   )))
@@ -266,33 +266,7 @@
                         `(p "[" ,(anchor "http://2016.clojure-conj.org/barliman/" "Clojure/conj 2016") "] "
                             "[" ,(anchor "https://github.com/webyrd/Barliman" "Code") "]")
                         `(p "Barliman is a prototype smart editor capable of program synthesis: given part of a program and a set of tests to pass, Barliman attempts to complete the program for you.")))))
-         (section
-           ,(anchor-target "non-work-experience")
-           (h2 "Extraprofessional experience")
-           (ul ((class "employment-list"))
-               (li
-                 ,(employment "Funemployment" "Toronto, ON"
-                              '(("Independent Researcher"
-                                 "February 2015" "September 2017"))
-                              `(p "Drawing the future into the present")
-                              `(ul
-                                 (li "Joint work with William E. Byrd on " ,(anchor "https://github.com/webyrd/Barliman" "Barliman") ", a prototype smart editor capable of real-time program synthesis")
-                                 (li "Described " ,(anchor "hypaeit.html" "Hyperprograms") " for reconciling program comprehensibility and efficiency")
-                                 (li "Sketched an " ,(anchor "https://github.com/gregr/demo-livingnet" "alternative to the web")))
-                              `(p "Taking the programming out of programming")
-                              `(ul
-                                 (li "Making the programming a better place")
-                                 (li "Fighting the social injustice of programming-inequality")
-                                 (li "Increasing the minimum programming to fight poverty")
-                                 (li "Providing affordable programming to keep people off the streets")
-                                 (li "Putting programming on the table for you and your family")
-                                 (li "Cutting programming emissions to slow climate change")
-                                 (li "Looking for a cure to programming")
-                                 (li "Programming is the leading cause of programming")
-                                 (li "1 out of every 1 programmers suffers from programming, but many are in denial")
-                                 (li "Staging programming interventions")
-                                 (li "Just say 'no' to programming"))))
-               ))
+
          (section
            ,(anchor-target "work-experience")
            (h2 "Professional experience")
@@ -366,6 +340,35 @@
                                  (li "Automated trading and order management system")
                                  )))
                ))
+
+         (section
+           ,(anchor-target "non-work-experience")
+           (h2 "Extraprofessional experience")
+           (ul ((class "employment-list"))
+               (li
+                 ,(employment "Funemployment" "Toronto, ON"
+                              '(("Independent Researcher"
+                                 "February 2015" "September 2017"))
+                              `(p "Drawing the future into the present")
+                              `(ul
+                                 (li "Joint work with William E. Byrd on " ,(anchor "https://github.com/webyrd/Barliman" "Barliman") ", a prototype smart editor capable of real-time program synthesis")
+                                 (li "Described " ,(anchor "/hypaeit.html" "Hyperprograms") " for reconciling program comprehensibility and efficiency")
+                                 (li "Sketched an " ,(anchor "https://github.com/gregr/demo-livingnet" "alternative to the web")))
+                              `(p "Taking the programming out of programming")
+                              `(ul
+                                 (li "Making the programming a better place")
+                                 (li "Fighting the social injustice of programming-inequality")
+                                 (li "Increasing the minimum programming to fight poverty")
+                                 (li "Providing affordable programming to keep people off the streets")
+                                 (li "Putting programming on the table for you and your family")
+                                 (li "Cutting programming emissions to slow climate change")
+                                 (li "Looking for a cure to programming")
+                                 (li "Programming is the leading cause of programming")
+                                 (li "1 out of every 1 programmers suffers from programming, but many are in denial")
+                                 (li "Staging programming interventions")
+                                 (li "Just say 'no' to programming"))))
+               ))
+
          (section
            ,(anchor-target "education")
            (h2 "Education")
