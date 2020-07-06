@@ -230,6 +230,18 @@
            (h2 "Publications")
            (ul ((class "publication-list"))
                (li
+                 ,(publication
+                    (anchor "https://icfp20.sigplan.org/details/minikanren-2020-papers/10/mediKanren-A-System-for-Bio-medical-Reasoning"
+                            "mediKanren: A System for Bio-medical Reasoning")
+                    "Michael Patton, Gregory Rosenblatt, William E. Byrd, Matthew Might"
+                    `(p "To appear in: miniKanren Workshop, 2020")))
+               (li
+                 ,(publication
+                    (anchor "https://icfp20.sigplan.org/details/minikanren-2020-papers/1/A-Relational-Interpreter-for-Synthesizing-JavaScript"
+                            "A Relational Interpreter for Synthesizing JavaScript")
+                    "Artem Chirkov, Gregory Rosenblatt, Matthew Might, Lisa Zhang"
+                    `(p "To appear in: miniKanren Workshop, 2020")))
+               (li
                  ,(publication (anchor "https://www.coalg.org/tease-lp/2020/accelerating-program-synthesis-in-minikanren/"
                                        "Accelerating Program Synthesis in miniKanren")
                                "Robert Zinkov, Michael Ballantyne, Gregory L. Rosenblatt and William E. Byrd"
@@ -256,6 +268,7 @@
                                `(p "Proceedings of the ACM on Programming Languages.  Volume 1, Issue ICFP, September 2017. Article No. 8")
                                `(p "[" ,(anchor "https://github.com/gregr/icfp2017-artifact-auas7pp" "Reusable artifact") "]")
                                `(p "We present seven programming challenges in Racket, and an elegant, unified approach to solving them using constraint logic programming in miniKanren.")))))
+
          (section
            ,(anchor-target "talks")
            (h2 "Talks")
