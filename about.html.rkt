@@ -323,17 +323,7 @@
                     (date-range "1999" "2004")
                     `(p "Bachelor of Science in Mechanical Engineering")
                     `(p "Concentration in Aerospace")
-                    ))
-               (li
-                 ,(education
-                    "Stanford Online Courses for AI and Machine Learning"
-                    (date-single "Fall 2011")
-                    `(p "Statement of Accomplishment")
-                    `(p "This was the original online offering of these two classes from which "
-                        ,(anchor "https://www.coursera.org/" "coursera")
-                        " and "
-                        ,(anchor "https://www.udacity.com/" "udacity")
-                        " were spun off.")))))
+                    ))))
 
          (section
            ,(anchor-target "personal-projects")
