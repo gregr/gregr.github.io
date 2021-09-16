@@ -162,32 +162,50 @@
            (ul ((class "publication-list"))
                (li
                  ,(publication
+                    (anchor "https://icfp21.sigplan.org/details/minikanren-2021-papers/2/Universal-Quantification-and-Implication-in-miniKanren"
+                            "Universal Quantification and Implication in miniKanren")
+                    "Ende Jin, Gregory Rosenblatt, Matthew Might, Lisa Zhang"
+                    '(p "miniKanren Workshop, 2021")
+                    "[" (anchor "https://www.cs.toronto.edu/~lczhang/jin_universal2021.pdf" "Pre-print") "] "
+                    "[" (anchor "https://www.youtube.com/watch?v=53Wiu-4NEM4" "Video") "] "
+                    "[" (anchor "https://github.com/DKXXXL/miniKanren-with-Universal-Quantifier" "Code") "]"))
+               (li
+                 ,(publication
                     (anchor "https://icfp20.sigplan.org/details/minikanren-2020-papers/10/mediKanren-A-System-for-Bio-medical-Reasoning"
                             "mediKanren: A System for Bio-medical Reasoning")
-                    "Michael Patton, Gregory Rosenblatt, William E. Byrd, Matthew Might"
-                    `(p "To appear in: miniKanren Workshop, 2020")))
+                    "William E. Byrd, Gregory Rosenblatt, Michael J. Patton, Thi K. Tran-Nguyen, Marissa Zheng, Apoorv Jain, Michael Ballantyne, Katherine Zhang, Mei-Jan Chen, Jordan Whitlock, Mary E. Crumbley, Jillian Tinglin, Kaiwen He, Yizhou Zhang, Jeremy D. Zucker, Joseph A. Cottam, Nada Amin, John Osborne, Andrew Crouse, Matthew Might"
+                    '(p "miniKanren Workshop, 2020")
+                    "[" (anchor "http://minikanren.org/workshop/2020/minikanren-2020-paper7.pdf" "Pre-print") "] "
+                    "[" (anchor "https://www.youtube.com/watch?v=d-Klzumjulo" "Video") "] "
+                    "[" (anchor "https://github.com/webyrd/mediKanren" "Code") "]"))
                (li
                  ,(publication
                     (anchor "https://icfp20.sigplan.org/details/minikanren-2020-papers/1/A-Relational-Interpreter-for-Synthesizing-JavaScript"
                             "A Relational Interpreter for Synthesizing JavaScript")
                     "Artem Chirkov, Gregory Rosenblatt, Matthew Might, Lisa Zhang"
-                    `(p "To appear in: miniKanren Workshop, 2020")))
+                    '(p "miniKanren Workshop, 2020")
+                    "[" (anchor "http://minikanren.org/workshop/2020/minikanren-2020-paper10.pdf" "Pre-print") "] "
+                    "[" (anchor "https://www.youtube.com/watch?v=m1ivKijUN-c" "Video") "] "
+                    "[" (anchor "https://github.com/Artish357/RelateJS" "Code") "]"))
                (li
                  ,(publication (anchor "https://www.coalg.org/tease-lp/2020/accelerating-program-synthesis-in-minikanren/"
                                        "Accelerating Program Synthesis in miniKanren")
                                "Robert Zinkov, Michael Ballantyne, Gregory L. Rosenblatt and William E. Byrd"
-                               `(p "Workshop on Trends, Extensions, Applications and Semantics of Logic Programming, 2020")))
+                               '(p "Workshop on Trends, Extensions, Applications and Semantics of Logic Programming, 2020")
+                               "[" (anchor "https://www.coalg.org/tease-lp/files/2020/05/zinkov-teaselp.pdf" "Abstract") "] "
+                               "[" (anchor "https://video.leidenuniv.nl/media/t/1_ty3c7tk6" "Video") "]"))
                (li
                  ,(publication (anchor "http://minikanren.org/workshop/2019/minikanren19-final2.pdf"
                                        "First-order miniKanren representation: Great for tooling and search")
                                "Gregory Rosenblatt, Lisa Zhang, William E. Byrd, Matthew Might"
-                               `(p "miniKanren Workshop, 2019")
-                               `(p "[" ,(anchor "https://github.com/gregr/first-order-miniKanren" "Implementation and examples") "]")))
+                               '(p "miniKanren Workshop, 2019")
+                               "[" (anchor "http://minikanren.org/workshop/2019/minikanren19-final2.pdf" "Pre-print") "] "
+                               "[" (anchor "https://github.com/gregr/first-order-miniKanren" "Implementation and examples") "]"))
                (li
                  ,(publication (anchor "http://papers.nips.cc/paper/7445-neural-guided-constraint-logic-programming-for-program-synthesis"
                                        "Neural Guided Constraint Logic Programming for Program Synthesis")
                                "Lisa Zhang, Gregory Rosenblatt, Ethan Fetaya, Renjie Liao, William E. Byrd, Matthew Might, Raquel Urtasun, Richard Zemel"
-                               `(p "Neural Information Processing Systems (NeurIPS), 2018")
+                               '(p "Neural Information Processing Systems (NeurIPS), 2018")
                                "[" (anchor "https://arxiv.org/abs/1809.02840"            "arXiv") "] "
                                "[" (anchor "http://lisazhang.ca/NIPS2018_CLP_poster.pdf" "Poster") "] "
                                "[" (anchor "https://github.com/xuexue/neuralkanren"      "Code") "] "
@@ -196,9 +214,11 @@
                  ,(publication (anchor "https://dl.acm.org/citation.cfm?id=3110252"
                                        "A unified approach to solving seven programming problems (functional pearl)")
                                "William E. Byrd, Michael Ballantyne, Gregory Rosenblatt, Matthew Might"
-                               `(p "Proceedings of the ACM on Programming Languages.  Volume 1, Issue ICFP, September 2017. Article No. 8")
-                               `(p "[" ,(anchor "https://github.com/gregr/icfp2017-artifact-auas7pp" "Reusable artifact") "]")
-                               `(p "We present seven programming challenges in Racket, and an elegant, unified approach to solving them using constraint logic programming in miniKanren.")))))
+                               '(p "Proceedings of the ACM on Programming Languages.  Volume 1, Issue ICFP, September 2017. Article No. 8")
+                               "[" (anchor "https://dl.acm.org/doi/pdf/10.1145/3110252" "Paper") "] "
+                               "[" (anchor "https://www.youtube.com/watch?v=o3AHnyEf7IE" "Video") "] "
+                               "[" (anchor "https://github.com/gregr/icfp2017-artifact-auas7pp" "Reusable artifact") "]"
+                               '(p "We present seven programming challenges in Racket, and an elegant, unified approach to solving them using constraint logic programming in miniKanren.")))))
 
          (section
            ,(anchor-target "talks")
