@@ -168,7 +168,7 @@
                     '(p "miniKanren Workshop, 2021")
                     "[" (anchor "https://www.cs.toronto.edu/~lczhang/jin_universal2021.pdf" "Pre-print") "] "
                     "[" (anchor "https://www.youtube.com/watch?v=53Wiu-4NEM4" "Video") "] "
-                    "[" (anchor "https://github.com/DKXXXL/miniKanren-with-Universal-Quantifier" "Code") "]"))
+                    "[" (anchor "https://github.com/DKXXXL/fo-mKanren-to-LF" "Code") "]"))
                (li
                  ,(publication
                     (anchor "https://icfp20.sigplan.org/details/minikanren-2020-papers/10/mediKanren-A-System-for-Bio-medical-Reasoning"
