@@ -66,10 +66,9 @@
         (h3 ((class "talk-name")) ,name)
         (div ((class "talk-authors")) ,authors)
         (div ((class "talk-details")) ,@details)))
-(define (personal-project name start end . details)
+(define (personal-project name . details)
   `(div ((class "personal-project"))
         (h3 ((class "personal-project-name")) ,name)
-        ,(date-range start end)
         (div ((class "personal-project-details")) ,@details)))
 (define (employment employer location roles . details)
   `(div ((class "employment"))
@@ -80,10 +79,9 @@
                           `((h4 ((class "employment-title")) ,title)
                             ,(date-range start end))) roles))
         (div ((class "employment-details")) ,@details)))
-(define (education name date . details)
+(define (education name . details)
   `(div ((class "education"))
         (h3 ((class "education-name")) ,name)
-        ,date
         (div ((class "education-details")) ,@details)))
 
 (define nav-about
@@ -126,7 +124,7 @@
                     ,(ref-reading 'prag-prog "tool-building and automation")
                     ".  This includes generating and transforming code, and other "
                     ,(ref-plt 'role-of-PL-study "language-oriented")
-                    " techniques.  When solving mysteries, I understand and reason about code before jumping into a debugger.")
+                    " techniques.")
                   (p
                     "A major goal of mine is to become better at "
                     ,(ref-design 'magic-ink "designing")
@@ -340,7 +338,6 @@
                (li
                  ,(education
                     "Rochester Institute of Technology"
-                    (date-range "1999" "2004")
                     `(p "Bachelor of Science in Mechanical Engineering")
                     `(p "Concentration in Aerospace")
                     ))))
@@ -352,7 +349,6 @@
                (li
                  ,(personal-project
                     (anchor "https://github.com/gregr/racket-misc" "Racket-Misc")
-                    "2014" "present"
                     `(p "This is a library of miscellaneous utilities for the " ,(ref-tech 'racket "Racket")
                         " programming language.  It features records, cursors ("
                         ,(ref-dsalgo 'zipper "zippers")
@@ -365,27 +361,23 @@
                (li
                  ,(personal-project
                     (anchor "https://github.com/gregr/chive" "The Chive Programming Language")
-                    "2009" "2010"
                     `(p "This was my first serious attempt at a full programming language implementation.  It features a scheme-like hygienic macro system based on syntactic closures.")
                     `(p "It was put aside when I started working at Facebook.")
                     ))
                (li
                  ,(personal-project
                     (anchor "https://github.com/gregr/uriel" "Uriel")
-                    "2005" "2006"
                     `(p "a tile-based multiplayer game framework")
                     `(p "Several amusing games were made with this.  They are lost.")
                     ))
                (li
                  ,(personal-project
                     (anchor "https://github.com/gregr/starscape" "Starscape")
-                    "1999" "2005"
                     `(p "a 3D game programming system, including a GUI library")
                     ))
                (li
                  ,(personal-project
                     "Creating a Scripting System in C++"
-                    "2002" "2003"
                     `(p "This is an article series I wrote for " ,(anchor "http://www.gamedev.net/" "gamedev.net") " in five parts.")
                     `(ul ((class "multipart-series"))
                          (li ,(anchor "http://www.gamedev.net/page/resources/_/technical/game-programming/creating-a-scripting-system-in-c-part-i-an-i-r1633" "I"))
