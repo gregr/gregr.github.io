@@ -64,7 +64,7 @@
            (li "quoting variable references, as in: " ,(code-frag "\"$@\""))
            (li ,(code-frag "find -print0 ... | xargs -0 ..."))
            (li ,(code-frag "trap"))
-           (li ,(code-frag "set -o nonclobber"))
+           (li ,(code-frag "set -o noclobber"))
            )
          (p "If anything in this list falls outside of your comfort zone, read " ,(ref 'robust-bash "this") " before continuing.")
          (p "Also, unless your script intentionally makes use of " ,(ref 'bh-pathname-expansion "pathname expansion (aka globbing)") ", you should disable it via " ,(code-frag "set -f") ".  If you do make use of globbing, you should use " ,(code-frag "shopt -s failglob") " to produce errors for non-matching patterns.")
