@@ -160,6 +160,16 @@
            (ul ((class "publication-list"))
                (li
                  ,(publication
+                    (anchor "https://icfp22.sigplan.org/details/minikanren-2022-papers/4/Fail-Fast-and-Profile-On-Towards-a-miniKanren-Profiler"
+                            "Fail Fast and Profile On: Towards a miniKanren Profiler")
+                    "Sloan Chochinov, Daksh Malhotra, Gregory Rosenblatt, Matthew Might, Lisa Zhang"
+                    '(p "miniKanren Workshop, 2022")
+                    "[" (anchor "https://drive.google.com/file/d/1ldMlExvR7Sb-M5wJVgayzHokMxinuWYg/view" "Pre-print") "] "
+                    "[" (anchor "https://www.youtube.com/watch?v=A93JTWoBJFM" "Video") "] "
+                    "[" (anchor "https://github.com/DakshChan/mk_debugger" "Code") "]"))
+
+               (li
+                 ,(publication
                     (anchor "https://icfp21.sigplan.org/details/minikanren-2021-papers/2/Universal-Quantification-and-Implication-in-miniKanren"
                             "Universal Quantification and Implication in miniKanren")
                     "Ende Jin, Gregory Rosenblatt, Matthew Might, Lisa Zhang"
